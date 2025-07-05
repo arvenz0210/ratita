@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/database';
-import type { CreateTodoInput, UpdateTodoInput } from '@/lib/database';
+import { getDb } from '@/lib/database';
 
 export async function GET() {
   try {
+    const db = getDb();
     // Fetch data from SQLite
     const result = await db.execute("SELECT * FROM todos ORDER BY created_at DESC");
     return NextResponse.json({ todos: result.rows });
@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const db = getDb();
     // Insert new todo
     const result = await db.execute({
       sql: "INSERT INTO todos (description, created_at, updated_at) VALUES (?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
@@ -59,6 +60,7 @@ export async function PUT(request: Request) {
       );
     }
 
+    const db = getDb();
     // Update todo
     await db.execute({
       sql: "UPDATE todos SET description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
@@ -87,6 +89,7 @@ export async function DELETE(request: Request) {
       );
     }
 
+    const db = getDb();
     // Delete todo
     await db.execute({
       sql: "DELETE FROM todos WHERE id = ?",

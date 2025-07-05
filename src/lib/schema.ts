@@ -1,4 +1,4 @@
-import { db } from './database';
+import { getDb } from './database';
 
 export const schema = {
   // Create todos table with proper structure
@@ -48,6 +48,8 @@ export const schema = {
 
 export async function initializeDatabase() {
   try {
+    const db = getDb();
+    
     // Create table
     await db.execute(schema.createTodosTable);
     console.log('✅ Todos table created');
