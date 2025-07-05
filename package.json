@@ -6,9 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "init-db": "curl -X POST http://localhost:3000/api/init-db"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.9",
     "@vercel/postgres": "^0.10.0",
     "next": "15.3.5",
     "react": "^19.0.0",
