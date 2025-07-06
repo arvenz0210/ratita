@@ -5,7 +5,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Layout } from "@/components/ui/layout"
 import { ConfirmModal, AlertModal } from "@/components/ui/modal"
-import { ShoppingCart, Trash2, Calendar, Package, Plus } from "lucide-react"
+import { MouseLogo } from "@/components/ui/ratita-components"
+import { ShoppingCart, Trash2, Calendar, Package, Plus, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -144,29 +145,44 @@ export default function ShoppingListPage() {
 
   if (isLoading) {
     return (
-      <Layout>
-        <div className="bg-gray-900 min-h-full flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-400">Cargando listas guardadas...</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <Layout>
+          <div className="min-h-full flex items-center justify-center">
+            <div className="text-center">
+              <MouseLogo size="lg" className="mx-auto mb-6" animated />
+              <p className="text-white/70 text-lg">Cargando listas guardadas...</p>
+              <p className="text-white/50 text-sm mt-2">Ratita está organizando tus listas</p>
+            </div>
           </div>
-        </div>
-      </Layout>
+        </Layout>
+      </div>
     )
   }
 
   return (
-    <Layout>
-      <div className="bg-gray-900 min-h-full">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <Layout
+        topbarContent={
+          <div className="flex items-center space-x-3">
+            <MouseLogo size="sm" />
+            <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Mis Listas Guardadas
+            </span>
+          </div>
+        }
+      >
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-white">Mis Listas Guardadas</h1>
+            <h1 className="text-2xl font-bold text-white flex items-center">
+              <Package className="w-8 h-8 mr-3 text-cyan-400" />
+              Mis Listas Guardadas
+            </h1>
             {savedLists.length > 0 && (
               <Button
                 variant="outline"
                 size="sm"
                 onClick={clearAllLists}
-                className="text-red-400 border-red-400 hover:bg-red-900/20"
+                className="text-red-400 border-red-400/50 hover:bg-red-900/20 backdrop-blur-sm"
               >
                 <Trash2 className="w-4 h-4 mr-2" />
                 Limpiar Todo
@@ -176,78 +192,86 @@ export default function ShoppingListPage() {
 
           {savedLists.length === 0 ? (
             <div className="text-center py-16">
-              <Package className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-gray-300 mb-2">
-                No hay listas guardadas
-              </h2>
-              <p className="text-gray-500 mb-6">
-                Crea una lista de compras y guárdala para usarla más tarde.
-              </p>
-              <Button
-                onClick={() => router.push('/')}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Crear Nueva Lista
-              </Button>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
+                <MouseLogo size="xl" className="mx-auto mb-6" />
+                <h2 className="text-2xl font-bold text-white mb-3 flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 mr-2 text-cyan-400" />
+                  No hay listas guardadas
+                </h2>
+                <p className="text-white/70 mb-8 text-lg">
+                  Crea una lista de compras y guárdala para usarla más tarde.
+                </p>
+                <Button
+                  onClick={() => router.push('/')}
+                  className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white shadow-lg"
+                >
+                  <Plus className="w-5 h-5 mr-2" />
+                  Crear Nueva Lista
+                </Button>
+              </div>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-6">
               {savedLists.map((list) => (
-                <Card key={list.id} className="bg-gray-800 border-gray-700">
+                <Card key={list.id} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <Package className="w-6 h-6 text-blue-400" />
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full p-3">
+                          <Package className="w-6 h-6 text-white" />
+                        </div>
                         <div>
-                          <h3 className="font-semibold text-white text-lg">
+                          <h3 className="font-bold text-white text-xl flex items-center">
                             {list.name}
+                            <Sparkles className="w-5 h-5 ml-2 text-cyan-400" />
                           </h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <ShoppingCart className="w-4 h-4" />
+                          <div className="flex items-center space-x-6 text-sm text-white/60 mt-2">
+                            <div className="flex items-center space-x-2">
+                              <ShoppingCart className="w-4 h-4 text-violet-400" />
                               <span>{list.itemCount} productos diferentes</span>
                             </div>
-                            <div className="flex items-center space-x-1">
-                              <Package className="w-4 h-4" />
+                            <div className="flex items-center space-x-2">
+                              <Package className="w-4 h-4 text-purple-400" />
                               <span>{list.totalItems} items total</span>
                             </div>
-                            <div className="flex items-center space-x-1">
-                              <Calendar className="w-4 h-4" />
+                            <div className="flex items-center space-x-2">
+                              <Calendar className="w-4 h-4 text-cyan-400" />
                               <span>{formatDate(list.createdAt)}</span>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-3">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleLoadList(list)}
-                          className="text-blue-400 border-blue-400 hover:bg-blue-900/20"
+                          className="text-cyan-400 border-cyan-400/50 hover:bg-cyan-900/20 backdrop-blur-sm"
                         >
-                          <ShoppingCart className="w-4 h-4 mr-1" />
+                          <ShoppingCart className="w-4 h-4 mr-2" />
                           Cargar al Carrito
                         </Button>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleDeleteList(list.id)}
-                          className="text-red-400 border-red-400 hover:bg-red-900/20"
+                          className="text-red-400 border-red-400/50 hover:bg-red-900/20 backdrop-blur-sm"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                       {list.products.slice(0, 6).map((product, index) => (
-                        <div key={index} className="text-sm text-gray-300 bg-gray-700 rounded px-2 py-1">
-                          {product.name} x{product.quantity}
+                        <div key={index} className="text-sm text-white bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+                          <span className="font-medium">{product.name}</span>
+                          <span className="text-cyan-400 ml-2">x{product.quantity}</span>
                         </div>
                       ))}
                       {list.products.length > 6 && (
-                        <div className="text-sm text-gray-400 bg-gray-700 rounded px-2 py-1">
+                        <div className="text-sm text-white/60 bg-white/5 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 flex items-center justify-center">
+                          <Sparkles className="w-4 h-4 mr-1 text-purple-400" />
                           +{list.products.length - 6} más...
                         </div>
                       )}
@@ -258,7 +282,7 @@ export default function ShoppingListPage() {
             </div>
           )}
         </div>
-      </div>
+      </Layout>
       
       {/* Modals */}
       <ConfirmModal
@@ -297,6 +321,6 @@ export default function ShoppingListPage() {
         message={alertConfig.message}
         type={alertConfig.type}
       />
-    </Layout>
+    </div>
   )
 } 
