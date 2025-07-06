@@ -6,24 +6,25 @@ export const maxDuration = 30
 const SYSTEM_PROMPT = `Eres un procesador de listas de compras. Solo devuelves arrays JSON con productos, nunca texto.
 
 PRODUCTOS DISPONIBLES:
-- Lácteos: Leche entera 1L, Yogur natural 1kg, Queso cremoso, Manteca 200g, Ricota, Queso rallado 100g, Crema de leche 200ml
-- Carnes: Carne picada, Bife de chorizo, Pollo entero, Pechuga de pollo
-- Fiambres: Jamón cocido, Salame  
-- Panadería: Pan lactal, Pan francés, Facturas surtidas
-- Frutas: Banana, Manzana roja, Naranja, Limón
-- Verduras: Tomate, Cebolla, Papa, Zanahoria, Lechuga
-- Bebidas: Coca Cola 2.25L, Agua mineral 1.5L, Jugo de naranja 1L, Cerveza lata 473ml, Vino tinto 750ml
-- Despensa: Arroz largo fino 1kg, Fideos secos 500g, Aceite de girasol 900ml, Azúcar 1kg, Sal fina 1kg, Harina 0000 1kg, Huevos, Café molido 500g, Té en saquitos, Yerba mate 1kg
-- Conservas: Atún en lata, Tomate en lata, Arvejas en lata
-- Legumbres: Lentejas secas 500g, Porotos negros 500g, Garbanzos 500g
-- Snacks: Galletitas dulces, Galletitas saladas, Papas fritas, Maní salado
-- Congelados: Helado 1L, Pizza congelada, Hamburguesas congeladas, Papas congeladas
-- Limpieza: Lavandina 1L, Detergente líquido 750ml, Jabón en polvo 800g, Suavizante 900ml
-- Higiene: Papel higiénico x4, Servilletas de papel, Toallas femeninas
-- Perfumería: Champú 400ml, Acondicionador 400ml, Jabón de tocador, Pasta dental, Desodorante aerosol
-- Condimentos: Mayonesa 500g, Ketchup 500g, Mostaza 250g, Vinagre 500ml, Salsa de soja 150ml
-- Desayuno: Cereal de desayuno 500g, Avena 500g, Tostadas 140g
-- Dulces: Dulce de leche 400g, Mermelada de durazno 454g, Miel 500g
+- Lácteos: Leche entera La Serenísima 1L, Yogur natural Ilolay 1kg, Queso cremoso La Paulina 500g, Manteca Sancor 200g, Ricota Milkaut 300g, Queso rallado Sancor 100g, Crema de leche La Serenísima 200ml
+- Carnes: Carne picada Paladini 1kg, Bife de chorizo Swift 500g, Pollo entero Granja Tres Arroyos 2kg, Pechuga de pollo Cresta Roja 500g
+- Fiambres: Jamón cocido Paladini 200g, Salame Cagnoli 250g
+- Panadería: Pan lactal Bimbo blanco 600g, Pan francés La Espiga 1 unidad, Facturas surtidas Panadería La Pompeya 6 unidades
+- Frutas: Banana Ecuador Premium 1kg, Manzana roja Alto Valle 1kg, Naranja jugosa Citrusvil 1kg, Limón Tucumano San Miguel 500g
+- Verduras: Tomate redondo La Anónima 1kg, Cebolla blanca Mendoza Selecta 1kg, Papa negra NOA Campo Vivo 1kg, Zanahoria dulce Buenos Aires Agro 1kg, Lechuga crespa Hidroponia Verde 1 unidad
+- Bebidas: Gaseosa Coca-Cola original 2.25L, Agua mineral Villavicencio 1.5L, Jugo de naranja Cepita 1L, Cerveza Quilmes Clásica lata 473ml, Vino tinto Norton Malbec 750ml
+- Despensa: Arroz largo fino Molinos Ala 1kg, Fideos secos Lucchetti tirabuzón 500g, Aceite de girasol Natura 900ml, Azúcar Ledesma refinada 1kg, Sal fina Celusal 1kg, Harina 0000 Blancaflor 1kg, Huevos San Juan docena, Café molido La Virginia 500g, Té en saquitos Taragüi clásico 25u, Yerba mate Rosamonte 1kg
+- Conservas: Atún en lata La Campagnola 170g, Tomate en lata Arcor triturado 400g, Arvejas en lata Marolio 350g
+- Legumbres: Lentejas secas Lucchetti 500g, Porotos negros Don Vicente 500g, Garbanzos secos Lucchetti 500g
+- Snacks: Galletitas dulces Terrabusi chocolate 300g, Galletitas saladas Criollitas original 250g, Papas fritas Lays clásica 140g, Maní salado Georgalos 200g
+- Congelados: Helado Frigor dulce de leche granizado 1L, Pizza congelada La Salteña muzzarella 500g, Hamburguesas congeladas Paty clásicas x4, Papas congeladas McCain corte tradicional 1kg
+- Limpieza: Lavandina Ayudín tradicional 1L, Detergente líquido Magistral limón 750ml, Jabón en polvo Ala Matic 800g, Suavizante Comfort azul 900ml
+- Higiene: Papel higiénico Higienol hoja simple x4, Servilletas de papel Elite blancas x50, Toallas femeninas Always nocturna x8
+- Perfumería: Champú Sedal reconstrucción 400ml, Acondicionador Pantene rizos definidos 400ml, Jabón de tocador Lux jazmín 125g, Pasta dental Colgate triple acción 90g, Desodorante aerosol Rexona clinical 150ml
+- Condimentos: Mayonesa Hellmann’s clásica 500g, Ketchup Natura 500g, Mostaza Fanacoa 250g, Vinagre de alcohol Marolio 500ml, Salsa de soja Kikkoman clásica 150ml
+- Desayuno: Cereal de desayuno Kellogg's Zucaritas 500g, Avena Quaker tradicional 500g, Tostadas Fargo clásicas 140g
+- Dulces: Dulce de leche La Serenísima clásico 400g, Mermelada de durazno Arcor 454g, Miel Nativa del Bosque 500g
+
 
 INSTRUCCIONES CRÍTICAS:
 1. NUNCA responder con texto, solo JSON
