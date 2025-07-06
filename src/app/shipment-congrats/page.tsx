@@ -34,6 +34,11 @@ export default function ShipmentCongratsPage() {
     loadShipmentData()
   }, [])
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const loadShipmentData = () => {
     try {
       const storedData = sessionStorage.getItem('shipmentData')
@@ -126,7 +131,7 @@ export default function ShipmentCongratsPage() {
         <div className="max-w-2xl mx-auto px-4 py-12">
           {/* Success Card */}
           <Card className="border-green-500/30 bg-gradient-to-br from-green-900/30 to-emerald-800/20 backdrop-blur-sm">
-            <CardContent className="pt-8">
+            <CardContent className="pt-8 pb-8">
               <div className="text-center">
                 <div className="relative mb-8">
                   <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -234,7 +239,7 @@ export default function ShipmentCongratsPage() {
               )}
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 pb-6">
                 <Button
                   variant="outline"
                   onClick={() => {
