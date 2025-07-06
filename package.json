@@ -10,6 +10,7 @@
     "init-db": "curl -X POST http://localhost:3000/api/init-db"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.3.22",
     "@libsql/client": "^0.15.9",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-select": "^2.2.5",

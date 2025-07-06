@@ -5,27 +5,17 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp } from "lucide-react"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface Product {
-  id: string
   name: string
-  brand: string
-  quantity: string
-  icon: string
-  color: string
+  quantity: number
 }
 
 interface ChatMessage {
-  id: string
   role: "user" | "assistant"
   content: string
-}
-
-interface ChatEvent {
-  type: "ADD_ITEMS" | "REMOVE_ITEMS" | "UPDATE_ITEMS" | "REMOVE_ALL"
-  items?: Product[]
-  ids?: string[]
 }
 
 export default function SupermarketChat() {
@@ -33,23 +23,9 @@ export default function SupermarketChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
   const [imageMethod, setImageMethod] = useState<string>("")
-
   const [isLoading, setIsLoading] = useState(false)
-
-  // Load initial products
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch('/api/chat')
-      const data = await response.json()
-      setProducts(data.products || [])
-    } catch (error) {
-      console.error('Failed to fetch products:', error)
-    }
-  }
+  const [isComparing, setIsComparing] = useState(false)
+  const router = useRouter()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
@@ -60,66 +36,72 @@ export default function SupermarketChat() {
     if (!input.trim() || isLoading) return
 
     const userMessage: ChatMessage = {
-      id: Date.now().toString(),
       role: "user",
       content: input
     }
 
-    setMessages(prev => [...prev, userMessage])
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
     setInput("")
     setIsLoading(true)
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input })
+        body: JSON.stringify({ messages: updatedMessages })
       })
 
-      const data = await response.json()
-      
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      // Parse the JSON response
+      try {
+        // Clean the response to extract JSON from markdown if present
+        let cleanResult = result.trim()
+        
+        // Remove markdown code blocks if present
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+        console.log('Raw response:', result)
+      }
+
       const assistantMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: data.message
+        content: result
       }
 
       setMessages(prev => [...prev, assistantMessage])
-      
-      // Apply events to update products
-      if (data.events) {
-        data.events.forEach((event: ChatEvent) => {
-          switch (event.type) {
-            case 'ADD_ITEMS':
-              if (event.items) {
-                setProducts(prev => [...prev, ...event.items!])
-              }
-              break
-            case 'REMOVE_ITEMS':
-              if (event.ids) {
-                setProducts(prev => prev.filter(product => !event.ids!.includes(product.id)))
-              }
-              break
-            case 'UPDATE_ITEMS':
-              if (event.items) {
-                setProducts(prev => prev.map(product => {
-                  const updatedItem = event.items!.find(item => item.id === product.id)
-                  return updatedItem || product
-                }))
-              }
-              break
-            case 'REMOVE_ALL':
-              setProducts([])
-              break
-          }
-        })
-      }
     } catch (error) {
       console.error('Failed to send message:', error)
       const errorMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
         role: "assistant",
         content: "Lo siento, hubo un error al procesar tu mensaje."
       }
@@ -129,51 +111,142 @@ export default function SupermarketChat() {
     }
   }
 
+  const getProductIcon = (productName: string): string => {
+    const name = productName.toLowerCase()
+    if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return '🥛'
+    if (name.includes('carne') || name.includes('pollo') || name.includes('bife')) return '🥩'
+    if (name.includes('pan') || name.includes('factura')) return '🍞'
+    if (name.includes('fruta') || name.includes('banana') || name.includes('manzana') || name.includes('naranja') || name.includes('limón')) return '🍎'
+    if (name.includes('verdura') || name.includes('tomate') || name.includes('cebolla') || name.includes('papa') || name.includes('zanahoria') || name.includes('lechuga')) return '🥬'
+    if (name.includes('coca') || name.includes('agua') || name.includes('jugo') || name.includes('cerveza') || name.includes('vino')) return '🥤'
+    if (name.includes('arroz') || name.includes('fideo') || name.includes('aceite') || name.includes('azúcar') || name.includes('sal') || name.includes('harina')) return '🍚'
+    if (name.includes('huevo')) return '🥚'
+    if (name.includes('café') || name.includes('té') || name.includes('yerba')) return '☕'
+    if (name.includes('atún') || name.includes('tomate en lata') || name.includes('arveja')) return '🥫'
+    if (name.includes('lenteja') || name.includes('poroto') || name.includes('garbanzo')) return '🫘'
+    if (name.includes('galletita') || name.includes('papas fritas') || name.includes('maní')) return '🍪'
+    if (name.includes('helado') || name.includes('pizza') || name.includes('hamburguesa')) return '🍦'
+    if (name.includes('lavandina') || name.includes('detergente') || name.includes('jabón') || name.includes('suavizante')) return '🧴'
+    if (name.includes('papel') || name.includes('servilleta') || name.includes('toalla')) return '🧻'
+    if (name.includes('champú') || name.includes('acondicionador') || name.includes('pasta') || name.includes('desodorante')) return '🧴'
+    if (name.includes('mayonesa') || name.includes('ketchup') || name.includes('mostaza') || name.includes('vinagre') || name.includes('salsa')) return '🍶'
+    if (name.includes('cereal') || name.includes('avena') || name.includes('tostada')) return '🥣'
+    if (name.includes('dulce') || name.includes('mermelada') || name.includes('miel')) return '🍯'
+    return '🛒'
+  }
+
+  const getProductColor = (productName: string): string => {
+    const name = productName.toLowerCase()
+    if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return 'bg-blue-100'
+    if (name.includes('carne') || name.includes('pollo') || name.includes('bife')) return 'bg-red-100'
+    if (name.includes('pan') || name.includes('factura')) return 'bg-yellow-100'
+    if (name.includes('fruta') || name.includes('banana') || name.includes('manzana') || name.includes('naranja') || name.includes('limón')) return 'bg-orange-100'
+    if (name.includes('verdura') || name.includes('tomate') || name.includes('cebolla') || name.includes('papa') || name.includes('zanahoria') || name.includes('lechuga')) return 'bg-green-100'
+    if (name.includes('coca') || name.includes('agua') || name.includes('jugo') || name.includes('cerveza') || name.includes('vino')) return 'bg-cyan-100'
+    if (name.includes('arroz') || name.includes('fideo') || name.includes('aceite') || name.includes('azúcar') || name.includes('sal') || name.includes('harina')) return 'bg-amber-100'
+    if (name.includes('huevo')) return 'bg-yellow-100'
+    if (name.includes('café') || name.includes('té') || name.includes('yerba')) return 'bg-brown-100'
+    if (name.includes('atún') || name.includes('tomate en lata') || name.includes('arveja')) return 'bg-gray-100'
+    if (name.includes('lenteja') || name.includes('poroto') || name.includes('garbanzo')) return 'bg-orange-100'
+    if (name.includes('galletita') || name.includes('papas fritas') || name.includes('maní')) return 'bg-yellow-100'
+    if (name.includes('helado') || name.includes('pizza') || name.includes('hamburguesa')) return 'bg-pink-100'
+    if (name.includes('lavandina') || name.includes('detergente') || name.includes('jabón') || name.includes('suavizante')) return 'bg-blue-100'
+    if (name.includes('papel') || name.includes('servilleta') || name.includes('toalla')) return 'bg-white border border-gray-200'
+    if (name.includes('champú') || name.includes('acondicionador') || name.includes('pasta') || name.includes('desodorante')) return 'bg-purple-100'
+    if (name.includes('mayonesa') || name.includes('ketchup') || name.includes('mostaza') || name.includes('vinagre') || name.includes('salsa')) return 'bg-red-100'
+    if (name.includes('cereal') || name.includes('avena') || name.includes('tostada')) return 'bg-yellow-100'
+    if (name.includes('dulce') || name.includes('mermelada') || name.includes('miel')) return 'bg-amber-100'
+    return 'bg-gray-100'
+  }
+
+  const handleComparePrices = async () => {
+    if (products.length === 0) {
+      alert('Agrega productos a tu lista antes de comparar precios')
+      return
+    }
+
+    setIsComparing(true)
+    
+    try {
+      const response = await fetch('/api/v2/compare-prices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ products })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to compare prices')
+      }
+
+      // Store the comparison data in sessionStorage for the comparison page
+      const comparisonData = await response.json()
+      sessionStorage.setItem('comparisonData', JSON.stringify(comparisonData))
+      
+      // Navigate to comparison page
+      router.push('/comparison')
+    } catch (error) {
+      console.error('Error comparing prices:', error)
+      alert('Error al comparar precios. Intenta de nuevo.')
+    } finally {
+      setIsComparing(false)
+    }
+  }
+
   return (
     <div className="flex flex-col h-screen bg-gray-50">
 
       {/* Product List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {products.map((product: Product) => (
-          <Card key={product.id} className="shadow-sm">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className={`w-12 h-12 rounded-full ${product.color} flex items-center justify-center text-xl`}>
-                    {product.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{product.name}</h3>
-                    <p className="text-sm text-gray-500">{product.brand}</p>
+        {products.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <p>Tu lista de compras está vacía</p>
+            <p className="text-sm">Escribe algo como "agregame leche y pan" para empezar</p>
+          </div>
+        ) : (
+          products.map((product: Product, index: number) => (
+            <Card key={index} className="shadow-sm">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-12 h-12 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-xl`}>
+                      {getProductIcon(product.name)}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900">{product.name}</h3>
+                      <p className="text-sm text-gray-500">Cantidad: {product.quantity}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-gray-500">{product.quantity}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))
+        )}
       </div>
 
-      {/* Chat Messages */}
-      {/* {messages.length > 0 && (
-        <div className="bg-white border-t p-4 max-h-40 overflow-y-auto">
-          <div className="space-y-2">
-            {messages.slice(-3).map((message) => (
-              <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div
-                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
-                    message.role === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {message.content}
-                </div>
-              </div>
-            ))}
-          </div>
+      {products.length > 0 && (
+        <div className="bg-white p-4 border-t">
+          <Button 
+            onClick={handleComparePrices}
+            disabled={isComparing}
+            className="w-full flex items-center justify-center space-x-2"
+            size="lg"
+          >
+            {isComparing ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <span>Comparando precios...</span>
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-5 h-5" />
+                <span>Comparar Precios</span>
+              </>
+            )}
+          </Button>
         </div>
-      )} */}
+      )}
 
       {/* Chat Interface */}
       <div className="bg-white p-4 border-t">
@@ -181,7 +254,7 @@ export default function SupermarketChat() {
           <input
             value={input}
             onChange={handleInputChange}
-            placeholder="Ask anything"
+            placeholder="Escribe tu lista de compras..."
             className="w-full rounded-2xl bg-gray-100 px-4 py-3 text-base text-gray-900 placeholder-gray-400 shadow-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={isLoading}
           />
@@ -222,9 +295,9 @@ export default function SupermarketChat() {
               <Mic className="w-6 h-6" />
             </button>
             {input ? (
-              <div className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50">
+              <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
                 <CircleArrowUp className="w-6 h-6" />
-              </div>
+              </button>
             ) : (
               <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
                 <AudioWaveform className="w-6 h-6" />

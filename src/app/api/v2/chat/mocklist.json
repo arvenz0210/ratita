@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Coca Cola 2.25L",
+    "quantity": 2
+  },
+  {
+    "name": "Leche entera 1L",
+    "quantity": 1
+  },
+  {
+    "name": "Bife de chorizo",
+    "quantity": 2
+  },
+  {
+    "name": "Chorizo",
+    "quantity": 2
+  },
+  {
+    "name": "Pan francés",
+    "quantity": 1
+  },
+  {
+    "name": "Ensalada mixta",
+    "quantity": 1
+  },
+  {
+    "name": "Cerveza lata 473ml",
+    "quantity": 4
+  }
+]

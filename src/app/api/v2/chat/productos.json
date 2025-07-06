@@ -1,0 +1,580 @@
+{
+  "productos": [
+    {
+      "nombre": "Leche entera 1L",
+      "categoria": "Lácteos",
+      "unidad": "litro",
+      "searchTerms": ["leche", "leche entera", "lacteos"]
+    },
+    {
+      "nombre": "Yogur natural 1kg",
+      "categoria": "Lácteos", 
+      "unidad": "kg",
+      "searchTerms": ["yogur", "yogurt", "natural"]
+    },
+    {
+      "nombre": "Queso cremoso",
+      "categoria": "Lácteos",
+      "unidad": "kg",
+      "searchTerms": ["queso", "cremoso", "queso cremoso"]
+    },
+    {
+      "nombre": "Manteca 200g",
+      "categoria": "Lácteos",
+      "unidad": "paquete",
+      "searchTerms": ["manteca", "mantequilla"]
+    },
+    {
+      "nombre": "Ricota",
+      "categoria": "Lácteos",
+      "unidad": "kg",
+      "searchTerms": ["ricota", "ricotta"]
+    },
+    {
+      "nombre": "Carne picada",
+      "categoria": "Carnes",
+      "unidad": "kg",
+      "searchTerms": ["carne picada", "picada", "carne molida"]
+    },
+    {
+      "nombre": "Bife de chorizo",
+      "categoria": "Carnes",
+      "unidad": "kg", 
+      "searchTerms": ["bife", "chorizo", "bife de chorizo"]
+    },
+    {
+      "nombre": "Pollo entero",
+      "categoria": "Carnes",
+      "unidad": "kg",
+      "searchTerms": ["pollo", "pollo entero"]
+    },
+    {
+      "nombre": "Pechuga de pollo",
+      "categoria": "Carnes",
+      "unidad": "kg",
+      "searchTerms": ["pechuga", "pechuga pollo"]
+    },
+    {
+      "nombre": "Jamón cocido",
+      "categoria": "Fiambres",
+      "unidad": "kg",
+      "searchTerms": ["jamon", "jamon cocido", "fiambre"]
+    },
+    {
+      "nombre": "Salame",
+      "categoria": "Fiambres", 
+      "unidad": "kg",
+      "searchTerms": ["salame", "salamín"]
+    },
+    {
+      "nombre": "Pan lactal",
+      "categoria": "Panadería",
+      "unidad": "unidad",
+      "searchTerms": ["pan", "lactal", "pan lactal", "pan de molde"]
+    },
+    {
+      "nombre": "Pan francés",
+      "categoria": "Panadería",
+      "unidad": "unidad", 
+      "searchTerms": ["pan frances", "baguette"]
+    },
+    {
+      "nombre": "Facturas surtidas",
+      "categoria": "Panadería",
+      "unidad": "docena",
+      "searchTerms": ["facturas", "medialunas", "vigilantes"]
+    },
+    {
+      "nombre": "Banana",
+      "categoria": "Frutas",
+      "unidad": "kg",
+      "searchTerms": ["banana", "bananas"]
+    },
+    {
+      "nombre": "Manzana roja",
+      "categoria": "Frutas",
+      "unidad": "kg", 
+      "searchTerms": ["manzana", "manzanas", "manzana roja"]
+    },
+    {
+      "nombre": "Naranja",
+      "categoria": "Frutas",
+      "unidad": "kg",
+      "searchTerms": ["naranja", "naranjas"]
+    },
+    {
+      "nombre": "Limón",
+      "categoria": "Frutas",
+      "unidad": "kg",
+      "searchTerms": ["limon", "limones"]
+    },
+    {
+      "nombre": "Tomate",
+      "categoria": "Verduras",
+      "unidad": "kg",
+      "searchTerms": ["tomate", "tomates"]
+    },
+    {
+      "nombre": "Cebolla",
+      "categoria": "Verduras",
+      "unidad": "kg",
+      "searchTerms": ["cebolla", "cebollas"]
+    },
+    {
+      "nombre": "Papa",
+      "categoria": "Verduras",
+      "unidad": "kg",
+      "searchTerms": ["papa", "papas", "patata"]
+    },
+    {
+      "nombre": "Zanahoria",
+      "categoria": "Verduras",
+      "unidad": "kg",
+      "searchTerms": ["zanahoria", "zanahorias"]
+    },
+    {
+      "nombre": "Lechuga",
+      "categoria": "Verduras",
+      "unidad": "unidad",
+      "searchTerms": ["lechuga"]
+    },
+    {
+      "nombre": "Coca Cola 2.25L",
+      "categoria": "Bebidas",
+      "unidad": "botella",
+      "searchTerms": ["coca", "coca cola", "gaseosa"]
+    },
+    {
+      "nombre": "Agua mineral 1.5L", 
+      "categoria": "Bebidas",
+      "unidad": "botella",
+      "searchTerms": ["agua", "agua mineral"]
+    },
+    {
+      "nombre": "Jugo de naranja 1L",
+      "categoria": "Bebidas",
+      "unidad": "litro",
+      "searchTerms": ["jugo", "jugo naranja", "zumo"]
+    },
+    {
+      "nombre": "Cerveza lata 473ml",
+      "categoria": "Bebidas",
+      "unidad": "lata",
+      "searchTerms": ["cerveza", "birra"]
+    },
+    {
+      "nombre": "Vino tinto 750ml",
+      "categoria": "Bebidas",
+      "unidad": "botella", 
+      "searchTerms": ["vino", "vino tinto"]
+    },
+    {
+      "nombre": "Arroz largo fino 1kg",
+      "categoria": "Despensa",
+      "unidad": "kg",
+      "searchTerms": ["arroz", "arroz largo"]
+    },
+    {
+      "nombre": "Fideos secos 500g",
+      "categoria": "Despensa",
+      "unidad": "paquete",
+      "searchTerms": ["fideos", "pasta", "espaguetis"]
+    },
+    {
+      "nombre": "Aceite de girasol 900ml",
+      "categoria": "Despensa",
+      "unidad": "botella",
+      "searchTerms": ["aceite", "aceite girasol"]
+    },
+    {
+      "nombre": "Azúcar 1kg",
+      "categoria": "Despensa",
+      "unidad": "kg",
+      "searchTerms": ["azucar", "azúcar"]
+    },
+    {
+      "nombre": "Sal fina 1kg",
+      "categoria": "Despensa", 
+      "unidad": "kg",
+      "searchTerms": ["sal", "sal fina"]
+    },
+    {
+      "nombre": "Harina 0000 1kg",
+      "categoria": "Despensa",
+      "unidad": "kg",
+      "searchTerms": ["harina", "harina 0000"]
+    },
+    {
+      "nombre": "Huevos",
+      "categoria": "Despensa",
+      "unidad": "media docena",
+      "searchTerms": ["huevos", "huevo"]
+    },
+    {
+      "nombre": "Café molido 500g",
+      "categoria": "Despensa",
+      "unidad": "paquete",
+      "searchTerms": ["cafe", "café", "café molido"]
+    },
+    {
+      "nombre": "Té en saquitos",
+      "categoria": "Despensa",
+      "unidad": "caja",
+      "searchTerms": ["te", "té", "saquitos"]
+    },
+    {
+      "nombre": "Yerba mate 1kg",
+      "categoria": "Despensa",
+      "unidad": "kg",
+      "searchTerms": ["yerba", "mate", "yerba mate"]
+    },
+    {
+      "nombre": "Atún en lata",
+      "categoria": "Conservas",
+      "unidad": "lata",
+      "searchTerms": ["atun", "atún", "lata"]
+    },
+    {
+      "nombre": "Tomate en lata",
+      "categoria": "Conservas",
+      "unidad": "lata", 
+      "searchTerms": ["tomate lata", "tomate enlatado"]
+    },
+    {
+      "nombre": "Arvejas en lata",
+      "categoria": "Conservas",
+      "unidad": "lata",
+      "searchTerms": ["arvejas", "guisantes"]
+    },
+    {
+      "nombre": "Lentejas secas 500g",
+      "categoria": "Legumbres",
+      "unidad": "paquete",
+      "searchTerms": ["lentejas"]
+    },
+    {
+      "nombre": "Porotos negros 500g",
+      "categoria": "Legumbres",
+      "unidad": "paquete",
+      "searchTerms": ["porotos", "frijoles", "porotos negros"]
+    },
+    {
+      "nombre": "Garbanzos 500g",
+      "categoria": "Legumbres",
+      "unidad": "paquete",
+      "searchTerms": ["garbanzos"]
+    },
+    {
+      "nombre": "Galletitas dulces",
+      "categoria": "Snacks",
+      "unidad": "paquete",
+      "searchTerms": ["galletitas", "galletas", "cookies"]
+    },
+    {
+      "nombre": "Galletitas saladas",
+      "categoria": "Snacks", 
+      "unidad": "paquete",
+      "searchTerms": ["galletitas saladas", "crackers"]
+    },
+    {
+      "nombre": "Chocolate en barra",
+      "categoria": "Golosinas",
+      "unidad": "unidad",
+      "searchTerms": ["chocolate", "chocolate barra"]
+    },
+    {
+      "nombre": "Caramelos surtidos",
+      "categoria": "Golosinas",
+      "unidad": "bolsa",
+      "searchTerms": ["caramelos", "dulces"]
+    },
+    {
+      "nombre": "Papas fritas",
+      "categoria": "Snacks",
+      "unidad": "bolsa",
+      "searchTerms": ["papas fritas", "chips"]
+    },
+    {
+      "nombre": "Maní salado",
+      "categoria": "Snacks",
+      "unidad": "bolsa",
+      "searchTerms": ["mani", "maní", "cacahuetes"]
+    },
+    {
+      "nombre": "Helado 1L",
+      "categoria": "Congelados",
+      "unidad": "pote",
+      "searchTerms": ["helado", "helado litro"]
+    },
+    {
+      "nombre": "Pizza congelada",
+      "categoria": "Congelados",
+      "unidad": "unidad",
+      "searchTerms": ["pizza", "pizza congelada"]
+    },
+    {
+      "nombre": "Hamburguesas congeladas",
+      "categoria": "Congelados",
+      "unidad": "caja",
+      "searchTerms": ["hamburguesas", "pattys"]
+    },
+    {
+      "nombre": "Papas congeladas",
+      "categoria": "Congelados",
+      "unidad": "bolsa",
+      "searchTerms": ["papas congeladas", "papas fritas congeladas"]
+    },
+    {
+      "nombre": "Lavandina 1L",
+      "categoria": "Limpieza",
+      "unidad": "botella",
+      "searchTerms": ["lavandina", "lejía", "cloro"]
+    },
+    {
+      "nombre": "Detergente líquido 750ml",
+      "categoria": "Limpieza",
+      "unidad": "botella",
+      "searchTerms": ["detergente", "detergente liquido"]
+    },
+    {
+      "nombre": "Jabón en polvo 800g",
+      "categoria": "Limpieza",
+      "unidad": "caja",
+      "searchTerms": ["jabon polvo", "jabón en polvo"]
+    },
+    {
+      "nombre": "Suavizante 900ml",
+      "categoria": "Limpieza",
+      "unidad": "botella",
+      "searchTerms": ["suavizante", "acondicionador ropa"]
+    },
+    {
+      "nombre": "Papel higiénico x4",
+      "categoria": "Higiene",
+      "unidad": "paquete",
+      "searchTerms": ["papel higienico", "papel higiénico"]
+    },
+    {
+      "nombre": "Servilletas de papel",
+      "categoria": "Higiene",
+      "unidad": "paquete",
+      "searchTerms": ["servilletas", "servilletas papel"]
+    },
+    {
+      "nombre": "Toallas femeninas",
+      "categoria": "Higiene",
+      "unidad": "paquete",
+      "searchTerms": ["toallas", "toallas femeninas", "toallitas"]
+    },
+    {
+      "nombre": "Champú 400ml",
+      "categoria": "Perfumería",
+      "unidad": "botella",
+      "searchTerms": ["champu", "shampoo"]
+    },
+    {
+      "nombre": "Acondicionador 400ml",
+      "categoria": "Perfumería",
+      "unidad": "botella",
+      "searchTerms": ["acondicionador", "enjuague"]
+    },
+    {
+      "nombre": "Jabón de tocador",
+      "categoria": "Perfumería",
+      "unidad": "unidad",
+      "searchTerms": ["jabon", "jabón", "jabón tocador"]
+    },
+    {
+      "nombre": "Pasta dental",
+      "categoria": "Perfumería",
+      "unidad": "tubo",
+      "searchTerms": ["pasta dental", "dentífrico", "crema dental"]
+    },
+    {
+      "nombre": "Desodorante aerosol",
+      "categoria": "Perfumería",
+      "unidad": "unidad",
+      "searchTerms": ["desodorante", "antitranspirante"]
+    },
+    {
+      "nombre": "Pañales talle M",
+      "categoria": "Bebé",
+      "unidad": "paquete",
+      "searchTerms": ["pañales", "pañal", "talle m"]
+    },
+    {
+      "nombre": "Toallitas húmedas",
+      "categoria": "Bebé",
+      "unidad": "paquete",
+      "searchTerms": ["toallitas", "toallitas húmedas", "wet wipes"]
+    },
+    {
+      "nombre": "Leche en polvo infantil",
+      "categoria": "Bebé",
+      "unidad": "lata",
+      "searchTerms": ["leche polvo", "formula", "leche infantil"]
+    },
+    {
+      "nombre": "Comida para perros 15kg",
+      "categoria": "Mascotas",
+      "unidad": "bolsa",
+      "searchTerms": ["comida perro", "alimento perro", "dog food"]
+    },
+    {
+      "nombre": "Comida para gatos 3kg",
+      "categoria": "Mascotas",
+      "unidad": "bolsa", 
+      "searchTerms": ["comida gato", "alimento gato", "cat food"]
+    },
+    {
+      "nombre": "Arena para gatos",
+      "categoria": "Mascotas",
+      "unidad": "bolsa",
+      "searchTerms": ["arena gato", "arena sanitaria"]
+    },
+    {
+      "nombre": "Dulce de leche 400g",
+      "categoria": "Dulces",
+      "unidad": "pote",
+      "searchTerms": ["dulce de leche", "dulce leche"]
+    },
+    {
+      "nombre": "Mermelada de durazno 454g",
+      "categoria": "Dulces",
+      "unidad": "frasco",
+      "searchTerms": ["mermelada", "mermelada durazno"]
+    },
+    {
+      "nombre": "Miel 500g",
+      "categoria": "Dulces",
+      "unidad": "frasco",
+      "searchTerms": ["miel"]
+    },
+    {
+      "nombre": "Mayonesa 500g",
+      "categoria": "Condimentos",
+      "unidad": "pote",
+      "searchTerms": ["mayonesa", "mayo"]
+    },
+    {
+      "nombre": "Ketchup 500g",
+      "categoria": "Condimentos",
+      "unidad": "botella",
+      "searchTerms": ["ketchup", "salsa tomate"]
+    },
+    {
+      "nombre": "Mostaza 250g",
+      "categoria": "Condimentos",
+      "unidad": "frasco",
+      "searchTerms": ["mostaza"]
+    },
+    {
+      "nombre": "Vinagre 500ml",
+      "categoria": "Condimentos",
+      "unidad": "botella",
+      "searchTerms": ["vinagre"]
+    },
+    {
+      "nombre": "Salsa de soja 150ml",
+      "categoria": "Condimentos",
+      "unidad": "botella",
+      "searchTerms": ["salsa soja", "soja"]
+    },
+    {
+      "nombre": "Cereal de desayuno 500g",
+      "categoria": "Desayuno",
+      "unidad": "caja",
+      "searchTerms": ["cereal", "cereales", "corn flakes"]
+    },
+    {
+      "nombre": "Avena 500g",
+      "categoria": "Desayuno",
+      "unidad": "paquete",
+      "searchTerms": ["avena"]
+    },
+    {
+      "nombre": "Tostadas 140g",
+      "categoria": "Desayuno",
+      "unidad": "paquete",
+      "searchTerms": ["tostadas", "pan tostado"]
+    },
+    {
+      "nombre": "Queso rallado 100g",
+      "categoria": "Lácteos",
+      "unidad": "paquete",
+      "searchTerms": ["queso rallado", "parmesano"]
+    },
+    {
+      "nombre": "Crema de leche 200ml",
+      "categoria": "Lácteos",
+      "unidad": "tetra",
+      "searchTerms": ["crema", "crema de leche", "nata"]
+    },
+    {
+      "nombre": "Levadura en polvo",
+      "categoria": "Despensa",
+      "unidad": "sobre",
+      "searchTerms": ["levadura", "polvo hornear"]
+    },
+    {
+      "nombre": "Vainilla líquida",
+      "categoria": "Despensa",
+      "unidad": "frasco",
+      "searchTerms": ["vainilla", "esencia vainilla"]
+    },
+    {
+      "nombre": "Cacao en polvo 200g",
+      "categoria": "Despensa",
+      "unidad": "lata",
+      "searchTerms": ["cacao", "cocoa"]
+    },
+    {
+      "nombre": "Gelatina surtida",
+      "categoria": "Postres",
+      "unidad": "caja",
+      "searchTerms": ["gelatina", "jello"]
+    },
+    {
+      "nombre": "Flan casero",
+      "categoria": "Postres",
+      "unidad": "caja",
+      "searchTerms": ["flan", "flan polvo"]
+    },
+    {
+      "nombre": "Insecticida aerosol",
+      "categoria": "Limpieza",
+      "unidad": "aerosol",
+      "searchTerms": ["insecticida", "raid", "mata moscas"]
+    },
+    {
+      "nombre": "Limpiador multiuso 500ml",
+      "categoria": "Limpieza",
+      "unidad": "botella",
+      "searchTerms": ["limpiador", "multiuso", "mr musculo"]
+    },
+    {
+      "nombre": "Esponja de cocina",
+      "categoria": "Limpieza",
+      "unidad": "unidad",
+      "searchTerms": ["esponja", "esponja cocina"]
+    },
+    {
+      "nombre": "Bolsas de residuos x10",
+      "categoria": "Limpieza",
+      "unidad": "rollo",
+      "searchTerms": ["bolsas", "bolsas residuos", "bolsas basura"]
+    },
+    {
+      "nombre": "Papel aluminio",
+      "categoria": "Cocina",
+      "unidad": "rollo",
+      "searchTerms": ["papel aluminio", "aluminio"]
+    },
+    {
+      "nombre": "Papel film",
+      "categoria": "Cocina",
+      "unidad": "rollo",
+      "searchTerms": ["papel film", "film", "rollo plastico"]
+    }
+  ]
+}
