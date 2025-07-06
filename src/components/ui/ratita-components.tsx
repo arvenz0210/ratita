@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mic, Volume2, Utensils, Coffee, Apple, ShoppingBasket } from "lucide-react"
@@ -20,7 +21,7 @@ export function MouseLogo({ size = "md", className = "", animated = false }: Mou
 
   return (
     <div className={`${sizeClasses[size]} ${className} ${animated ? "animate-bounce" : ""}`}>
-      <img src="/logo.png" alt="Ratita Mascot" className="w-full h-full object-contain" />
+      <Image src="/logo.png" alt="Ratita Mascot" className="w-full h-full object-contain" width={48} height={48} />
     </div>
   )
 }
@@ -167,11 +168,10 @@ export function VoiceButton({ onStartRecording, onStopRecording, isRecording, di
 // Voice Recording Modal Component
 interface VoiceRecordingModalProps {
   isOpen: boolean
-  onClose: () => void
   isRecording: boolean
 }
 
-export function VoiceRecordingModal({ isOpen, onClose, isRecording }: VoiceRecordingModalProps) {
+export function VoiceRecordingModal({ isOpen, isRecording }: VoiceRecordingModalProps) {
   const [audioLevels, setAudioLevels] = useState<number[]>([])
 
   useEffect(() => {

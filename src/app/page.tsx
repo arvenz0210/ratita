@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,19 +14,16 @@ import { MouseLogo, VoiceButton, VoiceRecordingModal, ChatSuggestions } from "@/
 import { 
   Plus, 
   Minus, 
-  ArrowUp, 
   Camera, 
   Rocket, 
   X, 
   Save, 
   Send,
-  User,
   Trash2,
   CheckCircle,
   Sparkles,
   ShoppingBag,
-  Settings,
-  Mic
+  Settings
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -34,15 +32,7 @@ interface Product {
   quantity: number
 }
 
-interface CartItem {
-  id: string
-  name: string
-  quantity: number
-  category: string
-  price: number
-  brand: string
-  size: string
-}
+
 
 interface ChatMessage {
   role: "user" | "assistant"
@@ -55,7 +45,7 @@ export default function SupermarketChat() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isComparing, setIsComparing] = useState(false)
-  const [lastAddedProduct, setLastAddedProduct] = useState<string | null>(null)
+  const [lastAddedProduct] = useState<string | null>(null)
   const [isRecording, setIsRecording] = useState(false)
   const [showVoiceModal, setShowVoiceModal] = useState(false)
   const [userName] = useState("Lucas")
@@ -66,8 +56,7 @@ export default function SupermarketChat() {
   const cameraInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
-  const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
-  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
@@ -384,11 +373,7 @@ export default function SupermarketChat() {
     }
   }
 
-  const handleCameraCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      handleImageUpload(e.target.files[0])
-    }
-  }
+
 
   const clearImage = () => {
     setSelectedImage(null)
@@ -597,8 +582,6 @@ export default function SupermarketChat() {
 
       mediaRecorder.onstop = async () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' })
-        setAudioBlob(audioBlob)
-        setAudioUrl(URL.createObjectURL(audioBlob))
         
         await handleAudioSubmit(audioBlob)
       }
@@ -738,7 +721,6 @@ export default function SupermarketChat() {
         {/* Voice Recording Modal */}
         <VoiceRecordingModal
           isOpen={showVoiceModal}
-          onClose={() => setShowVoiceModal(false)}
           isRecording={isRecording}
         />
 
@@ -913,10 +895,12 @@ export default function SupermarketChat() {
             {imagePreview && (
               <div className="mt-4 relative">
                 <div className="relative inline-block">
-                  <img 
+                  <Image 
                     src={imagePreview} 
                     alt="Preview" 
                     className="max-w-full h-[100px] w-[100px] object-cover rounded-lg"
+                    width={100}
+                    height={100}
                   />
                   <Button
                     variant="ghost"
