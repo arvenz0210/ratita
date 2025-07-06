@@ -765,23 +765,6 @@ export default function SupermarketChat() {
               </div>
             </div>
           )}
-          {/* Recording Chip */}
-          {isRecording && (
-            <div className="mb-4 flex items-center space-x-2">
-              <div className="flex items-center bg-red-700 rounded-full px-3 py-1 animate-pulse">
-                <Mic className="w-4 h-4 mr-1 text-white" />
-                <span className="text-sm text-white">Grabando...</span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="ml-1 text-white hover:text-gray-200"
-                  onClick={stopRecording}
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          )}
         </form>
       </div>
     </div>
