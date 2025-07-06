@@ -1541,22 +1541,22 @@ function loadCache(): Cache {
  return cache
 }
 
-// Función para guardar cache
-function saveCache(cache: Cache): void {
-  const cacheFile = path.join(process.cwd(), 'cache.json')
+// // Función para guardar cache
+// function saveCache(cache: Cache): void {
+//   const cacheFile = path.join(process.cwd(), 'cache.json')
   
-  try {
-    const dir = path.dirname(cacheFile)
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true })
-    }
+//   try {
+//     const dir = path.dirname(cacheFile)
+//     if (!fs.existsSync(dir)) {
+//       fs.mkdirSync(dir, { recursive: true })
+//     }
     
-    fs.writeFileSync(cacheFile, JSON.stringify(cache, null, 2))
-    console.log('💾 Cache saved successfully')
-  } catch (error) {
-    console.error('Error saving cache:', error)
-  }
-}
+//     fs.writeFileSync(cacheFile, JSON.stringify(cache, null, 2))
+//     console.log('💾 Cache saved successfully')
+//   } catch (error) {
+//     console.error('Error saving cache:', error)
+//   }
+// }
 
 // Función para verificar si el cache es válido (menos de 1 hora)
 function isCacheValid(cacheEntry: CacheEntry): boolean {
