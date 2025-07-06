@@ -1,6 +1,6 @@
 {
   "leche": {
-    "timestamp": "2025-07-06T12:01:22.463Z",
+    "timestamp": "2025-07-06T13:01:39.931Z",
     "data": {
       "products": [
         {
@@ -3310,6 +3310,1686 @@
         }
       ],
       "totalFound": 29
+    }
+  },
+  "cereal": {
+    "timestamp": "2025-07-06T13:01:44.771Z",
+    "data": {
+      "products": [
+        {
+          "title": "Snack Cereal Mix Cereal S/harinas Orig X100g",
+          "price": "$1450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/snack-cereal-mix-cereal-s-harinas-orig-x100g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/801628/Snack-Cereal-Mix-Cereal-S-harinas-Orig-X100g-1-1000655.jpg?v=638373335124970000"
+        },
+        {
+          "title": "Cereales Copos de Maíz DIA Azucarados 200 Gr.",
+          "price": "$1020.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cereales-copos-de-maiz-dia-azucarados-200-gr-20016/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/348027/Cereales-Copos-de-Maiz-DIA-Azucarados-200-Gr-_1.jpg?v=638786971050730000"
+        },
+        {
+          "title": "Cereal Azucarado Skarchitos 240 Gr",
+          "price": "$1469.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cereal-azucarado-skarchitos-240-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/304044/front-view-26808.jpg?v=638334237727170000"
+        },
+        {
+          "title": "Cereal Azucarado Skarchitos 500gr",
+          "price": "$3179.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cereal-azucarado-skarchitos-500gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/162589/Cereal-Azucarado-Skarchitos-500gr-1-13257.jpg?v=637835133137300000"
+        },
+        {
+          "title": "Cereal Carrefour copitas con chocolate sin gluten 200 g.",
+          "price": "$1628.90",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cereal-carrefour-copitas-con-chocolate-sin-gluten-200-g-700852/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/386905/7798309870402_E01.jpg?v=638318706514700000"
+        },
+        {
+          "title": "Cereal Carrefour bolitas chocolate sin gluten 200 g.",
+          "price": "$1628.90",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cereal-carrefour-bolitas-chocolate-sin-gluten-200-g-700853/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/386966/7798309870396_E01.jpg?v=638318706784930000"
+        },
+        {
+          "title": "Galletitas Cracker Cereal Salvado Cerealitas 208g",
+          "price": "$1750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/galletitas-cracker-cereal-salvado-cerealitas-208g-2/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/846478/Galletitas-Cracker-Cereal-Salvado-Cerealitas-208g-1-958705.jpg?v=638678865856130000"
+        },
+        {
+          "title": "Cereal Bolitas Check Chocolate 200 G",
+          "price": "$1999.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cereal-de-chocolate-great-value-200-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/307063/front-view-29965.jpg?v=638361885896300000"
+        },
+        {
+          "title": "Cereales frutal Arcor formis 245 g.",
+          "price": "$2599.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cereales-frutal-arcor-formis-245-g-736226/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/467125/7790040142510_E01.jpg?v=638418969545970000"
+        },
+        {
+          "title": "Cereal Azucarado DIA Chocolate Semiamargo 200 Gr.",
+          "price": "$2780.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cereal-azucarado-dia-chocolate-semiamargo-200-gr-118297/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/340828/Cereal-Azucarado-DIA-Chocolate-Semiamargo-200-Gr-_1.jpg?v=638706305237600000"
+        },
+        {
+          "title": "Cereal Trix® X 330gr",
+          "price": "$4656.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cereales-trix-330g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/301950/Cereal-Trix-X-330gr-1-31992.jpg?v=638314473842670000"
+        },
+        {
+          "title": "Yog Lsclasico Cereal 164g",
+          "price": "$2500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/yog-lsclasico-cereal-164g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/827423/Yogur-Batido-La-Serenisima-Cl-sico-Con-Cereales-159g-Yogur-Batido-Con-Cereales-La-Seren-sima-Cl-sico-159gr-1-957847.jpg?v=638558014547000000"
+        },
+        {
+          "title": "Cereal Froot Loops Kelloggs 195 Gr.",
+          "price": "$3425.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cereal-froot-loops-kelloggs-195-gr-300864/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/330460/Cereal-Froot-Loops-Kelloggs-195-Gr-_1.jpg?v=638599649621300000"
+        },
+        {
+          "title": "Cereales Choco Krispies Pops Kelloggs 185 Gr.",
+          "price": "$3555.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cereales-choco-krispies-pops-kelloggs-185-gr-300865/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/330462/Cereales-Choco-Krispies-Pops-Kelloggs-185-Gr-_1.jpg?v=638599649645100000"
+        },
+        {
+          "title": "Cereal 230 Grs Trix®",
+          "price": "$5300.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-230-grs-trix/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/875512/Cereal-Trix-230-Gr-1-887644.jpg?v=638872403694530000"
+        },
+        {
+          "title": "Cereal 230 Grs Trix®",
+          "price": "$5450.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cereal-230-grs-trix/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/875512/Cereal-Trix-230-Gr-1-887644.jpg?v=638872403694530000"
+        },
+        {
+          "title": "Cereal Multicereal 225 Grs Nestum®",
+          "price": "$5600.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-multicereal-225-grs-nestum/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/875536/Cereal-Multicereal-Nestum-225-Gr-1-958279.jpg?v=638872403795500000"
+        },
+        {
+          "title": "Cereal 210 Grs Nesquik®",
+          "price": "$5300.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-210-grs-nesquik/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/875538/Cereal-Nesquik-210-Gr-1-958283.jpg?v=638872403802700000"
+        },
+        {
+          "title": "Cereal 210 Grs Nesquik®",
+          "price": "$5300.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/cereal-210-grs-nesquik/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/875538/Cereal-Nesquik-210-Gr-1-958283.jpg?v=638872403802700000"
+        },
+        {
+          "title": "Cereal 210 Grs Nesquik®",
+          "price": "$5450.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cereal-210-grs-nesquik/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/875538/Cereal-Nesquik-210-Gr-1-958283.jpg?v=638872403802700000"
+        },
+        {
+          "title": "Barrita Cereal Mix Chocolate y Almendras x 38 g",
+          "price": "$1114.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/barrita-cereal-mix-choco-y-almendras-x-38-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/261814/242374_barrita-cereal-mix-choco-y-almendras-x-38-g_imagen-1.jpg?v=638652916345970000"
+        },
+        {
+          "title": "Barra De Cereal Banana 45 Gr Muecas",
+          "price": "$1450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/barra-de-cereal-banana-45-gr-muecas/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/789491/Barra-De-Cereal-Muecas-Banana-45gr-1-985788.jpg?v=638265009658700000"
+        },
+        {
+          "title": "Barrita Cereal Mix Frutos Secos x 33 g",
+          "price": "$1114.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/barrita-cereal-mix-frutos-secos-x-33-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/261815/242373_barrita-cereal-mix-frutos-secos-x-33-g_imaegn-1.jpg?v=638652917457930000"
+        },
+        {
+          "title": "Barra Frutilla Y Chocolate Cereal Mix 26 Gr",
+          "price": "$1000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/barra-frutilla-y-chocolate-cereal-mix-26-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/683736/Barra-Cereal-Mix-Frutilla-Y-Chocolate-X26gr-1-883036.jpg?v=637774365749870000"
+        },
+        {
+          "title": "Cereal Froot Loops X195g",
+          "price": "$3950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-froot-loops-x195g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/805078/Cereal-Froot-Loops-X195g-1-1001773.jpg?v=638392017679800000"
+        },
+        {
+          "title": "Barra de Cereal Cereal Mix Frutilla y Chocolate x 26 g",
+          "price": "$1090.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/barra-de-cereal-cereal-mix-frutilla-y-chocolate-x-26-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/240143/225875_barra-de-cereal-cereal-mix-frutilla-y-chocolate-x-26-gr_imagen-1.jpg?v=638163233820800000"
+        },
+        {
+          "title": "Barra Cereal Mix Placeres Chocolate 23 Gr",
+          "price": "$1000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/barra-cereal-mix-placeres-chocolate-23-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/173647/Cereal-Mix-Arcor-Barra-Cereal-Mix-Placeres-Chocolate-23-Gr-1-11407.jpg?v=636383168218570000"
+        },
+        {
+          "title": "Barra Cereal Mix sabor Frutilla con Yogurth x 23 g",
+          "price": "$1090.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/barra-de-cereal-frutilla-con-yogurth-x-23-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/240002/25605_barra-de-cereal-frutilla-con-yogurth-x-23-gr_imagen-1.jpg?v=638163008973370000"
+        },
+        {
+          "title": "Cereal Choco Krispis X185g",
+          "price": "$4450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-choco-krispis-x185g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/805077/Cereal-Choco-Krispis-X185g-1-1001772.jpg?v=638392017676330000"
+        },
+        {
+          "title": "Cereal Froot Loops X330g",
+          "price": "$6200.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cereal-froot-loops-x330g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/805076/Cereal-Froot-Loops-X330g-1-1001770.jpg?v=638392017671500000"
+        }
+      ],
+      "totalFound": 30
+    }
+  },
+  "tostadas": {
+    "timestamp": "2025-07-06T13:01:47.919Z",
+    "data": {
+      "products": [
+        {
+          "title": "Tostadas Tosti Light X200g",
+          "price": "$1700.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-tosti-light-x200g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/751911/Tostadas-Tosti-Light-X200g-1-938882.jpg?v=638010993762570000"
+        },
+        {
+          "title": "Tostadas Cristal Clasicas Fresh",
+          "price": "$2500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-cristal-clasicas-fresh/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/821243/Tostadas-Cristal-Clasicas-1-950682.jpg?v=638506281956870000"
+        },
+        {
+          "title": "Tostadas Cristal Dulces Fresh",
+          "price": "$2500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-cristal-dulces-fresh/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/789091/Tostadas-Cristal-Dulces-1-950679.jpg?v=638259177771870000"
+        },
+        {
+          "title": "Tostadas Light Dia Gruesas 200 Gr.",
+          "price": "$1190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/tostadas-light-dia-gruesas-200-gr-224555/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/344523/Tostadas-Light-Dia-Gruesas-200-Gr-_1.jpg?v=638739136100870000"
+        },
+        {
+          "title": "Tostadas de Mesa Dia 200 Gr.",
+          "price": "$1190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/tostadas-de-mesa-dia-200-gr-224556/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/344527/Tostadas-de-Mesa-Dia-200-Gr-_1.jpg?v=638739136145430000"
+        },
+        {
+          "title": "Tostadas Carrefour classic fibras y semillas 180 g.",
+          "price": "$1082.90",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/tostadas-carrefour-classic-fibras-y-semillas-180-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/387043/7798159718404_E01.jpg?v=638318761126370000"
+        },
+        {
+          "title": "Tostadas clásicas Carrefour classic 200 g.",
+          "price": "$1290.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/tostadas-clasicas-carrefour-classic-200-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/394831/7798159717490_E01.jpg?v=638325536753170000"
+        },
+        {
+          "title": "Tostadas light Carrefour classic 200 g.",
+          "price": "$1290.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/tostadas-light-carrefour-classic-200-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/394829/7798159717483_01.jpg?v=638325536744070000"
+        },
+        {
+          "title": "Tostadas De Mesa Manieri Salvado 200g",
+          "price": "$1329.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/tostadas-de-mesa-manieri-salvado-200g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/258322/Tostadas-De-Mesa-Manieri-Salvado-200g-1-36465.jpg?v=637989502031300000"
+        },
+        {
+          "title": "Tostadas De Mesa Manieri Saladas 200g",
+          "price": "$1329.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/tostadas-de-mesa-manieri-saladas-200g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/258320/Tostadas-De-Mesa-Manieri-Saladas-200g-1-36463.jpg?v=637989501920700000"
+        },
+        {
+          "title": "Tostadas Clasicas Libres 200 Gr Riera",
+          "price": "$1800.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/tostadas-clasicas-libres-200-gr-riera/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/803354/Tostadas-Clasicas-Libres-Riera-18-X-200g-1-1000072.jpg?v=638379382971270000"
+        },
+        {
+          "title": "Tostadas Sin Sal Libres 200 Gr Riera",
+          "price": "$1800.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/tostadas-sin-sal-libres-200-gr-riera/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/803356/Tostadas-Sin-Sal-Libres-Riera-18-X-200g-1-1000074.jpg?v=638379382978900000"
+        },
+        {
+          "title": "Tostadas Dulces Libres 200 Gr Riera",
+          "price": "$1800.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/tostadas-dulces-libres-200-gr-riera/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/803355/Tostadas-Dulces-Libres-Riera-18-X-200g-1-1000073.jpg?v=638379382975470000"
+        },
+        {
+          "title": "Tostadas Firenze Saladas 180 Gr",
+          "price": "$1750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-firenze-saladas-180-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/198213/Tostadas-Firenze-Saladas-Tostadas-Firenze-Saladas-180-Gr-1-34588.jpg?v=636383602980530000"
+        },
+        {
+          "title": "Tostadas de Arroz DIA 150 Gr.",
+          "price": "$1490.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/tostadas-de-arroz-dia-150-gr-207403/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/347987/Tostadas-de-Arroz-DIA-150-Gr-_1.jpg?v=638787806502130000"
+        },
+        {
+          "title": "Tostadas Firenze Dulces 180 Gr",
+          "price": "$1800.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-firenze-dulces-180-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/208081/Tostadas-Firenze-Dulces-Tostadas-Firenze-Dulces-180-Gr-1-44481.jpg?v=636383711949830000"
+        },
+        {
+          "title": "Tostadas Light Libres 200 Gr Riera",
+          "price": "$2000.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-light-libres-200-gr-riera/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/803358/Tostadas-Light-Libres-Riera-18-X-200g-1-1000076.jpg?v=638379382984670000"
+        },
+        {
+          "title": "Tostadas 100% Integrales Libres Riera 200 Gr.",
+          "price": "$2050.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/tostadas-100--integrales-libres-riera-200-gr-307624/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352969/Tostadas-100--Integrales-Libres-Riera-200-Gr-_1.jpg?v=638869610233830000"
+        },
+        {
+          "title": "Tostadas De Arroz Molinos Ala Clásicas 150 G",
+          "price": "$1574.25",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/tostadas-de-arroz-molinos-ala-clasicas-x-150-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/318837/0779112009809-01-10471.jpg?v=638464809726200000"
+        },
+        {
+          "title": "Tostada Arroz Leiva Clasicas 150 G",
+          "price": "$1749.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/tostada-arroz-clasica-leiva-150-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/211225/front-view-9840.jpg?v=638717923485870000"
+        },
+        {
+          "title": "Tostadas de arroz Molinos Ala clasicas 150 g.",
+          "price": "$1819.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/tostadas-de-arroz-molinos-ala-clasicas-150-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/206113/7791120098093_01.jpg?v=637607541422970000"
+        },
+        {
+          "title": "Tostadas Gruesas Nat Light x 200 g",
+          "price": "$2590.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/tostadas-gruesas-light-x-200-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/164862/157484_tostadas-gruesas-light-x-200-gr_imagen-1.jpg?v=636670333435200000"
+        },
+        {
+          "title": "Tostadas De Arroz Sin Tacc 150 Gr Cariló",
+          "price": "$1950.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-sin-tacc-150-gr-carilo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/485655/Tostadas-De-Arroz-Carilo-Original-150-Gr-1-1072.jpg?v=636736170110330000"
+        },
+        {
+          "title": "Tostadas De Arroz Riskydit Semillas 150g",
+          "price": "$2050.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-riskydit-semillas-150g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/790191/Tostadas-Risky-dit-C-semillas-X150g-1-986494.jpg?v=638271921750830000"
+        },
+        {
+          "title": "Tostadas De Arroz Aireadas 110 Grs Cuisine & Co",
+          "price": "$1570.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-aireadas-110-grs-cuisine-co/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/601164/Tostadas-De-Arroz-Aireadas-Paq-110-Gr-C-co-1-843015.jpg?v=637351320415870000"
+        },
+        {
+          "title": "Tostadas De Arroz Riskydit Dulce 150g",
+          "price": "$2200.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-riskydit-dulce-150g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/790041/Tostadas-Risky-dit-Dulce-X150g-1-986370.jpg?v=638271165787830000"
+        },
+        {
+          "title": "Tostadas De Arróz Clásicas 150 Gr Molinos Alas",
+          "price": "$2200.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-clasicas-150-gr-molinos-alas/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/683374/Tostadas-Molinos-Ala-Cl-sica-De-Arroz-X150-Gr-1-804544.jpg?v=637769289958200000"
+        },
+        {
+          "title": "Tostadas De Arroz Riskydit Clasicas 150g",
+          "price": "$2200.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-riskydit-clasicas-150g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/790046/Tostadas-Risky-dit-Clasicas-X150g-1-986375.jpg?v=638271165802770000"
+        },
+        {
+          "title": "Tostadas Finas clásicas 140 Grs Cuisine & Co",
+          "price": "$2100.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/tostadas-finas-clasicas-140-grs-cuisine-co/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/791404/Tostadas-Finas-cl-sicas-140-Gr-Cuisine-Co-1-846124.jpg?v=638288337819900000"
+        },
+        {
+          "title": "Tostadas Finas Nat Light x 140 g",
+          "price": "$2950.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/tostadas-finas-light-x-140-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/227996/157483_tostadas-finas-light-x-140-gr_imagen-1.jpg?v=637981565912470000"
+        },
+        {
+          "title": "Tostadas Finas Nat Clásicas x 140 g",
+          "price": "$2950.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/tostadas-finas-clasicas-x-140-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/227997/157486_tostadas-finas-clasicas-x-140-gr_imagen-1.jpg?v=637981568405330000"
+        },
+        {
+          "title": "Tostadas de Arroz Nat x 110 g",
+          "price": "$2350.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/tostadas-de-arroz-x-110-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/164859/157482_tostadas-de-arroz-x-110-gr_imagen-1.jpg?v=636670333420700000"
+        },
+        {
+          "title": "Tostadas De Arroz Criollitas 110 Gr",
+          "price": "$2600.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostadas-de-arroz-criollitas-110-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/606265/Tostadas-Crio-Arroz-110g-1-853855.jpg?v=637372052218700000"
+        }
+      ],
+      "totalFound": 33
+    }
+  },
+  "café": {
+    "timestamp": "2025-07-06T13:01:50.913Z",
+    "data": {
+      "products": [
+        {
+          "title": "Café en saquitos La Virginia caja x 20 uni",
+          "price": "$4149.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cafe-en-saquitos-la-virginia-caja-x-20-uni/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/324289/7790150079904_01.jpg?v=638197800861430000"
+        },
+        {
+          "title": "Café La Virginia En Saquitos 20saq",
+          "price": "$4149.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cafe-la-virginia-en-saquitos-20saq-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/218246/0779015007990-01-3564.jpg?v=637854286787100000"
+        },
+        {
+          "title": "Café La Planta De Café 18 Saquitos X5g",
+          "price": "$5100.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-18-saquitos-x5g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/709930/Caf-La-Planta-De-Caf-18-Saquitos-X5g-1-825950.jpg?v=637928049660370000"
+        },
+        {
+          "title": "Café La Planta De Café Suave Frasc X100g",
+          "price": "$8250.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-suave-frasc-x100g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/800585/Caf-La-Planta-De-Caf-Suave-Frasc-X100g-1-999975.jpg?v=638355837729430000"
+        },
+        {
+          "title": "Café en Cápsulas Viaggio Espresso Ristretto 100% Natural",
+          "price": "$9367.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/cafe-en-capsulas-viaggio-espresso-ristretto-100-natural/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/252905/239370_cafe-en-capsulas-viaggio-espresso-ristretto-100--natural_imagen-1.jpg?v=638458530562300000"
+        },
+        {
+          "title": "Café en Cápsulas Viaggio Espresso Intenso 100% Natural",
+          "price": "$9367.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/cafe-en-capsulas-viaggio-espresso-intenso-100-natural/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/252906/239371_cafe-en-capsulas-viaggio-espresso-intenso-100--natural_imagen-1.jpg?v=638458531378200000"
+        },
+        {
+          "title": "Café en Cápsulas Viaggio Espresso Vaniglia 100% Natural",
+          "price": "$9367.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/cafe-en-capsulas-viaggio-espresso-vaniglia-100-natural/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/252910/239374_cafe-en-capsulas-viaggio-espresso-vaniglia-100--natural_imagen-1.jpg?v=638458534499730000"
+        },
+        {
+          "title": "Café en Cápsulas Viaggio Espresso Caramelo 100% Natural",
+          "price": "$9367.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/cafe-en-capsulas-viaggio-espresso-caramelo-100-natural/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/252911/239375_cafe-en-capsulas-viaggio-espresso-caramelo-100--natural_imagen-1.jpg?v=638458535676530000"
+        },
+        {
+          "title": "Café Bonafide Suave 125 Gr.",
+          "price": "$2350.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cafe-bonafide-suave-125-gr-285597/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/326092/Cafe-Bonafide-Suave-125-Gr-_1.jpg?v=638599590082400000"
+        },
+        {
+          "title": "Café molido clásico la Morenita bolsa 500 g.",
+          "price": "$10870.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cafe-molido-clasico-la-morenita-bolsa-500-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/324306/7790170902008_01.jpg?v=638197800929000000"
+        },
+        {
+          "title": "Café molido Bonafide Sensaciones torrado intenso 500 g.",
+          "price": "$11490.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cafe-molido-bonafide-sensaciones-torrado-intenso-500-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/204608/7792360002062_02.jpg?v=637594529975970000"
+        },
+        {
+          "title": "Café Molido La Planta De Café X 1 Kg.",
+          "price": "$23200.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-molido-la-planta-de-cafe-x-1-kg/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/773629/Caf-Molido-La-Planta-De-Caf-X-1-Kg-1-3381.jpg?v=638144805888000000"
+        },
+        {
+          "title": "Café Sensaciones Bonafide Torrado Intenso 500 Gr.",
+          "price": "$11835.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cafe-sensaciones-bonafide-torrado-intenso-500-gr-31555/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/308424/Cafe-Sensaciones-Bonafide-Torrado-Intenso-500-Gr-_1.jpg?v=638599343370270000"
+        },
+        {
+          "title": "Café La Planta De Café Molido 500 Gr",
+          "price": "$11950.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-molido-500-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/773628/Caf-La-Planta-De-Caf-Molido-500-Gr-1-3378.jpg?v=638144805884970000"
+        },
+        {
+          "title": "Café La Planta De Café Molido 500 Gr",
+          "price": "$11950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-molido-500-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/773628/Caf-La-Planta-De-Caf-Molido-500-Gr-1-3378.jpg?v=638144805884970000"
+        },
+        {
+          "title": "Café La Planta De Café Molido 250 Gr",
+          "price": "$6100.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-molido-250-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/773627/Caf-La-Planta-De-Caf-Molido-250-Gr-1-3370.jpg?v=638144805881830000"
+        },
+        {
+          "title": "Café instantáneo La Virginia especial clásico 170 g.",
+          "price": "$5850.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/cafe-instantaneo-la-virginia-especial-clasico-170-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/324298/7790150100486_01.jpg?v=638197800892270000"
+        },
+        {
+          "title": "Café Instantáneo Nescafé® Dolca® Suave 170 G",
+          "price": "$6344.25",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cafe-instantaneo-nescafe-dolca-suave170g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/332444/Caf-Instant-neo-Nescaf-Dolce-Suave-170-G-1-51760.jpg?v=638799894303000000"
+        },
+        {
+          "title": "Café Instantáneo Nescafé® Dolca® Original 170 G",
+          "price": "$6344.25",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cafe-instantaneo-nescafe-dolca-original-170-g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/332445/Caf-Instant-neo-Nescaf-Dolca-Original-170-G-1-51761.jpg?v=638799902988400000"
+        },
+        {
+          "title": "Café Instantáneo Arlistan 170 G",
+          "price": "$8499.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/cafe-instantaneo-arlistan-170-g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/316950/Caf-Instant-neo-Arlistan-170-G-1-55190.jpg?v=638451741937770000"
+        },
+        {
+          "title": "Café Molido Cabrales 500 Gr",
+          "price": "$25250.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/cafe-molido-cabrales-500-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/773633/Caf-Cabrales-Molido-X500g-1-939952.jpg?v=638144805897770000"
+        },
+        {
+          "title": "Café Original Dolca 170 Grs Nescafé®",
+          "price": "$8750.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/cafe-original-dolca-170-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/848125/Caf-Dolca-Original-Nescaf-170-Gr-1-1030860.jpg?v=638693636215300000"
+        },
+        {
+          "title": "Café Original Dolca 170 Grs Nescafé®",
+          "price": "$9000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cafe-original-dolca-170-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/848125/Caf-Dolca-Original-Nescaf-170-Gr-1-1030860.jpg?v=638693636215300000"
+        },
+        {
+          "title": "Café Molido Cabrales Super 125 Gr.",
+          "price": "$6745.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cafe-molido-cabrales-super-125-gr-284446/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/325818/Cafe-Molido-Cabrales-Super-125-Gr-_1.jpg?v=638816223668270000"
+        },
+        {
+          "title": "Café Dolca Suave 170 Grs Nescafé®",
+          "price": "$11650.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cafe-dolca-suave-170-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/848126/Caf-Dolca-Suave-Nescaf-170-Gr-1-1030861.jpg?v=638693636217630000"
+        },
+        {
+          "title": "Café Tradición Doypack 100 Grs Nescafé®",
+          "price": "$7550.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cafe-tradicion-doypack-100-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/875601/Caf-Tradici-n-Doypack-100-Gr-Nescafe-1-1021888.jpg?v=638872404061500000"
+        },
+        {
+          "title": "Café La Planta De Café Suave Frasco X170grs",
+          "price": "$11350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-suave-frasco-x170grs/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/848657/Caf-La-Planta-De-Caf-Suave-Frasco-X170grs-1-999976.jpg?v=638696254409400000"
+        },
+        {
+          "title": "Café La Planta De Café Clasico Dp X160g",
+          "price": "$10100.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-clasico-dp-x160g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/809191/Caf-La-Planta-De-Caf-Clasico-Dp-X160g-1-1000012.jpg?v=638435435626000000"
+        },
+        {
+          "title": "Café La Planta De Café Suave Dp X160g",
+          "price": "$10350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-suave-dp-x160g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/800584/Caf-La-Planta-De-Caf-Suave-Dp-X160g-1-999974.jpg?v=638355837726130000"
+        },
+        {
+          "title": "Café La Planta De Café Clas Frasco X170g",
+          "price": "$12900.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-clas-frasco-x170g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/824355/Caf-La-Planta-De-Caf-Clas-Frasco-X170g-1-999972.jpg?v=638513086108070000"
+        },
+        {
+          "title": "Café Espresso Gold 100 Grs Nescafe®",
+          "price": "$21400.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/cafe-espresso-gold-100-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869201/Image.jpg?v=638840510316070000"
+        },
+        {
+          "title": "Café Espresso Gold 100 Grs Nescafe®",
+          "price": "$22000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/cafe-espresso-gold-100-grs-nescafe/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869201/Image.jpg?v=638840510316070000"
+        },
+        {
+          "title": "Café Intenso Bonafide en Saquitos x 18 Gr.",
+          "price": "$4090.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/cafe-intenso-bonafide-en-saquitos-x-18-gr-5700/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/337775/Cafe-Intenso-Bonafide-en-Saquitos-x-18-Gr-_1.jpg?v=638670880616830000"
+        },
+        {
+          "title": "Café La Planta De Café Suave X1.7g",
+          "price": "$4350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/cafe-la-planta-de-cafe-suave-x1-7g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/800586/Caf-La-Planta-De-Caf-Suave-X1-7g-1-999977.jpg?v=638355837734270000"
+        }
+      ],
+      "totalFound": 34
+    }
+  },
+  "té": {
+    "timestamp": "2025-07-06T13:01:54.158Z",
+    "data": {
+      "products": [
+        {
+          "title": "Té en saquitos Carrefour Classic sin TACC 50 uni",
+          "price": "$934.50",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/te-en-saquitos-carrefour-classic-sin-tacc-x-50-uni-679247/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/599007/7791720024843_01.jpg?v=638685057358230000"
+        },
+        {
+          "title": "Té Negro Taragüi 50u",
+          "price": "$1489.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/te-tarag-i-clasico-filtro-diamantado-x-50saq-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/328232/0779038780014-01-9800.jpg?v=638562441672100000"
+        },
+        {
+          "title": "Té Taragui Diamantado 50 Ud.",
+          "price": "$1490.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/te-taragui-diamantado-50-ud-274695/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/323000/Te-Taragui-Diamantado-50-Ud-_1.jpg?v=638599550487400000"
+        },
+        {
+          "title": "Té Verde Dia Sin Tacc 25 Ud.",
+          "price": "$760.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/te-verde-dia-sin-tacc-25-ud-275099/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/341752/Te-Verde-Dia-Sin-Tacc-25-Ud-_1.jpg?v=638708909694030000"
+        },
+        {
+          "title": "Té En Saquitos Filtro Diamantado 100 Un Taraguí",
+          "price": "$3400.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/te-en-saquitos-filtro-diamantado-100-un-taragui/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/640948/T-Taragui-S-e-Filtro-Diamantado-X-100saq-1-870732.jpg?v=637557379298100000"
+        },
+        {
+          "title": "Té Taragui filtro diamantado x 25 uni",
+          "price": "$899.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/te-taragui-filtro-diamantado-x-25-uni-694892/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/328117/7790387800135_02.jpg?v=638204500099600000"
+        },
+        {
+          "title": "Té Saquitos en Sobre Green Hills 50 ud.",
+          "price": "$2150.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/te-saquitos-en-sobre-green-hills-50-ud-18963/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/349659/Te-Saquitos-en-Sobre-Green-Hills-50-ud-_1.jpg?v=638816036275800000"
+        },
+        {
+          "title": "Té en saquitos Green Hills 50 u.",
+          "price": "$2390.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/te-en-saquitos-green-hills-50-u/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/192743/7790480008261_02.jpg?v=637515949706670000"
+        },
+        {
+          "title": "Té en saquitos Green Hills 25 Ud.",
+          "price": "$1380.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/te-en-saquitos-green-hills-25-ud-181243/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/314521/Te-en-saquitos-Green-Hills-25-Ud-_1.jpg?v=638599429432370000"
+        },
+        {
+          "title": "Té de manzanilla silvestre Taragui saquito sobre 20 uni",
+          "price": "$1139.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/te-de-manzanilla-silvestre-taragui-saquito-en-sobre-20-uni-745690/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/551791/7790387001426_02.jpg?v=638605307758070000"
+        },
+        {
+          "title": "Té Taragui Sabor Manzanilla 20u",
+          "price": "$1189.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/te-taragui-sabor-manzanilla-20u/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/336082/T-Taragui-Sabor-Manzanilla-20u-0779038700142-1.jpg?v=638646006170230000"
+        },
+        {
+          "title": "Té Taragui Mezcla De Hierbas 20u",
+          "price": "$1359.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/te-taragui-mezcla-de-hierbas-20u/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/339830/T-Taragui-Mezcla-De-Hierbas-20u-0779038700144-1.jpg?v=638678216020230000"
+        },
+        {
+          "title": "Té Limón Miel Y Jengibre Taragui 20u",
+          "price": "$2039.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/te-taragui-placeres-limon-miel-jengibre-20un-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/328234/Te-Taragui-Placeres-Limon-Miel-Jengibre-20un-1-42945.jpg?v=638562441679130000"
+        },
+        {
+          "title": "Té Saint Gottard En Saquitos Té Verde 20 U",
+          "price": "$3150.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-saint-gottard-en-saquitos-te-verde-20-u/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/540953/Te-Saint-Gottard-En-Saquitos-Te-Verde-20-U-1-37996.jpg?v=636995346826500000"
+        },
+        {
+          "title": "Té Cachamai O'Clock con Te Negro Hibiscus Rosa Mosqueta y Canela x 20 saquitos",
+          "price": "$1062.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/te-cachamai-o-clock-te-negro-hibiscus-rosa-mosqueta-canela-x-20-saquitos/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/257418/225618_te-cachamai-o-clock-x-20-saquitos_imagen-1--2-.jpg?v=638543213097830000"
+        },
+        {
+          "title": "Té Green Hills - 25 Saquitos",
+          "price": "$1550.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/te-green-hills-25-saquitos/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695328/T-Green-Hills-25-Saquitos-1-3388.jpg?v=637848777637100000"
+        },
+        {
+          "title": "Té Green Hills - 25 Saquitos",
+          "price": "$1550.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/te-green-hills-25-saquitos/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695328/T-Green-Hills-25-Saquitos-1-3388.jpg?v=637848777637100000"
+        },
+        {
+          "title": "Te Sin Filtro Diamantado Taragui 50 Saquitos",
+          "price": "$1700.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/te-sin-filtro-diamantado-taragui-50-saquitos/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/640949/T-Taragui-S-e-Filtro-Diamantado-X-50saq-1-870733.jpg?v=637557379300770000"
+        },
+        {
+          "title": "Te Saint Gottardmanzanillacanelamiel",
+          "price": "$1950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-saint-gottardmanzanillacanelamiel/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/822791/Te-Saint-Gottardmanzanillacanelamiel-1-1008935.jpg?v=638508243344800000"
+        },
+        {
+          "title": "Te Comun Morenita 50s",
+          "price": "$1950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-comun-morenita-50s/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/774797/Te-Comun-Morenita-50s-1-942376.jpg?v=638155389717000000"
+        },
+        {
+          "title": "Te Virgin Islands  X50gr",
+          "price": "$2350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-virgin-islands-x50gr-2/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/693957/Te-Virgin-Islands-X50gr-1-887044.jpg?v=637835395481600000"
+        },
+        {
+          "title": "Té Green Hills- 50 Saquitos",
+          "price": "$2950.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/te-green-hills-50-saquitos/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695329/T-Green-Hills-50-Saquitos-1-3408.jpg?v=637848777656600000"
+        },
+        {
+          "title": "Té Green Hills- 50 Saquitos",
+          "price": "$3050.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/te-green-hills-50-saquitos/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695329/T-Green-Hills-50-Saquitos-1-3408.jpg?v=637848777656600000"
+        },
+        {
+          "title": "Te Saint Gottardchairosmosyespecias",
+          "price": "$3250.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-saint-gottardchairosmosyespecias/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/822793/Te-Saint-Gottardchairosmosyespecias-1-1008937.jpg?v=638508243351830000"
+        },
+        {
+          "title": "Te Saint Gottard Arandanoframbuesa",
+          "price": "$3450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-saint-gottard-arandanoframbuesa/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/822788/Te-Saint-Gottard-Arandanoframbuesa-1-1008932.jpg?v=638508243336030000"
+        },
+        {
+          "title": "Té negro Inti Zen Chaman Chai x 15 saquitos",
+          "price": "$4980.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/te-negro-chaman-chai-naranja-x-15-saquitos/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/163877/154309_te-negro-chaman-chai-naranja-x-15-saquitos_imagen-1.jpg?v=636670329783700000"
+        },
+        {
+          "title": "Té Verde Inti Zen Chai x 15 saquitos",
+          "price": "$4980.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/te-verde-verde-chai-verde-oscuro-x-15-saquitos/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/163899/154314_te-verde-verde-chai-verde-oscuro-x-15-saquitos_imagen-1.jpg?v=636670329826630000"
+        },
+        {
+          "title": "Té Té Negro Inti Zen 8 Blends x 15 saquitos",
+          "price": "$4980.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/te-8-blends-negro-x-15-saquitos/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/163905/154316_te-8-blends-negro-x-15-saquitos_imagen-1.jpg?v=636670329836100000"
+        },
+        {
+          "title": "Juego De Té Duravit",
+          "price": "$8699.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/juego-de-te-duravit/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/182223/Juego-De-Te--Con-Bandeja-Juego-De-Te--Con-Bandeja-s-e-un-1-1-17601.jpg?v=636383427027670000"
+        },
+        {
+          "title": "Té Green Hills Saquitos 200 Gr",
+          "price": "$5050.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/te-green-hills-saquitos-200-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695330/T-Green-Hills-Saquitos-200-Gr-1-3416.jpg?v=637848777660200000"
+        },
+        {
+          "title": "Té Green Hills Saquitos 200 Gr",
+          "price": "$5200.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/te-green-hills-saquitos-200-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/695330/T-Green-Hills-Saquitos-200-Gr-1-3416.jpg?v=637848777660200000"
+        },
+        {
+          "title": "Te Ceylon",
+          "price": "$89999.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-ceylon/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/717432/Te-Ceylon-1-116882.jpg?v=637981725733170000"
+        },
+        {
+          "title": "Té Taragui Silvestre Manzanilla 20gr",
+          "price": "$1800.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/te-taragui-silvestre-manzanilla-20gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/843668/T-Taragui-Silvestre-Manzanilla-20gr-1-1028230.jpg?v=638658132607930000"
+        }
+      ],
+      "totalFound": 33
+    }
+  },
+  "dulce": {
+    "timestamp": "2025-07-06T13:01:57.030Z",
+    "data": {
+      "products": [
+        {
+          "title": "Chupetines Pico Dulce 5 U",
+          "price": "$2500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/chupetines-pico-dulce-5-u/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/339914/Chupetin-Lheritier-Pico-Dulce-5-U-1-16685.jpg?v=636439397494430000"
+        },
+        {
+          "title": "Alfajor Helado Sei Tu Dulce De Leche Con Dulce De Leche 8 U",
+          "price": "$10750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/alfajor-helado-sei-tu-dulce-de-leche-con-dulce-de-leche-8-u/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/858678/Alfajor-Helado-Sei-Tu-Dulce-De-Leche-Con-Dulce-De-Leche-8-U-1-999598.jpg?v=638773041649570000"
+        },
+        {
+          "title": "Tostada Tosti Dulce X200gr",
+          "price": "$1650.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/tostada-tosti-dulce-x200gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/704440/Tostada-Tosti-Dulce-X200gr-1-770522.jpg?v=637898025654830000"
+        },
+        {
+          "title": "Piña Amarilla Extra Dulce",
+          "price": "$3499.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pina-amarilla-extra-dulce/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/864994/Pi-a-Amarilla-Extra-Dulce-1-1035708.jpg?v=638808573715970000"
+        },
+        {
+          "title": "Dulce de leche familiar Carrefour classic en pote 400 g.",
+          "price": "$2034.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/dulce-de-leche-familiar-carrefour-classic-en-pote-400-g-721485/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/386530/7791720029725_E01.jpg?v=638852746044570000"
+        },
+        {
+          "title": "Dulce de Leche Clásico La Serenísima con calcio 400 Gr.",
+          "price": "$2240.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/dulce-de-leche-clasico-la-serenisima-con-calcio-400-gr-273372/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352294/Dulce-de-Leche-Clasico-La-Serenisima-con-calcio-400-Gr-_1.jpg?v=638851462802500000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Clásico 400 G",
+          "price": "$2346.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/dulce-de-leche-clasico-la-serenisima-400gr-2-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/293825/0779074262530-01-10182.jpg?v=638845667003400000"
+        },
+        {
+          "title": "Dulce De Leche Tonadita Clásico 400 G",
+          "price": "$2489.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/dulce-de-leche-tonadita-clasico-400-g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/304943/Dulce-De-Leche-Tonadita-Cl-sico-400-G-1-50074.jpg?v=638342877877700000"
+        },
+        {
+          "title": "Dulce de Leche Repostero La Serenisima 400 Gr.",
+          "price": "$2540.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/dulce-de-leche-repostero-la-serenisima-400-gr-227719/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352258/Dulce-de-Leche-Repostero-La-Serenisima-400-Gr-_1.jpg?v=638851462308170000"
+        },
+        {
+          "title": "Dulce De Leche Milkaut 400 Gr.",
+          "price": "$2590.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/dulce-de-leche-milkaut-400-gr-297589/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/342259/Dulce-De-Leche-Milkaut-400-Gr-_1.jpg?v=638708915824430000"
+        },
+        {
+          "title": "Vino Portillo Dulce",
+          "price": "$6700.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/vino-portillo-dulce/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/776875/Vino-Portillo-Dulce-1-950481.jpg?v=638173318051200000"
+        },
+        {
+          "title": "Dulce de Leche La Serenísima Colonial con Calcio 400 Gr.",
+          "price": "$2800.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/dulce-de-leche-la-serenisima-colonial-con-calcio-400-gr-273373/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352297/Dulce-de-Leche-La-Serenisima-Colonial-con-Calcio-400-Gr-_1.jpg?v=638851462845300000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Estilo Colonial 400 G",
+          "price": "$2811.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/dulce-de-leche-colonial-la-serenisima-400gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/293826/0779074262520-01-27676.jpg?v=638845666203000000"
+        },
+        {
+          "title": "Dulce de leche Ilolay clásico 400 g.",
+          "price": "$2850.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/dulce-de-leche-ilolay-clasico-400-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/174939/7790787153664_02.jpg?v=637468567168730000"
+        },
+        {
+          "title": "Dulce De Leche Ilolay Clásico 400 G",
+          "price": "$2859.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/dulce-de-leche-ilolay-clasico-400-g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/333708/Dulce-De-Leche-Ilolay-Cl-sico-400-G-1-50810.jpg?v=638616765762770000"
+        },
+        {
+          "title": "Dulce de leche clásico La Serenísima 400 g.",
+          "price": "$2985.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/dulce-de-leche-clasico-la-serenisima-400-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/669157/7790742625304_E01.jpg?v=638845766648330000"
+        },
+        {
+          "title": "Dulce De Leche 400 Grs Cuisine & Co",
+          "price": "$3150.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/dulce-de-leche-400-grs-cuisine-co/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/764430/Dulce-De-Leche-Cuisine-Co-400-Gr-1-942647.jpg?v=638088969962870000"
+        },
+        {
+          "title": "Dulce De Leche 400 Grs Cuisine & Co",
+          "price": "$3150.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-400-grs-cuisine-co/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/764430/Dulce-De-Leche-Cuisine-Co-400-Gr-1-942647.jpg?v=638088969962870000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Clasico 400g",
+          "price": "$3500.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/dulce-de-leche-la-serenisima-clasico-400g-2/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869577/Dulce-De-Leche-La-Serenisima-Clasico-400g-Dulce-De-Leche-Clasico-La-Serenisima-400-Gr-1-861753.jpg?v=638842270112230000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Clasico 400g",
+          "price": "$3500.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-la-serenisima-clasico-400g-2/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869577/Dulce-De-Leche-La-Serenisima-Clasico-400g-Dulce-De-Leche-Clasico-La-Serenisima-400-Gr-1-861753.jpg?v=638842270112230000"
+        },
+        {
+          "title": "Galletitas Dulces Anillitos Terrabusi 170 Gr",
+          "price": "$1550.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/galletitas-dulces-anillitos-terrabusi-170-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/803289/Galletitas-Anillos-Clasicos-Ahora-Mas-X170g-Galletitas-Dulces-Anillitos-Cl-sicos-De-Terrabusi-170g-1-870515.jpg?v=638379382713530000"
+        },
+        {
+          "title": "Dulce de leche La serenisima colonial 400 g.",
+          "price": "$3745.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/dulce-de-leche-la-serenisima-colonial-400-g-678862/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/669126/7790742625205_E01.jpg?v=638845766607470000"
+        },
+        {
+          "title": "Dulce De Leche La Serenísima Repostero 400g",
+          "price": "$3750.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-la-serenisima-repostero-400g/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869553/Dulce-De-Leche-La-Seren-sima-Repostero-400g-Dulce-De-Leche-Repostero-La-Serenisima-400gr-1-35524.jpg?v=638842270021070000"
+        },
+        {
+          "title": "Dulce De Leche La Serenísima Repostero 400g",
+          "price": "$3800.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/dulce-de-leche-la-serenisima-repostero-400g/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869553/Dulce-De-Leche-La-Seren-sima-Repostero-400g-Dulce-De-Leche-Repostero-La-Serenisima-400gr-1-35524.jpg?v=638842270021070000"
+        },
+        {
+          "title": "Dulce De Leche Ser 300g",
+          "price": "$2950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-ser-300g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/618234/Dulce-De-Leche-Ser-300g-1-855295.jpg?v=637447656298500000"
+        },
+        {
+          "title": "Chupetines Pico Dulce x 14 g",
+          "price": "$138.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/chupetines-pico-dulce-x-14-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/186394/51218_chupetines-pico-dulce-x-14-gr_imagen-1.jpg?v=636975892939800000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Colonial 400 G",
+          "price": "$4200.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-la-serenisima-colonial-400-g/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869576/Dulce-De-Leche-La-Serenisima-Colonial-400-G-Dulce-De-Leche-Colonial-La-Serenisima-400-Gr-1-861752.jpg?v=638842270108800000"
+        },
+        {
+          "title": "Dulce De Leche La Serenisima Colonial 400 G",
+          "price": "$4300.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/dulce-de-leche-la-serenisima-colonial-400-g/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/869576/Dulce-De-Leche-La-Serenisima-Colonial-400-G-Dulce-De-Leche-Colonial-La-Serenisima-400-Gr-1-861752.jpg?v=638842270108800000"
+        },
+        {
+          "title": "Espumante Emilia Dulce 750cc",
+          "price": "$11050.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/espumante-emilia-dulce-750cc/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/786362/Espumante-Emilia-Dulce-750cc-1-971981.jpg?v=638234014270130000"
+        },
+        {
+          "title": "Dulce De Leche 970grs Narbona",
+          "price": "$16000.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-970grs-narbona/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/859932/Dulce-De-Leche-970Grs-Narbona-Dulce-De-Leche-Narbona-970grs-1-1035620.jpg?v=638785354192400000"
+        },
+        {
+          "title": "Caramelos Pico Dulce 150 Gr",
+          "price": "$2600.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/caramelos-pico-dulce-150-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/339834/Caramelo-Duro-Pico-Dulce-Frutal-X-150-Gramos-bsa-gr-150-1-11351.jpg?v=636439394855070000"
+        },
+        {
+          "title": "Dulce Light Masseube Rosa Mosqueta x 260 g",
+          "price": "$7670.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/dulce-light-masseube-rosa-mosqueta-x-260-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/269795/159850_dulce-light-de-mosqueta-masseube-x-260-gr__imagen-1.jpg.jpg?v=638824116312700000"
+        },
+        {
+          "title": "Dulce Light Masseube Frambuesa x 260 g",
+          "price": "$9650.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/dulce-light-masseube-frambuesa-x-260-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/268451/158954_dulce-light-de-frambuesa-masseube-x-260-gr__imagen-1.jpg.jpg?v=638812101883100000"
+        },
+        {
+          "title": "Dulce de Leche Vauquita Mix de Semillas x 40 g",
+          "price": "$1652.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/barra-vauquita-dulce-de-leche-mix-de-semillas-x-40-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/186366/163212_barra-de-dulce-de-leche-vauquita-con-mix-de-semillas-x-40-gr_imagen-1.jpg?v=636975883446230000"
+        }
+      ],
+      "totalFound": 34
+    }
+  },
+  "mermelada": {
+    "timestamp": "2025-07-06T13:02:01.854Z",
+    "data": {
+      "products": [
+        {
+          "title": "Mermelada Dulcor Damasco 500 Gr",
+          "price": "$1750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-dulcor-4/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/611862/Mermelada-Dulcor-Damasco-500-Gr-1-9500.jpg?v=637396248656030000"
+        },
+        {
+          "title": "Mermelada Dulcor Durazno 500 Gr",
+          "price": "$1750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-dulcor-durazno-500-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/611864/Mermelada-Dulcor-Durazno-500-Gr-1-9534.jpg?v=637396248662130000"
+        },
+        {
+          "title": "Mermelada Dulcor Ciruela 500 Gr",
+          "price": "$1750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-dulcor-5/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/611863/Mermelada-Dulcor-Ciruela-500-Gr-1-9530.jpg?v=637396248658230000"
+        },
+        {
+          "title": "Mermelada Arcor De Ciruela 454gr",
+          "price": "$1896.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/mermelada-arcor-de-ciruela-454gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/217694/0779058012343-01-493.jpg?v=637854086195330000"
+        },
+        {
+          "title": "Mermelada Arcor De Durazno 454 G",
+          "price": "$1896.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/mermelada-arcor-de-durazno-454gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/211462/0779058013216-01-408.jpg?v=637853214827130000"
+        },
+        {
+          "title": "Mermelada La Campagnola Selección Durazno X390",
+          "price": "$4700.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-la-campagnola-seleccion-durazno-x390/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/681713/Mermelada-La-Campagnola-Selecci-n-Durazno-X390-1-882593.jpg?v=637756329876300000"
+        },
+        {
+          "title": "Mermelada Dulcor Durazno 500 Gr",
+          "price": "$2450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-dulcor-durazno-500-gr-2/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/596706/Mermelada-Dulcor-Durazno-500-Gr-1-25442.jpg?v=637320210123930000"
+        },
+        {
+          "title": "Mermelada Damasco Dulcor 454 Gr",
+          "price": "$2450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-damasco-dulcor-454-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/531843/Mermelada-Damasco-Dulcor-454-Gr-1-124659.jpg?v=636917586264930000"
+        },
+        {
+          "title": "Mermelada Arcor de durazno 454 g.",
+          "price": "$2530.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/mermelada-arcor-de-durazno-454-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/381265/7790580132163_E01.jpg?v=638315050330100000"
+        },
+        {
+          "title": "Mermelada De Ciruela Arcor 454 Gr",
+          "price": "$2700.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-de-ciruela-arcor-454-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/667312/Mermelada-Arcor-Ciruela-Fruta-X454g-1-876679.jpg?v=637677706580100000"
+        },
+        {
+          "title": "Mermelada De Frutilla Cuisine And Co 454 Gr",
+          "price": "$3000.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/mermelada-de-frutilla-cuisine-and-co-454-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/602280/Mermelada-De-Frutilla-C-co-454-Gr-1-846007.jpg?v=637353912235000000"
+        },
+        {
+          "title": "Mermelada BC La Campagnola durazno 390 g.",
+          "price": "$2619.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/mermelada-bc-la-campagnola-durazno-390-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/381335/7793360131516_E01.jpg?v=638315050666730000"
+        },
+        {
+          "title": "Mermelada Bc De Durazno 390gr",
+          "price": "$2739.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/mermelada-bc-de-durazno-390gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/213242/0779336013151-01-1308.jpg?v=637853430273330000"
+        },
+        {
+          "title": "Mermelada Durazno La Campagnola 454 Gr",
+          "price": "$3250.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-durazno-la-campagnola-454-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/669813/Mermelada-La-Campagnola-Durazno-F-X454g-1-879376.jpg?v=637691638155630000"
+        },
+        {
+          "title": "Mermelada BC Durazno 390 Gr.",
+          "price": "$3175.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/mermelada-bc-durazno-390-gr-279724/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/324640/Mermelada-BC-Durazno-390-Gr-_1.jpg?v=638599571270930000"
+        },
+        {
+          "title": "Mermelada De Durazno Bc La Campagnola 390 Gr",
+          "price": "$3350.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/mermelada-de-durazno-bc-la-campagnola-390-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/690033/Mermelada-La-Campagnola-B-c-F-Durazno-X390g-1-880212.jpg?v=637810653700200000"
+        },
+        {
+          "title": "Mermelada Ciruela Bc La Campagnola 390 Gr",
+          "price": "$3400.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/mermelada-ciruela-bc-la-campagnola-390-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/674439/Mermelada-La-Campagnola-B-c-F-Ciruela-X390g-1-880216.jpg?v=637716164575000000"
+        },
+        {
+          "title": "Mermelada De Durazno Bc La Campagnola 390 Gr",
+          "price": "$3450.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/mermelada-de-durazno-bc-la-campagnola-390-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/690033/Mermelada-La-Campagnola-B-c-F-Durazno-X390g-1-880212.jpg?v=637810653700200000"
+        },
+        {
+          "title": "Mermelada Ciruela Bc La Campagnola 390 Gr",
+          "price": "$3500.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/mermelada-ciruela-bc-la-campagnola-390-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/674439/Mermelada-La-Campagnola-B-c-F-Ciruela-X390g-1-880216.jpg?v=637716164575000000"
+        },
+        {
+          "title": "Mermelada De Durazno Sin Azucar 390 Gr.",
+          "price": "$3650.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/mermelada-de-durazno-sin-azucar-390-gr-307615/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352746/Mermelada-De-Durazno-Sin-Azucar-390-Gr-_1.jpg?v=638863556185000000"
+        },
+        {
+          "title": "Mermelada Light Frutilla Arcor 390 Gr",
+          "price": "$3650.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-light-frutilla-arcor-390-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/674442/Mermelada-Arcor-Light-F-Frutilla-X390g-1-880219.jpg?v=637716164583130000"
+        },
+        {
+          "title": "Mermelada Bc De Frutilla 390gr",
+          "price": "$3899.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/mermelada-bc-de-frutilla-390gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/213240/0779336013153-01-1310.jpg?v=637853430268200000"
+        },
+        {
+          "title": "Mermelada BC La Campagnola arándano 390 g.",
+          "price": "$3905.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/mermelada-bc-la-campagnola-arandano-390-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/381206/7793360131561_E01.jpg?v=638315050095270000"
+        },
+        {
+          "title": "Mermelada BC La Campagnola frutilla 390 g.",
+          "price": "$3905.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/mermelada-bc-la-campagnola-frutilla-390-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/381338/7793360131530_E01.jpg?v=638315050674870000"
+        },
+        {
+          "title": "Mermelada Arandano Bc La Campagnola 390 Gr",
+          "price": "$4000.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/mermelada-arandano-bc-la-campagnola-390-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/674438/Mermelada-La-Campagnola-B-c-F-Arandano-X390g-1-880215.jpg?v=637716164571900000"
+        },
+        {
+          "title": "Mermelada The Food Market Higo x 420 g",
+          "price": "$5100.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/mermelada-the-food-market-higo-x-420-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/264064/242486_mermelada-the-food-market-higo-x-420-g_imagen-1.jpg.jpg?v=638748745304470000"
+        },
+        {
+          "title": "Mermelada The Food Market Naranja x 420 g",
+          "price": "$5100.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/mermelada-the-food-market-naranja-x-420-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/264063/242485_mermelada-the-food-market-naranja-x-420-g_imagen-1.jpg.jpg?v=638748744951430000"
+        },
+        {
+          "title": "Mermelada The Food Market Ciruela x 420 g",
+          "price": "$5100.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/mermelada-the-food-market-ciruela-x-420-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/264061/242483_mermelada-the-food-market-ciruela-x-420-g_imagen-1.jpg.jpg?v=638748743900030000"
+        },
+        {
+          "title": "Mermelada The Food Market Durazno x 420 g",
+          "price": "$5100.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/mermelada-the-food-market-durazno-x-420-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/264062/242484_mermelada-the-food-market-durazno-x-420-g_imagen-1.jpg.jpg?v=638748744458400000"
+        },
+        {
+          "title": "Mermelada De Frutilla La Campagnola 390 Gr.",
+          "price": "$5495.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/mermelada-de-frutilla-la-campagnola-390-gr-307617/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/351523/Mermelada-De-Frutilla-La-Campagnola-390-Gr-_1.jpg?v=638845611192530000"
+        },
+        {
+          "title": "Mermelada Arandano La Campagnola 390 Gr.",
+          "price": "$5495.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/mermelada-arandano-la-campagnola-390-gr-307618/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/351525/Mermelada-Arandano-La-Campagnola-390-Gr-_1.jpg?v=638845611217200000"
+        },
+        {
+          "title": "Mermelada Bc La Campagnola Naranja X390gr",
+          "price": "$3500.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/mermelada-bc-la-campagnola-naranja-x390gr-2/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/688375/Mermelada-Bc-La-Campagnola-Naranja-X390gr-1-884298.jpg?v=637806225754500000"
+        },
+        {
+          "title": "Mermelada Arcor Durazno X454g",
+          "price": "$2700.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mermelada-arcor-durazno-x454g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/669814/Mermelada-Arcor-Durazno-F-X454g-1-879377.jpg?v=637691638159530000"
+        },
+        {
+          "title": "Mermelada Arcor Durazno X454g",
+          "price": "$2750.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/mermelada-arcor-durazno-x454g/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/669814/Mermelada-Arcor-Durazno-F-X454g-1-879377.jpg?v=637691638159530000"
+        }
+      ],
+      "totalFound": 34
+    }
+  },
+  "miel": {
+    "timestamp": "2025-07-06T13:02:05.322Z",
+    "data": {
+      "products": [
+        {
+          "title": "Alimento a base miel La Clotilde 480 g.",
+          "price": "$2260.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/alimento-a-base-miel-la-clotilde-480-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/275142/7793451000257_E02.jpg?v=638122563545830000"
+        },
+        {
+          "title": "Miel Montecitos Cremosa X300 Grs",
+          "price": "$5400.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-montecitos-cremosa-x300-grs/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/763309/Miel-Montecitos-Cremosa-X300-Grs-1-858403.jpg?v=638078601807670000"
+        },
+        {
+          "title": "Miel Cremosa Nat x 500 g",
+          "price": "$3450.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/miel-cremosa-nat-x-500-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/246029/233620_miel-cremosa-nat-x-500-g_imagen-1.jpg?v=638283977186130000"
+        },
+        {
+          "title": "Miel Líquida Nat x 500 g",
+          "price": "$3450.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/miel-liquida-nat-x-500-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/246030/233619_miel-liquida-nat-x-500-g_imagen-1.jpg?v=638283977190400000"
+        },
+        {
+          "title": "Tintura Permanente Colorisse Tono 73 Miel Nutrisse Garnier 1 Ud.",
+          "price": "$8120.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/tintura-permanente-colorisse-tono-73-miel-nutrisse-garnier-1-ud-22160/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/351458/Tintura-Permanente-Colorisse-Tono-73-Miel-Nutrisse-Garnier-1-Ud-_1.jpg?v=638845412464100000"
+        },
+        {
+          "title": "Miel liquida Carrefour pradera 500 g.",
+          "price": "$4449.90",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/miel-liquida-carrefour-pradera-500-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/386956/7798152222380_01.jpg?v=638318706736770000"
+        },
+        {
+          "title": "Galleta Terrabusi Miel 120g",
+          "price": "$1100.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/galleta-terrabusi-miel-120g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/830430/11120704017.jpg?v=638587381403000000"
+        },
+        {
+          "title": "Miel Frasco Sin Tacc Aleluya 500gr",
+          "price": "$4754.25",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/miel-frasco-sin-tacc-aleluya-500gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/211308/0779015822948-01-3620.jpg?v=637853214250300000"
+        },
+        {
+          "title": "Miel Liquida Entrenuts 500gr",
+          "price": "$4950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-liquida-entrenuts-500gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/798938/Miel-De-Eucalipto-Cristalizada-Entrenuts-1-999034.jpg?v=638343638515370000"
+        },
+        {
+          "title": "Miel Cremosa Entrenuts 500gr",
+          "price": "$4950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-cremosa-entrenuts-500gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/798939/Miel-De-Eucalipto-Batido-En-Fr-o-Entrenuts-1-999035.jpg?v=638343638518630000"
+        },
+        {
+          "title": "Miel Dosif Sin Tacc Aleluya 470gr",
+          "price": "$4994.25",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/miel-aleluya-pote-dosificador-470-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/163456/Miel-Pote-Aleluya-470-Gr-1-13662.jpg?v=637835134211900000"
+        },
+        {
+          "title": "Miel De Abejas 500 Gr Cuisine & Co Nbe Mp",
+          "price": "$5520.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/miel-de-abejas-500-gr-cuisine-co-nbe-mp/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/792641/Miel-De-Abejas-Cuisine-co-500gr-1-972295.jpg?v=638297949665900000"
+        },
+        {
+          "title": "Miel Liquida Aleluya 470 Gr.",
+          "price": "$5300.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/miel-liquida-aleluya-470-gr-294401/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/342021/Miel-Liquida-Aleluya-470-Gr-_1.jpg?v=638708913001500000"
+        },
+        {
+          "title": "Miel Carrefour Bio orgánica 500 g.",
+          "price": "$5661.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/miel-carrefour-bio-organica-500-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/201557/7798141716883_01.jpg?v=637557484443300000"
+        },
+        {
+          "title": "Miel Bioway frasco 450 g.",
+          "price": "$5199.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/miel-bioway-frasco-450-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/201475/7793451002145_02.jpg?v=637557483763870000"
+        },
+        {
+          "title": "Miel De Abejas 500 Gr Cuisine & Co Nbe Mp",
+          "price": "$6000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/miel-de-abejas-500-gr-cuisine-co-nbe-mp/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/792641/Miel-De-Abejas-Cuisine-co-500gr-1-972295.jpg?v=638297949665900000"
+        },
+        {
+          "title": "Miel Liquida Pote Sin Tacc Aleluya 190gr",
+          "price": "$2541.75",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/miel-liquida-pote-sin-tacc-aleluya-190gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/214797/0779015822957-01-9565.jpg?v=637853964068770000"
+        },
+        {
+          "title": "Miel Liquida Sin Tacc Aleluya 500 Gr",
+          "price": "$6900.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/miel-liquida-sin-tacc-aleluya-500-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/644830/Miel-Aleluya-Liquida-Sin-Tacc-Frasco-500-Gr-1-853527.jpg?v=637576825321470000"
+        },
+        {
+          "title": "Miel Liquida Oso Con Miel De Abejas 340 Gr Cuisine & Co Nbe Mp",
+          "price": "$4750.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-liquida-oso-con-miel-de-abejas-340-gr-cuisine-co-nbe-mp/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/792640/Oso-Con-Miel-De-Abejas-Cuisine-co-340-Gr-1-972294.jpg?v=638297949661900000"
+        },
+        {
+          "title": "Miel de abejas DIA 210 Gr.",
+          "price": "$2985.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/miel-de-abejas-dia-210-gr-24050/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/308009/Miel-de-abejas-DIA-210-Gr-_1.jpg?v=638599337440200000"
+        },
+        {
+          "title": "Miel Clásica Premium 500 Gr Beepure",
+          "price": "$7150.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/miel-clasica-premium-500-gr-beepure/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/698090/Miel-Clasica-Premium-Beepure-X500g-1-887685.jpg?v=637866921951630000"
+        },
+        {
+          "title": "Miel Cremosa Premium 900 Gr Beepure",
+          "price": "$12999.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-cremosa-premium-900-gr-beepure/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/698088/Miel-Cremosa-Premium-Beepure-X900g-1-887683.jpg?v=637866921945370000"
+        },
+        {
+          "title": "Miel Cremosa Premium 900 Gr Beepure",
+          "price": "$12999.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/miel-cremosa-premium-900-gr-beepure/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/698088/Miel-Cremosa-Premium-Beepure-X900g-1-887683.jpg?v=637866921945370000"
+        },
+        {
+          "title": "Miel Clásica Premium 500 Gr Beepure",
+          "price": "$7400.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/miel-clasica-premium-500-gr-beepure/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/698090/Miel-Clasica-Premium-Beepure-X500g-1-887685.jpg?v=637866921951630000"
+        },
+        {
+          "title": "Miel Cremosa Montecitos 500 Gr",
+          "price": "$7500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/miel-cremosa-montecitos-500-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/589064/Miel-Montecitos-Cremosa-X500-Gr-1-849824.jpg?v=637280470909500000"
+        },
+        {
+          "title": "Miel Liquida Sin Tacc Aleluya 250 Gr",
+          "price": "$4350.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/miel-liquida-sin-tacc-aleluya-250-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/615560/Miel-Aleluya-Liq-S-tacc-X250g-1-853535.jpg?v=637420440429000000"
+        },
+        {
+          "title": "Miel Aleluya sin tacc 250 Gr.",
+          "price": "$4355.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/miel-aleluya-sin-tacc-250-gr-271152/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/321219/Miel-Aleluya-sin-tacc-250-Gr-_1.jpg?v=638599528163330000"
+        },
+        {
+          "title": "Miel Liquida Sin Tacc Aleluya 250 Gr",
+          "price": "$4700.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/miel-liquida-sin-tacc-aleluya-250-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/615560/Miel-Aleluya-Liq-S-tacc-X250g-1-853535.jpg?v=637420440429000000"
+        },
+        {
+          "title": "Crema Corporal Jergens Miel Nutritiva x 400 ml",
+          "price": "$7525.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/crema-corporal-jergens-miel-nutritiva-x-400-ml/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/214496/223690_crema-corporal-jergens-miel-nutritiva-x-400-ml_imagen-1.jpg?v=637662965086870000"
+        },
+        {
+          "title": "Miel Cremosa Pampa De Oro 250 G",
+          "price": "$4999.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/miel-cremosa-pampa-de-oro-x-250g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/324663/0779832545001-02-14368.jpg?v=638521293754400000"
+        },
+        {
+          "title": "Contenedor Miel Vidrio Kreax1",
+          "price": "$19999.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/contenedor-miel-vidrio-kreax1/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/824466/Contenedor-Miel-Vidrio-Kreax1-1-986149.jpg?v=638514813850770000"
+        },
+        {
+          "title": "Yogur Ser Cereales Con Miel 166g",
+          "price": "$3550.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/yogur-ser-cereales-con-miel-166g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/837195/Yogur-Ser-Cereales-Con-Miel-166g-Yogur-Cereales-Con-Miel-Ser-166gr-1-958061.jpg?v=638635017752070000"
+        },
+        {
+          "title": "Mostaza Clovis Con Miel 200gr",
+          "price": "$10500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/mostaza-clovis-con-miel-200gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/637280/Mostaza-Dijon-Con-Miel-Clovis-200-Grs-1-859382.jpg?v=637539672376570000"
+        },
+        {
+          "title": "Combo Barras de Cereal Nat sabor Avena y Miel x 21 g x 12 un",
+          "price": "$4806.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/combo-de-12-barras-de-cereales-sabor-avena-y-miel-x-21-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/195441/215142_combo-de-12-barras-de-cereales--sabor-avena-y-miel-x-21-gr_imagen-1.jpg?v=637177610122070000"
+        }
+      ],
+      "totalFound": 34
     }
   }
 }

@@ -4,19 +4,30 @@ import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Layout } from "@/components/ui/layout"
-import { CheckCircle, Truck, Home, Package } from "lucide-react"
+import { InputModal, AlertModal } from "@/components/ui/modal"
+import { CheckCircle, Truck, Home, Package, Save } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ShipmentData {
   store: string
   total: number
-  items: unknown[]
+  items: Array<{
+    product: string
+    quantity: number
+    price: number
+    total: number
+  }>
   timestamp: string
 }
 
 export default function ShipmentCongratsPage() {
   const [shipmentData, setShipmentData] = useState<ShipmentData | null>(null)
   const router = useRouter()
+
+  // Modal states
+  const [showSaveInput, setShowSaveInput] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertConfig, setAlertConfig] = useState<{ title: string, message: string, type: "success" | "error" | "info" }>({ title: "", message: "", type: "info" })
 
   useEffect(() => {
     loadShipmentData()
@@ -46,6 +57,57 @@ export default function ShipmentCongratsPage() {
       hour: '2-digit',
       minute: '2-digit'
     })
+  }
+
+  const handleSaveList = () => {
+    if (!shipmentData) return
+    setShowSaveInput(true)
+  }
+
+  const confirmSaveList = (listName: string) => {
+    if (!shipmentData) return
+
+    try {
+      // Convert shipment items to saved list format
+      const products = shipmentData.items.map(item => ({
+        name: item.product,
+        quantity: item.quantity
+      }))
+
+      const savedList = {
+        id: `LIST-${Date.now()}`,
+        name: listName,
+        products: products,
+        createdAt: new Date().toISOString(),
+        itemCount: products.length,
+        totalItems: products.reduce((sum, product) => sum + product.quantity, 0)
+      }
+
+      // Get existing saved lists or initialize empty array
+      const existingListsJson = sessionStorage.getItem('savedLists')
+      const existingLists = existingListsJson ? JSON.parse(existingListsJson) : []
+
+      // Add new list to the beginning of the array
+      const updatedLists = [savedList, ...existingLists]
+
+      // Save updated lists to sessionStorage
+      sessionStorage.setItem('savedLists', JSON.stringify(updatedLists))
+
+      setAlertConfig({
+        title: "Lista Guardada",
+        message: "¡Lista guardada exitosamente!",
+        type: "success"
+      })
+      setShowAlert(true)
+    } catch (error) {
+      console.error('Error saving list:', error)
+      setAlertConfig({
+        title: "Error",
+        message: "Error al guardar la lista. Intenta de nuevo.",
+        type: "error"
+      })
+      setShowAlert(true)
+    }
   }
 
   return (
@@ -132,6 +194,20 @@ export default function ShipmentCongratsPage() {
               </div>
             </div>
 
+            {/* Save List Button */}
+            {shipmentData && (
+              <div className="mb-6">
+                <Button
+                  variant="outline"
+                  onClick={handleSaveList}
+                  className="w-full border-blue-600 text-blue-400 hover:bg-blue-900/20"
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  Guardar Lista para Reutilizar
+                </Button>
+              </div>
+            )}
+
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -162,6 +238,26 @@ export default function ShipmentCongratsPage() {
         </Card>
         </div>
       </div>
+      
+      {/* Modals */}
+      <InputModal
+        isOpen={showSaveInput}
+        onClose={() => setShowSaveInput(false)}
+        onConfirm={confirmSaveList}
+        title="Guardar Lista"
+        message="¿Cómo quieres llamar a esta lista?"
+        placeholder="Lista de compras"
+        defaultValue={shipmentData ? `Lista de ${shipmentData.store}` : "Mi lista de compras"}
+        confirmText="Guardar"
+      />
+      
+      <AlertModal
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title={alertConfig.title}
+        message={alertConfig.message}
+        type={alertConfig.type}
+      />
     </Layout>
   )
 } 

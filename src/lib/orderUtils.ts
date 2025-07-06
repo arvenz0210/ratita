@@ -62,6 +62,8 @@ export const clearCartData = (): void => {
   sessionStorage.removeItem('selectedStore')
   sessionStorage.removeItem('products')
   sessionStorage.removeItem('messages')
+  sessionStorage.removeItem('currentProducts')
+  sessionStorage.removeItem('currentMessages')
 }
 
 /**
@@ -115,7 +117,27 @@ export const clearAllConfirmedOrders = (): void => {
 }
 
 /**
- * Estructura de datos en sessionStorage después de confirmar un pedido:
+ * Obtiene todas las listas guardadas
+ */
+export const getSavedLists = () => {
+  try {
+    const listsJson = sessionStorage.getItem('savedLists')
+    return listsJson ? JSON.parse(listsJson) : []
+  } catch (error) {
+    console.error('Error loading saved lists:', error)
+    return []
+  }
+}
+
+/**
+ * Elimina todas las listas guardadas
+ */
+export const clearAllSavedLists = (): void => {
+  sessionStorage.removeItem('savedLists')
+}
+
+/**
+ * Estructura de datos en sessionStorage después de implementar listas guardadas:
  * 
  * sessionStorage = {
  *   "confirmedOrders": [
@@ -123,25 +145,28 @@ export const clearAllConfirmedOrders = (): void => {
  *       "orderId": "ORDER-1703123456789",
  *       "store": "Carrefour",
  *       "total": 15420,
- *       "items": [
- *         {
- *           "product": "Leche entera La Serenísima 1L",
- *           "quantity": 2,
- *           "price": 890,
- *           "total": 1780
- *         },
- *         {
- *           "product": "Pan lactal Bimbo",
- *           "quantity": 1,
- *           "price": 1240,
- *           "total": 1240
- *         }
- *       ],
+ *       "items": [...],
  *       "timestamp": "2024-01-15T10:30:00.000Z",
  *       "status": "confirmed",
  *       "confirmedAt": "2024-01-15T10:35:00.000Z"
  *     }
  *   ],
+ *   "savedLists": [
+ *     {
+ *       "id": "LIST-1703123456789",
+ *       "name": "Mi lista de milanesas",
+ *       "products": [
+ *         {"name": "Carne picada", "quantity": 1},
+ *         {"name": "Pan rallado", "quantity": 1},
+ *         {"name": "Huevos", "quantity": 6}
+ *       ],
+ *       "createdAt": "2024-01-15T10:30:00.000Z",
+ *       "itemCount": 3,
+ *       "totalItems": 8
+ *     }
+ *   ],
+ *   "currentProducts": [...], // Carrito activo
+ *   "currentMessages": [...], // Chat activo
  *   "clearTempData": "true" // Se borra automáticamente cuando la página principal lo procesa
  * }
  */ 

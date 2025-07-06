@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Layout } from "@/components/ui/layout"
-import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X } from "lucide-react"
+import { ConfirmModal, InputModal, AlertModal } from "@/components/ui/modal"
+import { GradientDiffusionScanner } from "@/components/ui/gradient-diffusion-scanner"
+import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X, Save } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { log } from "console"
 
@@ -37,7 +39,13 @@ export default function SupermarketChat() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
-  // Clear any temporary data when component mounts to start fresh
+  // Modal states
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
+  const [showSaveInput, setShowSaveInput] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertConfig, setAlertConfig] = useState<{ title: string, message: string, type: "success" | "error" | "info" }>({ title: "", message: "", type: "info" })
+
+  // Load persisted data when component mounts
   useEffect(() => {
     // Check if we should clear temporary data (when coming from completed order)
     const shouldClearData = sessionStorage.getItem('clearTempData')
@@ -46,8 +54,107 @@ export default function SupermarketChat() {
       sessionStorage.removeItem('comparisonData')
       sessionStorage.removeItem('selectedStore')
       sessionStorage.removeItem('clearTempData')
+      sessionStorage.removeItem('currentProducts')
+      sessionStorage.removeItem('currentMessages')
+    } else {
+      // Load existing products and messages if they exist
+      try {
+        const savedProducts = sessionStorage.getItem('currentProducts')
+        const savedMessages = sessionStorage.getItem('currentMessages')
+        
+        if (savedProducts) {
+          const parsedProducts = JSON.parse(savedProducts)
+          if (Array.isArray(parsedProducts)) {
+            setProducts(parsedProducts)
+          }
+        }
+        
+        if (savedMessages) {
+          const parsedMessages = JSON.parse(savedMessages)
+          if (Array.isArray(parsedMessages)) {
+            setMessages(parsedMessages)
+          }
+        }
+      } catch (error) {
+        console.error('Error loading persisted data:', error)
+        // Clear corrupted data
+        sessionStorage.removeItem('currentProducts')
+        sessionStorage.removeItem('currentMessages')
+      }
     }
   }, [])
+
+  // Save products to sessionStorage whenever they change
+  useEffect(() => {
+    if (products.length > 0) {
+      sessionStorage.setItem('currentProducts', JSON.stringify(products))
+    } else {
+      sessionStorage.removeItem('currentProducts')
+    }
+  }, [products])
+
+  // Save messages to sessionStorage whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      sessionStorage.setItem('currentMessages', JSON.stringify(messages))
+    } else {
+      sessionStorage.removeItem('currentMessages')
+    }
+  }, [messages])
+
+  const handleClearList = () => {
+    setShowClearConfirm(true)
+  }
+
+  const confirmClearList = () => {
+    setProducts([])
+    setMessages([])
+    sessionStorage.removeItem('currentProducts')
+    sessionStorage.removeItem('currentMessages')
+  }
+
+  const handleSaveList = () => {
+    if (products.length === 0) return
+    setShowSaveInput(true)
+  }
+
+  const confirmSaveList = (listName: string) => {
+    try {
+      const savedList = {
+        id: `LIST-${Date.now()}`,
+        name: listName,
+        products: products,
+        createdAt: new Date().toISOString(),
+        itemCount: products.length,
+        totalItems: products.reduce((sum, product) => sum + product.quantity, 0)
+      }
+
+      // Get existing saved lists or initialize empty array
+      const existingListsJson = sessionStorage.getItem('savedLists')
+      const existingLists = existingListsJson ? JSON.parse(existingListsJson) : []
+
+      // Add new list to the beginning of the array
+      const updatedLists = [savedList, ...existingLists]
+
+      // Save updated lists to sessionStorage
+      sessionStorage.setItem('savedLists', JSON.stringify(updatedLists))
+
+      setAlertConfig({
+        title: "Lista Guardada",
+        message: "¡Lista guardada exitosamente!",
+        type: "success"
+      })
+      setShowAlert(true)
+    } catch (error) {
+      console.error('Error saving list:', error)
+      setAlertConfig({
+        title: "Error",
+        message: "Error al guardar la lista. Intenta de nuevo.",
+        type: "error"
+      })
+      setShowAlert(true)
+    }
+  }
 
   const handleSuggestionClick = async (suggestion: string) => {
     if (isLoading) return
@@ -763,37 +870,42 @@ export default function SupermarketChat() {
       </div>
 
       {products.length > 0 && (
-        <div className="flex justify-center">
-          <Button 
-            onClick={handleComparePrices}
-            disabled={isComparing || products.length === 0}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 flex items-center space-x-2 disabled:opacity-50"
-          >
-            {isComparing ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Comparando...</span>
-              </>
-            ) : (
+        <div className="flex flex-col space-y-3">
+          <div className="flex justify-center">
+            <Button 
+              onClick={handleComparePrices}
+              disabled={isComparing || products.length === 0}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 flex items-center space-x-2 disabled:opacity-50"
+            >
               <>
                 <Rocket className="w-4 h-4" />
-                <span>Descubrí el mejor precio</span>
+                <span>{isComparing ? "Comparando..." : "Descubrí el mejor precio"}</span>
               </>
-            )}
-          </Button>
+            </Button>
+          </div>
+          
+          <div className="flex justify-center space-x-3">
+            <Button 
+              onClick={handleSaveList}
+              variant="outline"
+              className="border-green-600 text-green-400 hover:bg-green-900/20 px-4 py-2 flex items-center space-x-2"
+            >
+              <Save className="w-4 h-4" />
+              <span>Guardar lista</span>
+            </Button>
+            <Button 
+              onClick={handleClearList}
+              variant="outline"
+              className="border-red-600 text-red-400 hover:bg-red-900/20 px-4 py-2 flex items-center space-x-2"
+            >
+              <X className="w-4 h-4" />
+              <span>Limpiar lista</span>
+            </Button>
+          </div>
         </div>
       )}
       {/* Chat Interface */}
       <div className="bg-gray-800 p-4 m-4 rounded-lg relative">
-        {/* Loading Spinner */}
-        {isLoading && (
-          <div className="absolute inset-0 bg-gray-800 bg-opacity-90 flex items-center justify-center z-10 rounded-lg">
-            <div className="flex flex-col items-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-3"></div>
-              <p className="text-white text-sm">Procesando tu solicitud...</p>
-            </div>
-          </div>
-        )}
         
         <form onSubmit={handleSubmit} className="flex flex-col">
           <textarea
@@ -909,6 +1021,54 @@ export default function SupermarketChat() {
           )}
         </form>
       </div>
+      
+      {/* Modals */}
+      <ConfirmModal
+        isOpen={showClearConfirm}
+        onClose={() => setShowClearConfirm(false)}
+        onConfirm={confirmClearList}
+        title="Limpiar Lista"
+        message="¿Estás seguro de que quieres limpiar toda la lista? Esta acción no se puede deshacer."
+        confirmText="Limpiar"
+        confirmVariant="destructive"
+      />
+      
+      <InputModal
+        isOpen={showSaveInput}
+        onClose={() => setShowSaveInput(false)}
+        onConfirm={confirmSaveList}
+        title="Guardar Lista"
+        message="¿Cómo quieres llamar a esta lista?"
+        placeholder="Mi lista de compras"
+        defaultValue="Mi lista de compras"
+        confirmText="Guardar"
+      />
+      
+      <AlertModal
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title={alertConfig.title}
+        message={alertConfig.message}
+        type={alertConfig.type}
+      />
+      
+      {/* Full Screen Loading Overlay */}
+      {(isLoading || isComparing) && (
+        <div className="fixed inset-0 bg-gray-900 opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="flex flex-col items-center opacity-100">
+            <GradientDiffusionScanner 
+              width={160} 
+              height={100} 
+              duration={2}
+              primaryColor="#4CAF50"
+              scanColor="#2196F3"
+            />
+            <p className="text-white text-lg mt-4 font-medium">
+              {isComparing ? "Comparando precios..." : "Procesando tu solicitud..."}
+            </p>
+          </div>
+        </div>
+      )}
     </Layout>
   )
 }

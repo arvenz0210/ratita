@@ -5,9 +5,6 @@ import { Button } from "@/components/ui/button"
 import { 
   Home, 
   ShoppingCart, 
-  BarChart3, 
-  Package, 
-  CheckCircle, 
   X, 
   Menu,
   User,
@@ -37,12 +34,6 @@ const menuItems: MenuItem[] = [
     description: "Crea tu lista de compras"
   },
   {
-    icon: <BarChart3 className="w-5 h-5" />,
-    label: "Comparar Precios",
-    path: "/comparison",
-    description: "Compara precios entre supermercados"
-  },
-  {
     icon: <History className="w-5 h-5" />,
     label: "Historial de Pedidos",
     path: "/order-history",
@@ -53,18 +44,6 @@ const menuItems: MenuItem[] = [
     label: "Mis Listas",
     path: "/shopping-list",
     description: "Historial de listas guardadas"
-  },
-  {
-    icon: <Package className="w-5 h-5" />,
-    label: "Confirmación de Envío",
-    path: "/shipment-confirmation",
-    description: "Confirma tu pedido"
-  },
-  {
-    icon: <CheckCircle className="w-5 h-5" />,
-    label: "Pedido Confirmado",
-    path: "/shipment-congrats",
-    description: "Estado de tu pedido"
   }
 ]
 

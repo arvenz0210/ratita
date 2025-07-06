@@ -85,6 +85,8 @@ export default function ShipmentConfirmationPage() {
       // Clear any other temporary data that might exist
       sessionStorage.removeItem('products')
       sessionStorage.removeItem('messages')
+      sessionStorage.removeItem('currentProducts')
+      sessionStorage.removeItem('currentMessages')
       
       // Mark that temp data should be cleared when returning to main page
       sessionStorage.setItem('clearTempData', 'true')
