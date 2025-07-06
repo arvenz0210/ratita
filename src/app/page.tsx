@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu } from "lucide-react"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -111,6 +111,150 @@ export default function SupermarketChat() {
     }
   }
 
+  const handleQuantityChange = async (index: number, newQuantity: number) => {
+    if (newQuantity < 1) return
+
+    const updatedProducts = [...products]
+    updatedProducts[index].quantity = newQuantity
+    setProducts(updatedProducts)
+
+    // Update with AI
+    try {
+      const updateMessage = `Actualiza la cantidad de ${products[index].name} a ${newQuantity}`
+      const userMessage: ChatMessage = {
+        role: "user",
+        content: updateMessage
+      }
+
+      const updatedMessages = [...messages, userMessage]
+      setMessages(updatedMessages)
+
+      const response = await fetch('/api/v2/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: updatedMessages })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      // Parse the JSON response
+      try {
+        let cleanResult = result.trim()
+        
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+      }
+
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to update quantity:', error)
+    }
+  }
+
+  const handleDeleteItem = async (index: number) => {
+    const productToDelete = products[index]
+    const updatedProducts = products.filter((_, i) => i !== index)
+    setProducts(updatedProducts)
+
+    // Update with AI
+    try {
+      const deleteMessage = `Elimina ${productToDelete.name} de la lista`
+      const userMessage: ChatMessage = {
+        role: "user",
+        content: deleteMessage
+      }
+
+      const updatedMessages = [...messages, userMessage]
+      setMessages(updatedMessages)
+
+      const response = await fetch('/api/v2/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: updatedMessages })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      // Parse the JSON response
+      try {
+        let cleanResult = result.trim()
+        
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+      }
+
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to delete item:', error)
+    }
+  }
+
   const getProductIcon = (productName: string): string => {
     const name = productName.toLowerCase()
     if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return '🥛'
@@ -202,7 +346,6 @@ export default function SupermarketChat() {
           <div className="flex items-center space-x-3">
             <Button variant="ghost" size="sm" className="p-2">
               <Menu className="w-5 h-5" />
-              
             </Button>
             <div>
               <p className="text-sm text-gray-500">Ya ahorraste $62.520</p>
@@ -241,14 +384,48 @@ export default function SupermarketChat() {
             <Card key={index} className="shadow-sm">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-12 h-12 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-xl`}>
+                  <div className="flex items-center space-x-3 flex-1">
+                    <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
                       {getProductIcon(product.name)}
                     </div>
                     <div className="flex-1">
                       <h3 className="font-medium text-gray-900">{product.name}</h3>
-                      <p className="text-sm text-gray-500">Cantidad: {product.quantity}</p>
                     </div>
+                  </div>
+                  
+                  {/* Quantity Selector and Delete */}
+                  <div className="flex items-center">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-8 h-8 p-0"
+                      onClick={() => handleQuantityChange(index, product.quantity - 1)}
+                      disabled={product.quantity <= 1}
+                    >
+                      <Minus className="w-3 h-3" />
+                    </Button>
+                    
+                    <div className="w-12 text-center">
+                      <span className="font-medium text-gray-900">{product.quantity}</span>
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-8 h-8 p-0"
+                      onClick={() => handleQuantityChange(index, product.quantity + 1)}
+                    >
+                      <Plus className="w-3 h-3" />
+                    </Button>
+
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-8 h-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                      onClick={() => handleDeleteItem(index)}
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </Button>
                   </div>
                 </div>
               </CardContent>
