@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import axios from 'axios'
-import fs from 'fs'
-import path from 'path'
+
 
 interface Product {
   name: string
