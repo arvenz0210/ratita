@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2, ArrowUp, Camera, Rocket, TrendingUp   } from "lucide-react"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2, ArrowUp, Camera, Rocket, TrendingUp, Upload, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -25,6 +25,11 @@ export default function SupermarketChat() {
   const [imageMethod, setImageMethod] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
   const [isComparing, setIsComparing] = useState(false)
+
+  const [selectedImage, setSelectedImage] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const cameraInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,83 +38,194 @@ export default function SupermarketChat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || isLoading) return
+    if ((!input.trim() && !selectedImage) || isLoading) return
 
-    const userMessage: ChatMessage = {
-      role: "user",
-      content: input
-    }
+    let userMessage: ChatMessage
+    let updatedMessages: ChatMessage[]
 
-    const updatedMessages = [...messages, userMessage]
-    setMessages(updatedMessages)
-    setInput("")
-    setIsLoading(true)
-
-    try {
-      const response = await fetch('/api/v2/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ messages: updatedMessages })
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to get response')
+    if (selectedImage) {
+      // Handle image submission
+      userMessage = {
+        role: "user",
+        content: `[Imagen de lista de compras]${input.trim() ? ` - ${input}` : ''}`
       }
+      updatedMessages = [...messages, userMessage]
+      setMessages(updatedMessages)
+      setInput("")
+      setIsLoading(true)
 
-      const reader = response.body?.getReader()
-      if (!reader) {
-        throw new Error('No response body')
-      }
-
-      let result = ''
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        
-        const chunk = new TextDecoder().decode(value)
-        result += chunk
-      }
-
-      // Parse the JSON response
       try {
-        // Clean the response to extract JSON from markdown if present
-        let cleanResult = result.trim()
-        
-        // Remove markdown code blocks if present
-        if (cleanResult.startsWith('```json')) {
-          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
-        } else if (cleanResult.startsWith('```')) {
-          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        const formData = new FormData()
+        formData.append('image', selectedImage)
+        formData.append('messages', JSON.stringify(updatedMessages))
+
+        const response = await fetch('/api/v2/chat', {
+          method: 'POST',
+          body: formData
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to get response')
         }
-        
-        const productsList = JSON.parse(cleanResult)
-        if (Array.isArray(productsList)) {
-          setProducts(productsList)
+
+        const reader = response.body?.getReader()
+        if (!reader) {
+          throw new Error('No response body')
         }
-      } catch (parseError) {
-        console.error('Failed to parse JSON response:', parseError)
-        console.log('Raw response:', result)
+
+        let result = ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          
+          const chunk = new TextDecoder().decode(value)
+          result += chunk
+        }
+
+        // Parse the JSON response
+        try {
+          let cleanResult = result.trim()
+          
+          if (cleanResult.startsWith('```json')) {
+            cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+          } else if (cleanResult.startsWith('```')) {
+            cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+          }
+          
+          const productsList = JSON.parse(cleanResult)
+          if (Array.isArray(productsList)) {
+            setProducts(productsList)
+          }
+        } catch (parseError) {
+          console.error('Failed to parse JSON response:', parseError)
+          console.log('Raw response:', result)
+        }
+
+        const assistantMessage: ChatMessage = {
+          role: "assistant",
+          content: result
+        }
+
+        setMessages(prev => [...prev, assistantMessage])
+        clearImage()
+      } catch (error) {
+        console.error('Failed to send image:', error)
+        const errorMessage: ChatMessage = {
+          role: "assistant",
+          content: "Lo siento, hubo un error al procesar la imagen."
+        }
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsLoading(false)
+      }
+    } else {
+      // Handle text submission
+      userMessage = {
+        role: "user",
+        content: input
       }
 
-      const assistantMessage: ChatMessage = {
-        role: "assistant",
-        content: result
-      }
+      updatedMessages = [...messages, userMessage]
+      setMessages(updatedMessages)
+      setInput("")
+      setIsLoading(true)
 
-      setMessages(prev => [...prev, assistantMessage])
-    } catch (error) {
-      console.error('Failed to send message:', error)
-      const errorMessage: ChatMessage = {
-        role: "assistant",
-        content: "Lo siento, hubo un error al procesar tu mensaje."
+      try {
+        const response = await fetch('/api/v2/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ messages: updatedMessages })
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to get response')
+        }
+
+        const reader = response.body?.getReader()
+        if (!reader) {
+          throw new Error('No response body')
+        }
+
+        let result = ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          
+          const chunk = new TextDecoder().decode(value)
+          result += chunk
+        }
+
+        // Parse the JSON response
+        try {
+          let cleanResult = result.trim()
+          
+          if (cleanResult.startsWith('```json')) {
+            cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+          } else if (cleanResult.startsWith('```')) {
+            cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+          }
+          
+          const productsList = JSON.parse(cleanResult)
+          if (Array.isArray(productsList)) {
+            setProducts(productsList)
+          }
+        } catch (parseError) {
+          console.error('Failed to parse JSON response:', parseError)
+          console.log('Raw response:', result)
+        }
+
+        const assistantMessage: ChatMessage = {
+          role: "assistant",
+          content: result
+        }
+
+        setMessages(prev => [...prev, assistantMessage])
+      } catch (error) {
+        console.error('Failed to send message:', error)
+        const errorMessage: ChatMessage = {
+          role: "assistant",
+          content: "Lo siento, hubo un error al procesar tu mensaje."
+        }
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsLoading(false)
       }
-      setMessages(prev => [...prev, errorMessage])
-    } finally {
-      setIsLoading(false)
     }
   }
+
+  const handleImageUpload = (file: File) => {
+    setSelectedImage(file)
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      setImagePreview(e.target?.result as string)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      handleImageUpload(file)
+    }
+  }
+
+  const handleCameraCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith('image/')) {
+      handleImageUpload(file)
+    }
+  }
+
+  const clearImage = () => {
+    setSelectedImage(null)
+    setImagePreview(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+    if (cameraInputRef.current) cameraInputRef.current.value = ''
+  }
+
+
 
   const handleQuantityChange = async (index: number, newQuantity: number) => {
     if (newQuantity < 0) return
@@ -438,48 +554,64 @@ export default function SupermarketChat() {
             className="w-full text-base text-gray-100 placeholder-gray-400 border border-none focus:outline-none focus:ring-none focus:ring-transparent resize-none"
             disabled={isLoading}
           />
-          <div className="flex items-center justify-between">
-            {/* <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-white">
-                  <Plus className="w-6 h-6" />
+          {/* Image Preview */}
+          {imagePreview && (
+            <div className="mb-4 relative">
+              <div className="relative inline-block">
+                <img 
+                  src={imagePreview} 
+                  alt="Preview" 
+                  className="max-w-full h-[58px] w-[58px] object-cover rounded-lg"
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-1 right-1 text-white bg-white p-0 h-5 w-5 rounded-full"
+                  onClick={clearImage}
+                >
+                  <X className="w-4 h-4 text-black" />
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-48 p-2" sideOffset={10}>
-                <div className="space-y-1">
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-start text-sm"
-                    onClick={() => setImageMethod("clip")}
-                  >
-                    Clip imagen
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-start text-sm"
-                    onClick={() => setImageMethod("camera")}
-                  >
-                    Camera
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-start text-sm"
-                    onClick={() => setImageMethod("file")}
-                  >
-                    File
-                  </Button>
-                </div>
-              </PopoverContent>
-            </Popover> */}
+              </div>
+              {/* <p className="text-sm text-gray-400 mt-2">
+                Imagen lista para procesar. Toca enviar para procesar la lista de compras.
+              </p> */}
+            </div>
+          )}
 
-            <div className="flex items-center">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              {/* File Upload */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+                              <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Camera className="w-9 h-9 text-white" />
+                </Button>
+
+              {/* Camera Capture */}
+              <input
+                ref={cameraInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onChange={handleCameraCapture}
+                className="hidden"
+              />
               <Button
-                type="submit"
                 variant="ghost"
                 size="icon"
-                className="text-white w-4"
+                className="text-white"
+                onClick={() => cameraInputRef.current?.click()}
               >
-                <Camera className="w-9 h-9" />
               </Button>
             </div>
 
@@ -497,15 +629,15 @@ export default function SupermarketChat() {
                   variant="default"
                   size="icon"
                   className={`ml-2 rounded-sm ${
-                    !input.trim() || isLoading
+                    (!input.trim() && !selectedImage) || isLoading
                       ? 'bg-gray-700'
                       : 'bg-white'
                   }`}
-                  disabled={!input.trim() || isLoading}
+                  disabled={(!input.trim() && !selectedImage) || isLoading}
                 >
                   <ArrowUp
                     className={`w-9 h-9 ${
-                      !input.trim() || isLoading
+                      (!input.trim() && !selectedImage) || isLoading
                         ? 'text-gray-400'
                         : 'text-black'
                     }`}

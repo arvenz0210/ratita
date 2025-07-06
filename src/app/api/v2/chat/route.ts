@@ -63,13 +63,63 @@ IMPORTANTE:
 `
 
 export async function POST(req: Request) {
-  const { messages } = await req.json()
+  try {
+    const contentType = req.headers.get('content-type')
+    
+    if (contentType?.includes('multipart/form-data')) {
+      // Handle image upload
+      const formData = await req.formData()
+      const imageFile = formData.get('image') as File
+      const messages = JSON.parse(formData.get('messages') as string)
+      
+      if (!imageFile) {
+        return new Response('No image provided', { status: 400 })
+      }
 
-  const result = streamText({
-    model: openai("gpt-4o"),
-    system: SYSTEM_PROMPT,
-    messages,
-  })
+      // Convert file to base64
+      const bytes = await imageFile.arrayBuffer()
+      const buffer = Buffer.from(bytes)
+      const base64Image = buffer.toString('base64')
+      const mimeType = imageFile.type
 
-  return result.toTextStreamResponse()
+      // Create a message with image content
+      const imageMessage = {
+        role: "user" as const,
+        content: [
+          {
+            type: "image" as const,
+            image: `data:${mimeType};base64,${base64Image}`
+          },
+          {
+            type: "text" as const,
+            text: "Procesa esta imagen de lista de compras y actualiza la lista de productos."
+          }
+        ]
+      }
+
+      const updatedMessages = [...messages, imageMessage]
+
+      const result = streamText({
+        model: openai("gpt-4o"),
+        system: SYSTEM_PROMPT,
+        messages: updatedMessages,
+      })
+
+      return result.toTextStreamResponse()
+    } else {
+      // Handle regular text messages
+      const { messages } = await req.json()
+
+      const result = streamText({
+        model: openai("gpt-4o"),
+        system: SYSTEM_PROMPT,
+        messages,
+      })
+
+      return result.toTextStreamResponse()
+    }
+  } catch (error) {
+    console.error('Error in chat endpoint:', error)
+    return new Response('Error processing request', { status: 500 })
+  }
 }
