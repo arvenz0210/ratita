@@ -32,6 +32,12 @@ export default function SupermarketChat() {
   const cameraInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
+  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+  const [isRecording, setIsRecording] = useState(false)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const audioChunksRef = useRef<Blob[]>([])
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
   }
@@ -224,8 +230,6 @@ export default function SupermarketChat() {
     if (fileInputRef.current) fileInputRef.current.value = ''
     if (cameraInputRef.current) cameraInputRef.current.value = ''
   }
-
-
 
   const handleQuantityChange = async (index: number, newQuantity: number) => {
     if (newQuantity < 0) return
@@ -457,6 +461,109 @@ export default function SupermarketChat() {
     }
   }
 
+  // Audio recording logic
+  const startRecording = async () => {
+    setAudioBlob(null)
+    setAudioUrl(null)
+    setIsRecording(true)
+    audioChunksRef.current = []
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    const mediaRecorder = new MediaRecorder(stream)
+    mediaRecorderRef.current = mediaRecorder
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) {
+        audioChunksRef.current.push(e.data)
+      }
+    }
+    mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' })
+      setAudioBlob(audioBlob)
+      setAudioUrl(URL.createObjectURL(audioBlob))
+      setIsRecording(false)
+    }
+    mediaRecorder.start()
+  }
+
+  const stopRecording = () => {
+    mediaRecorderRef.current?.stop()
+    setIsRecording(false)
+  }
+
+  // Automatically send audio when available
+  useEffect(() => {
+    if (audioBlob) {
+      handleAudioSubmit(audioBlob)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audioBlob])
+
+  const handleAudioSubmit = async (audio: Blob) => {
+    if (isLoading) return
+    setIsLoading(true)
+    setAudioUrl(null)
+    setAudioBlob(null)
+    let userMessage: ChatMessage = {
+      role: "user",
+      content: `[Audio de lista de compras]`
+    }
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+    setInput("")
+    try {
+      const formData = new FormData()
+      formData.append('audio', audio, 'audio.webm')
+      formData.append('messages', JSON.stringify(updatedMessages))
+      const response = await fetch('/api/v2/chat', {
+        method: 'POST',
+        body: formData
+      })
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+      // Parse the JSON response
+      try {
+        let cleanResult = result.trim()
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+        console.log('Raw response:', result)
+      }
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to send audio:', error)
+      const errorMessage: ChatMessage = {
+        role: "assistant",
+        content: "Lo siento, hubo un error al procesar el audio."
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="flex flex-col h-screen">
       {/* Topbar Navigation */}
@@ -606,23 +713,18 @@ export default function SupermarketChat() {
                 onChange={handleCameraCapture}
                 className="hidden"
               />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white"
-                onClick={() => cameraInputRef.current?.click()}
-              >
-              </Button>
             </div>
 
             <div className="flex items-center">
               <Button
-                type="submit"
+                type="button"
                 variant="ghost"
                 size="icon"
                 className="ml-2 text-white"
+                onClick={isRecording ? stopRecording : startRecording}
+                disabled={isLoading}
               >
-                <Mic className="w-9 h-9" />
+                <Mic className={`w-9 h-9 ${isRecording ? 'text-red-500 animate-pulse' : ''}`} />
               </Button>
                 <Button
                   type="submit"
@@ -645,6 +747,41 @@ export default function SupermarketChat() {
               </Button>
             </div>
           </div>
+
+          {/* Audio Chip */}
+          {audioUrl && (
+            <div className="mb-4 flex items-center space-x-2">
+              <div className="flex items-center bg-gray-700 rounded-full px-3 py-1">
+                <Mic className="w-4 h-4 mr-1 text-gray-300" />
+                <audio src={audioUrl} controls className="h-6 mr-2" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="ml-1 text-gray-400 hover:text-white"
+                  onClick={() => { setAudioUrl(null); setAudioBlob(null); }}
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          )}
+          {/* Recording Chip */}
+          {isRecording && (
+            <div className="mb-4 flex items-center space-x-2">
+              <div className="flex items-center bg-red-700 rounded-full px-3 py-1 animate-pulse">
+                <Mic className="w-4 h-4 mr-1 text-white" />
+                <span className="text-sm text-white">Grabando...</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="ml-1 text-white hover:text-gray-200"
+                  onClick={stopRecording}
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </div>

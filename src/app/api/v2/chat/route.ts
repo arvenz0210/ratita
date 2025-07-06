@@ -1,5 +1,5 @@
 import { openai } from "@ai-sdk/openai"
-import { streamText } from "ai"
+import { streamText, experimental_transcribe as transcribe } from "ai"
 
 export const maxDuration = 30
 
@@ -67,59 +67,77 @@ export async function POST(req: Request) {
     const contentType = req.headers.get('content-type')
     
     if (contentType?.includes('multipart/form-data')) {
-      // Handle image upload
       const formData = await req.formData()
-      const imageFile = formData.get('image') as File
+      const audioFile = formData.get('audio') as File | null
+      const imageFile = formData.get('image') as File | null
       const messages = JSON.parse(formData.get('messages') as string)
-      
-      if (!imageFile) {
-        return new Response('No image provided', { status: 400 })
+
+      if (audioFile) {
+        // Transcribe audio using Whisper
+        const audioBuffer = Buffer.from(await audioFile.arrayBuffer())
+        const transcriptionResult = await transcribe({
+          model: openai.transcription("whisper-1"),
+          audio: audioBuffer,
+        })
+        const transcript = transcriptionResult.text?.trim()
+        if (!transcript) {
+          throw new Error("No transcript generated")
+        }
+        const audioMessage = {
+          role: "user" as const,
+          content: transcript
+        }
+        const updatedMessages = [...messages, audioMessage]
+        const result = streamText({
+          model: openai("gpt-4o"),
+          system: SYSTEM_PROMPT,
+          messages: updatedMessages,
+        })
+
+        console.log(result)
+
+        return result.toTextStreamResponse()
+      } else if (imageFile) {
+        // Convert file to base64
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+        const base64Image = buffer.toString('base64')
+        const mimeType = imageFile.type
+        const imageMessage = {
+          role: "user" as const,
+          content: [
+            {
+              type: "image" as const,
+              image: `data:${mimeType};base64,${base64Image}`
+            },
+            {
+              type: "text" as const,
+              text: "Procesa esta imagen de lista de compras y actualiza la lista de productos."
+            }
+          ]
+        }
+        const updatedMessages = [...messages, imageMessage]
+        const result = streamText({
+          model: openai("gpt-4o"),
+          system: SYSTEM_PROMPT,
+          messages: updatedMessages,
+        })
+        return result.toTextStreamResponse()
+      } else {
+        return new Response('No audio or image provided', { status: 400 })
       }
-
-      // Convert file to base64
-      const bytes = await imageFile.arrayBuffer()
-      const buffer = Buffer.from(bytes)
-      const base64Image = buffer.toString('base64')
-      const mimeType = imageFile.type
-
-      // Create a message with image content
-      const imageMessage = {
-        role: "user" as const,
-        content: [
-          {
-            type: "image" as const,
-            image: `data:${mimeType};base64,${base64Image}`
-          },
-          {
-            type: "text" as const,
-            text: "Procesa esta imagen de lista de compras y actualiza la lista de productos."
-          }
-        ]
-      }
-
-      const updatedMessages = [...messages, imageMessage]
-
-      const result = streamText({
-        model: openai("gpt-4o"),
-        system: SYSTEM_PROMPT,
-        messages: updatedMessages,
-      })
-
-      return result.toTextStreamResponse()
     } else {
       // Handle regular text messages
       const { messages } = await req.json()
-
       const result = streamText({
         model: openai("gpt-4o"),
         system: SYSTEM_PROMPT,
         messages,
       })
-
       return result.toTextStreamResponse()
     }
-  } catch (error) {
-    console.error('Error in chat endpoint:', error)
-    return new Response('Error processing request', { status: 500 })
+  } catch (err) {
+    console.error("Audio transcription failed:", err)
+    return new Response("No se pudo transcribir el audio. Intenta de nuevo con un audio más claro o largo.", { status: 400 })
   }
 }
