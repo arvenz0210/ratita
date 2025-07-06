@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart } from "lucide-react"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -196,6 +196,38 @@ export default function SupermarketChat() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
+      {/* Topbar Navigation */}
+      <div className="bg-white shadow-sm border-b px-4 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Button variant="ghost" size="sm" className="p-2">
+              <Menu className="w-5 h-5" />
+              
+            </Button>
+            <div>
+              <p className="text-sm text-gray-500">Ya ahorraste $62.520</p>
+            </div>
+          </div>
+          
+          <Button 
+            onClick={handleComparePrices}
+            disabled={isComparing || products.length === 0}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 flex items-center space-x-2 disabled:opacity-50"
+          >
+            {isComparing ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <span>Comparando...</span>
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4" />
+                <span>Ahorrar</span>
+              </>
+            )}
+          </Button>
+        </div>
+      </div>
 
       {/* Product List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -224,29 +256,6 @@ export default function SupermarketChat() {
           ))
         )}
       </div>
-
-      {products.length > 0 && (
-        <div className="bg-white p-4 border-t">
-          <Button 
-            onClick={handleComparePrices}
-            disabled={isComparing}
-            className="w-full flex items-center justify-center space-x-2"
-            size="lg"
-          >
-            {isComparing ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Comparando precios...</span>
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="w-5 h-5" />
-                <span>Comparar Precios</span>
-              </>
-            )}
-          </Button>
-        </div>
-      )}
 
       {/* Chat Interface */}
       <div className="bg-white p-4 border-t">
@@ -291,16 +300,17 @@ export default function SupermarketChat() {
                 </div>
               </PopoverContent>
             </Popover>
-            <button type="button" className="p-2 text-gray-700 hover:text-black focus:outline-none">
+
+            {/* <button type="button" className="p-2 text-gray-700 hover:text-black focus:outline-none">
               <Mic className="w-6 h-6" />
-            </button>
+            </button> */}
             {input ? (
               <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
                 <CircleArrowUp className="w-6 h-6" />
               </button>
             ) : (
-              <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
-                <AudioWaveform className="w-6 h-6" />
+              <button type="submit" className="p-2 rounded-full text-black flex items-center justify-center ml-2" disabled={!input.trim() || isLoading}>
+                <Mic className="w-6 h-6" />
               </button>
             )}
           </div>

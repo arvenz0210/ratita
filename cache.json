@@ -1,0 +1,572 @@
+{
+  "leche": {
+    "timestamp": "2025-07-06T06:24:14.991Z",
+    "data": {
+      "products": [
+        {
+          "title": "Leche Parcialmente Descremada DIA Sachet 1 Lt.",
+          "price": "$1190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/leche-parcialmente-descremada-dia-sachet-1-lt-30112/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/343873/Leche-Parcialmente-Descremada-DIA-Sachet-1-Lt-_1.jpg?v=638736548318930000"
+        },
+        {
+          "title": "Leche Ultrapasteurizada 2% Dia 1 Lt.",
+          "price": "$1190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/leche-ultrapasteurizada-2--dia-1-lt-269231/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/344153/Leche-Ultrapasteurizada-2--Dia-1-Lt-_1.jpg?v=638736551498170000"
+        },
+        {
+          "title": "Leche Entera DIA Sachet 1 Lt.",
+          "price": "$1190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/leche-entera-dia-sachet-1-lt-30111/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/343871/Leche-Entera-DIA-Sachet-1-Lt-_1.jpg?v=638736548287370000"
+        },
+        {
+          "title": "Leche UAT entera Carrefour classic brik 1 lt.",
+          "price": "$1278.80",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/leche-uat-entera-carrefour-classic-brik-1-lt-720022/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/386693/7791720029404_01.jpg?v=638318705567600000"
+        },
+        {
+          "title": "Leche Infantil Líquida Nan 3 x 24 un",
+          "price": "$30871.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/leche-infantil-liquida-nan-3-x-24-un/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/232585/214031_leche-infantil-liquida-nan-3-x-24-un_imagen-1.jpg?v=638055240592170000"
+        },
+        {
+          "title": "Leche Entera Check Larga Vida 1 L",
+          "price": "$1389.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/leche-uht-entera-check-1-lt-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/355416/Leche-Entera-Check-Larga-Vida-1-L-0779912000102-1.jpg?v=638841438251530000"
+        },
+        {
+          "title": "Leche Descremada Check Larga Vida 1 L",
+          "price": "$1389.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/leche-uht-parcialmente-descremada-check-1-lt-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/315951/Leche-Uat-Check-Parcialmente-Descremada-Larga-Vida-1-L-1-32618.jpg?v=638436405919200000"
+        },
+        {
+          "title": "Leche Semi Descremada DIA Larga Vida 1 Lt.",
+          "price": "$1390.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/leche-semi-descremada-dia-larga-vida-1-lt-504/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/346318/Leche-Semi-Descremada-DIA-Larga-Vida-1-Lt-_1.jpg?v=638768905078330000"
+        },
+        {
+          "title": "Leche Desc Ls Reduc. Lactosa Sachet 1l",
+          "price": "$1950.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/leche-desc-ls-reduc-lactosa-sachet-1l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853917/Leche-Desc-Ls-Reduc-Lactosa-Sachet-1l-Leche-Desc-Ls-Zero-Lactosa-Sachet-1l-1-886202.jpg?v=638733299923930000"
+        },
+        {
+          "title": "Leche Desc Ls Reduc. Lactosa Sachet 1l",
+          "price": "$1950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/leche-desc-ls-reduc-lactosa-sachet-1l/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/853917/Leche-Desc-Ls-Reduc-Lactosa-Sachet-1l-Leche-Desc-Ls-Zero-Lactosa-Sachet-1l-1-886202.jpg?v=638733299923930000"
+        },
+        {
+          "title": "Leche Descremada La Serenísima 1sachet 1lt",
+          "price": "$2000.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/leche-descremada-la-serenisima-1sachet-1lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853882/Leche-Descremada-La-Seren-sima-1sachet-1lt-1-849813.jpg?v=638733299806900000"
+        },
+        {
+          "title": "Leche Uat Descremada Las Tres Niñas 1l",
+          "price": "$2230.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/leche-uat-descremada-las-tres-ninas-1l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/818747/Leche-Uat-Descremada-Las-Tres-Ni-as-1-L-1-668224.jpg?v=638488787475130000"
+        },
+        {
+          "title": "Leche La serenisima clásica 3% 1L.",
+          "price": "$2299.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/leche-la-serenisima-clasica-3-1l-720719/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/636141/7790742363008_01.jpg.jpg?v=638780812788100000"
+        },
+        {
+          "title": "Leche La serenisima liviana 1% 1L",
+          "price": "$2299.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/leche-la-serenisima-liviana-1-1l-720720/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/636143/7790742363107_01.jpg.jpg?v=638780813024830000"
+        },
+        {
+          "title": "Leche Descremada La Serenísima Larga Vida Livana 1 L",
+          "price": "$2299.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/leche-la-serenisima-larga-vida-livana-1-l-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/283922/Leche-La-Serenisima-Larga-Vida-Livana-1-L-1-43470.jpg?v=638736071630270000"
+        },
+        {
+          "title": "Leche Descremada La Serenísima Larga Vida Zero Lactosa 1 L",
+          "price": "$2469.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/leche-larga-vida-la-serenisima-zero-lactosa-1-l-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/306415/Leche-Larga-Vida-La-Seren-sima-Zero-Lactosa-1-L-1-50524.jpg?v=638736088016900000"
+        },
+        {
+          "title": "Leche descremada larga vida La Serenísima cero lactosa 1 l.",
+          "price": "$2469.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/leche-descremada-larga-vida-la-serenisima-cero-lactosa-1-l/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/636105/7790742333605_01.jpg.jpg?v=638780808656800000"
+        },
+        {
+          "title": "Leche Uat La Serenisima 1 - 1 Lt",
+          "price": "$2650.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/leche-uat-la-serenisima-1-1-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853940/Leche-Uat-La-Serenisima-1-1-Lt-1-958306.jpg?v=638733299996700000"
+        },
+        {
+          "title": "Leche Uat La Serenisima 1 - 1 Lt",
+          "price": "$2650.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/leche-uat-la-serenisima-1-1-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853940/Leche-Uat-La-Serenisima-1-1-Lt-1-958306.jpg?v=638733299996700000"
+        },
+        {
+          "title": "Leche La Serenisima Liviana Bot 1l",
+          "price": "$2750.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/leche-la-serenisima-liviana-bot-1l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853868/Leche-La-Serenisima-Liviana-Bot-1l-1-807015.jpg?v=638733298554830000"
+        },
+        {
+          "title": "Leche La Serenisima Zerolact Bot 1l",
+          "price": "$2800.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/leche-la-serenisima-zerolact-bot-1l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853869/Leche-La-Serenisima-Zerolact-Bot-1l-Leche-Zero-Lactosa-La-Serenisima-Botella-Larga-Vida-1l-1-833488.jpg?v=638733298558370000"
+        },
+        {
+          "title": "Leche La Serenisima Zerolact Bot 1l",
+          "price": "$2800.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/leche-la-serenisima-zerolact-bot-1l/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/853869/Leche-La-Serenisima-Zerolact-Bot-1l-Leche-Zero-Lactosa-La-Serenisima-Botella-Larga-Vida-1l-1-833488.jpg?v=638733298558370000"
+        },
+        {
+          "title": "Leche La Serenisima Zerolact Bot 1l",
+          "price": "$2800.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/leche-la-serenisima-zerolact-bot-1l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/853869/Leche-La-Serenisima-Zerolact-Bot-1l-Leche-Zero-Lactosa-La-Serenisima-Botella-Larga-Vida-1l-1-833488.jpg?v=638733298558370000"
+        },
+        {
+          "title": "Galletitas Leche Con Dulce De Leche Okebon 273 Gr",
+          "price": "$1450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/galletitas-leche-con-dulce-de-leche-okebon-273-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/586776/Galletitas-Okebon-Leche-Con-Dulce-De-Leche-290-Gr-1-2145.jpg?v=637269240267330000"
+        },
+        {
+          "title": "Dulce De Leche Ser 300g",
+          "price": "$2950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/dulce-de-leche-ser-300g/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/618234/Dulce-De-Leche-Ser-300g-1-855295.jpg?v=637447656298500000"
+        },
+        {
+          "title": "Leche Infantil en Polvo Nutrilon 4 Pouch x 1,2 kg",
+          "price": "$27173.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/leche-infantil-en-polvo-nutrilon-4-pouch-x-1-2-kg/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/246009/217819_leche-infantil-en-polvo-nutrilon-4-pouch-x-12-kg__imagen-1.jpg?v=638283964243730000"
+        },
+        {
+          "title": "Leche Infantil en Polvo Nutrilon 3 Pouch x 1,2 kg",
+          "price": "$28892.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/leche-infantil-en-polvo-nutrilon-3-pouch-x-1-2-kg/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/246006/217821_leche-infantil-en-polvo-nutrilon-3-pouch-x-12-kg__imagen-1.jpg?v=638283955042430000"
+        },
+        {
+          "title": "Oblea Leche 4 Fingers 41.5 Grs Kitkat®",
+          "price": "$2100.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/oblea-leche-4-fingers-41-5-grs-kitkat/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/875490/Oblea-Leche-4-Fingers-Kitkat-41-5-Gr-1-238654.jpg?v=638872403612770000"
+        },
+        {
+          "title": "Chocolate Con Leche Milka 150 Gr",
+          "price": "$9200.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/chocolate-con-leche-milka-150-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/803254/Chocolate-Con-Leche-Milka-150g-1-26505.jpg?v=638379382566430000"
+        },
+        {
+          "title": "Leche de Limpieza Facial Filomena Clean Beauty x 60 ml",
+          "price": "$11500.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/leche-de-limpieza-filomena-clean-beauty-x-60-ml/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/243037/233786_leche-de-limpieza-filomena-clean-beauty-x-60-ml_imagen-1.jpg?v=638210697694500000"
+        }
+      ],
+      "totalFound": 30
+    }
+  },
+  "coca cola": {
+    "timestamp": "2025-07-06T06:30:28.785Z",
+    "data": {
+      "products": [
+        {
+          "title": "Gaseosa cola Coca Cola zero pet 1,5 lts",
+          "price": "$2790.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-zero-pet-15-lts-390893/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/544887/7790895067556_E01.jpg?v=638576047552600000"
+        },
+        {
+          "title": "Gaseosa cola Coca Cola light 1,5 lts",
+          "price": "$2790.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-light-15-lts-31006/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/275261/7790895001451_E01.jpg?v=638126760565730000"
+        },
+        {
+          "title": "Gaseosa cola Coca Cola Zero 2,25 lts",
+          "price": "$4209.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-zero-225-lts-393964/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/395283/7790895067570_E01.jpg?v=638326494223030000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Sabor Original Menos Azúcares 2,25 L",
+          "price": "$4399.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/gaseosa-coca-cola-sabor-original-2-25-lt-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/287194/077908950009901-27756.jpg?v=638229801861200000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Zero 2.25 L",
+          "price": "$4399.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/gaseosa-coca-cola-sin-azucar-2-25-lt-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/287327/Gaseosa-Coca-Cola-Zero-2-25-L-Gaseosa-Coca-Cola-Sin-Az-car-2-25l-1-27779.jpg?v=638229910190070000"
+        },
+        {
+          "title": "Coca-cola Zero 2,25 Lt",
+          "price": "$4400.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/coca-cola-zero-2-25-lt/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/799920/Gaseosa-Coca-Cola-Sin-Azucar-2-25lt-1-19721.jpg?v=638349573899270000"
+        },
+        {
+          "title": "Gaseosa Coca-Cola Sabor Original 2.25 Lt.",
+          "price": "$4400.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/gaseosa-coca-cola-sabor-original-225-lt-14837/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/307376/Gaseosa-CocaCola-Sabor-Original-2-25-Lt-_1.jpg?v=638599329582770000"
+        },
+        {
+          "title": "Gaseosa Coca-cola Sabor Original 2.25 L",
+          "price": "$4400.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/783070/Gaseosa-Coca-cola-Sabor-Original-2-25-L-1-247191.jpg?v=638206690815300000"
+        },
+        {
+          "title": "Coca-cola Zero 2,25 Lt",
+          "price": "$4400.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/coca-cola-zero-2-25-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/799920/Gaseosa-Coca-Cola-Sin-Azucar-2-25lt-1-19721.jpg?v=638349573899270000"
+        },
+        {
+          "title": "Gaseosa cola Coca Cola sabor original 2,25 lts",
+          "price": "$4400.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/gaseosa-cola-coca-cola-sabor-original-225-lts-30138/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/332148/7790895000997_E01.jpg?v=638211437412370000"
+        },
+        {
+          "title": "Gaseosa Coca-Cola Zero 2.25 Lt.",
+          "price": "$4400.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/gaseosa-coca-cola-zero-225-lt-121537/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/311435/Gaseosa-CocaCola-Zero-2-25-Lt-_1.jpg?v=638599386528430000"
+        },
+        {
+          "title": "Gaseosa Coca-cola Sabor Original 2.25 L",
+          "price": "$4400.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/783070/Gaseosa-Coca-cola-Sabor-Original-2-25-L-1-247191.jpg?v=638206690815300000"
+        },
+        {
+          "title": "Coca Cola Zero 1,25 Lt.",
+          "price": "$2445.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/coca-cola-zero-125-lt-260615/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/341632/Coca-Cola-Zero-125-Lt-_1.jpg?v=638708908193700000"
+        },
+        {
+          "title": "Gaseosa Coca-Cola Sabor Original 1,25 Lt.",
+          "price": "$2445.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/gaseosa-coca-cola-sabor-original-125-lt-251157/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/339921/Gaseosa-CocaCola-Sabor-Original-125-Lt-_1.jpg?v=638689890094830000"
+        },
+        {
+          "title": "Gaseosa Coca-cola Sabor Original 2.25 L",
+          "price": "$4532.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/gaseosa-coca-cola-sabor-original-2-25-l/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/783070/Gaseosa-Coca-cola-Sabor-Original-2-25-L-1-247191.jpg?v=638206690815300000"
+        },
+        {
+          "title": "Coca-cola Zero 2,25 Lt",
+          "price": "$4532.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/coca-cola-zero-2-25-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/799920/Gaseosa-Coca-Cola-Sin-Azucar-2-25lt-1-19721.jpg?v=638349573899270000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Zero 1.75lt",
+          "price": "$3650.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-zero-1-75lt/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/799927/Gaseosa-Coca-Cola-Zero-1-75lt-1-367450.jpg?v=638349573931070000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Zero 1.75lt",
+          "price": "$3650.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-zero-1-75lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/799927/Gaseosa-Coca-Cola-Zero-1-75lt-1-367450.jpg?v=638349573931070000"
+        },
+        {
+          "title": "Gaseosa Coca-cola Sabor Original 1,75 Lt",
+          "price": "$3650.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/gaseosa-coca-cola-sabor-original-1-75-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/783089/Gaseosa-Coca-cola-Sabor-Original-1-75-Lt-1-254543.jpg?v=638206690887830000"
+        },
+        {
+          "title": "Gaseosa Coca-cola Sabor Original 1,75 Lt",
+          "price": "$3760.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/gaseosa-coca-cola-sabor-original-1-75-lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/783089/Gaseosa-Coca-cola-Sabor-Original-1-75-Lt-1-254543.jpg?v=638206690887830000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Zero 1.75lt",
+          "price": "$3760.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/gaseosa-coca-cola-zero-1-75lt/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/799927/Gaseosa-Coca-Cola-Zero-1-75lt-1-367450.jpg?v=638349573931070000"
+        },
+        {
+          "title": "Duo Pack Gaseosa Coca Cola Original 2.25 L + Gaseosa Sprite Lima Limón 2.25 L",
+          "price": "$6599.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/gaseosa-coca-cola-sabor-original-2-25-lt-sprite-lima-limon-2-25-lt-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/303620/front-view-20222.jpg?v=638332509811830000"
+        },
+        {
+          "title": "Gaseosa Coca Cola Sabor Original 500ml",
+          "price": "$1899.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/gaseosa-coca-cola-sabor-original-500-ml-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/287182/front-view-27754.jpg?v=638229801820930000"
+        },
+        {
+          "title": "Coca-cola Zero 500 Ml",
+          "price": "$1900.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/coca-cola-zero-500-ml/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/799922/Gaseosa-Coca-Cola-Zero-X-500-Cc-1-19760.jpg?v=638349573908170000"
+        },
+        {
+          "title": "Coca-cola Zero 354 Ml",
+          "price": "$1900.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/coca-cola-zero-354-ml/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/799921/Gaseosa-Coca-Cola-Sin-Az-cares-Lata-354cc-1-19739.jpg?v=638349573903630000"
+        }
+      ],
+      "totalFound": 25
+    }
+  },
+  "papas": {
+    "timestamp": "2025-07-06T06:31:21.993Z",
+    "data": {
+      "products": [
+        {
+          "title": "Papa Cepillada (bolsa Fraccionada Por 2 Kg) Precio Por Kilo",
+          "price": "$1599.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/papa-cepillada-bolsa-fraccionada-por-2-kg-precio-por-kilo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/424811/Papa-Cepillada-Fraccionada-Por-Kg-1-31766.jpg?v=636489103772470000"
+        },
+        {
+          "title": "Papas Fritas Quento Snacks Ketchup",
+          "price": "$2050.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-fritas-quento-snacks-ketchup/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/841049/Papas-Fritas-Quento-Snacks-Ketchup-1-1018872.jpg?v=638652948515970000"
+        },
+        {
+          "title": "ñoquis De Papas 1 Kg",
+          "price": "$2694.65",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/noquis-de-papas-1-kg/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/748000/oquis-De-Papas-1-Kg-1-20702.jpg?v=637998033634800000"
+        },
+        {
+          "title": "Papas Cocidas Santa Maria",
+          "price": "$2899.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-cocidas-santa-maria/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/823465/Papas-Cocidas-Santa-Maria-1-1015345.jpg?v=638508255566300000"
+        },
+        {
+          "title": "Papas Bastón Congeladas Dia 700 Gr.",
+          "price": "$3190.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/papas-baston-congeladas-dia-700-gr-56048/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/343930/Papas-Baston-Congeladas-Dia-700-Gr-_1.jpg?v=638736548971830000"
+        },
+        {
+          "title": "Papas Plychaco Noisette 500 Gr",
+          "price": "$2499.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/papas-plychaco-noisette-500-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/711978/Papas-Plychaco-Noisette-500-Gr-1-14021.jpg?v=637943817746800000"
+        },
+        {
+          "title": "Papas Plychaco Noisette 500 Gr",
+          "price": "$2499.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-plychaco-noisette-500-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/711978/Papas-Plychaco-Noisette-500-Gr-1-14021.jpg?v=637943817746800000"
+        },
+        {
+          "title": "Papas Noisette Congeladas Dia 500 Gr.",
+          "price": "$3490.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/papas-noisette-congeladas-dia-500-gr-222706/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/344565/Papas-Noisette-Congeladas-Dia-500-Gr-_1.jpg?v=638743459104670000"
+        },
+        {
+          "title": "Papas Fritas Bastón Mc Cain Clásicas Corte Tradicional 700g",
+          "price": "$5529.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/papas-fritas-baston-mc-cain-clasicas-corte-tradicional-700g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/311765/Papas-Fritas-Bast-n-Mc-Cain-Cl-sicas-Corte-Tradicional-700g-1-48282.jpg?v=638400873746030000"
+        },
+        {
+          "title": "Papas Noisette Mc Cain 600 G",
+          "price": "$4809.35",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/papas-noisette-mccain-600-g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/311814/Papas-Noisette-Mccain-600-G-1-52875.jpg?v=638402493840800000"
+        },
+        {
+          "title": "Papas Clásicas Corte Tradicional 700 Gr Mc Cain",
+          "price": "$5635.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/papas-clasicas-corte-tradicional-700-gr-mc-cain/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/805893/Papas-Clasicas-Corte-Tradicional-Mc-Cain-700g-1-978349.jpg?v=638399147508500000"
+        },
+        {
+          "title": "Papas Rústicas Simplot 700 Gr",
+          "price": "$6000.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-rusticas-simplot-700-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/790326/Papas-R-sticas-Simplot-700-Gr-1-843725.jpg?v=638272137705400000"
+        },
+        {
+          "title": "Papas Steakhouse 700 Gr Simplot",
+          "price": "$6000.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-steakhouse-700-gr-simplot/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/790328/Papas-Simplot-Steakhouse-700-Gr-1-846005.jpg?v=638272137711800000"
+        },
+        {
+          "title": "Papas Fritas Aliada Corte Tradicional 250 G",
+          "price": "$3279.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/papas-fritas-clasicas-acuenta-x-250-gr-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/310864/0779912000033-01-14734.jpg?v=638392125725170000"
+        },
+        {
+          "title": "Papas Fritas Tradicionales 250 Grs Cuisine & Co",
+          "price": "$4640.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/papas-fritas-tradicionales-250-grs-cuisine-co/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/791437/Papas-Fritas-Tradicion-Cuisine-co-250gr-Papas-Fritas-Cuisine-Co-Tradicionales-250gr-1-865697.jpg?v=638288337948700000"
+        },
+        {
+          "title": "Papas Pay Krachitos 150 Gr",
+          "price": "$3050.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-pay-krachitos-150-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/781437/Papas-Pay-Krachitos-X-150g-1-957942.jpg?v=638195134193330000"
+        },
+        {
+          "title": "Papas Fritas Lays Clásicas X 85 Gr.",
+          "price": "$2100.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/papas-fritas-lays-clasicas-x-85-gr-172869/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/313899/Papas-Fritas-Lays-Clasicas-X-85-Gr-_1.jpg?v=638599420342730000"
+        },
+        {
+          "title": "Papas Ketchup Krachitos 90 Gr",
+          "price": "$2350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-ketchup-krachitos-90-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/774425/Papas-Krach-itos-Ketchup-X90g-1-945002.jpg?v=638150314266200000"
+        },
+        {
+          "title": "Papas Cheddar Krachitos 90 Gr",
+          "price": "$2350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-cheddar-krachitos-90-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/767071/Papas-Krach-itos-Cheddar-X90g-1-944922.jpg?v=638110353780070000"
+        },
+        {
+          "title": "Papas Pay Krachitos 55 Gr",
+          "price": "$1450.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/papas-pay-krachitos-55-gr/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/767073/Papas-Krach-itos-Pay-X55g-1-944924.jpg?v=638110353785830000"
+        },
+        {
+          "title": "Papas Fritas Alwa x 80 g",
+          "price": "$2180.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/papas-fritas-alwa-x-80-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/244251/160547_papas-fritas-alwa-x-100-gr___imagen-1.jpg?v=638659786574530000"
+        },
+        {
+          "title": "Papas Fritas Lays Clásicas X 134 Gr",
+          "price": "$4650.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/papas-fritas-lays-clasicas-x-134-gr/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/826844/Papas-Fritas-Lays-Cl-sicas-X-134-Gr-1-972387.jpg?v=638556933867500000"
+        },
+        {
+          "title": "Papas Fritas Pringles Original X104gs",
+          "price": "$4900.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/papas-fritas-pringles-original-x104gs/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/800601/Papas-Fritas-Pringles-Original-X104gs-1-1000004.jpg?v=638355837787270000"
+        }
+      ],
+      "totalFound": 23
+    }
+  }
+}
