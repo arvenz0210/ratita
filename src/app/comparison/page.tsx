@@ -151,8 +151,8 @@ export default function ComparisonPage() {
     ? [bestStore, ...comparisonData.stores.filter((s) => s !== bestStore)]
     : comparisonData.stores
   const bestStoreData = bestStore ? comparisonData.storeTotals[bestStore] : null
-  const normalPrice = bestStoreData ? bestStoreData.total + 25578 : null // Mocked normal price
-  const discount = bestStoreData ? 25578 : null // Mocked discount
+  const normalPrice = bestStoreData ? bestStoreData.total  : null // Mocked normal price
+  const discount = bestStoreData ? bestStoreData.total * 0.8 : null // Mocked discount
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
