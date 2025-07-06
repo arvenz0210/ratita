@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2 } from "lucide-react"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2, ArrowUp, Camera, Rocket, TrendingUp   } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -112,8 +112,11 @@ export default function SupermarketChat() {
   }
 
   const handleQuantityChange = async (index: number, newQuantity: number) => {
-    if (newQuantity < 1) return
-
+    if (newQuantity < 0) return
+    if (newQuantity === 0) {
+      handleDeleteItem(index)
+      return
+    }
     const updatedProducts = [...products]
     updatedProducts[index].quantity = newQuantity
     setProducts(updatedProducts)
@@ -339,19 +342,73 @@ export default function SupermarketChat() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen">
       {/* Topbar Navigation */}
-      <div className="bg-white shadow-sm border-b px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="sm" className="p-2">
+      <div className="shadow-sm border-b border-gray-700 px-4 py-3">
+          <div className="flex items-center space-x-3 justify-between">
+            <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-white">
               <Menu className="w-5 h-5" />
             </Button>
-            <div>
-              <p className="text-sm text-gray-500">Ya ahorraste $62.520</p>
-            </div>
+              {/* <p className="text-md text-green-400 ml-auto">Ahorrado $62.520</p> */}
+            {/* <div className="flex items-center space-x-2">   
+              <TrendingUp className="w-5 h-5 text-green-400" />
+            </div> */}
           </div>
-          
+      </div>
+
+      {/* Product List */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        {products.length === 0 ? (
+          <div className="flex flex-col items-center justify-center text-center py-16 text-gray-400">
+            <img src="/logo.png" alt="Ratita logo" className="w-40 h-40 mb-4" />
+            <h1 className="text-4xl font-bold text-white mb-2">¡Hola! Lucas</h1>
+            <p className="text-xl text-gray-400">¿Qué querés comprar hoy?</p>
+          </div>
+        ) : (
+          products.map((product: Product, index: number) => (
+            <Card key={index} className="shadow-sm bg-gray-800 border-gray-700">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3 flex-1">
+                    <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
+                      {getProductIcon(product.name)}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-100">{product.name}</h3>
+                    </div>
+                  </div>
+                  
+                  {/* Quantity Selector and Delete */}
+                  <div className="flex items-center">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-8 h-8 p-0"
+                      onClick={() => handleQuantityChange(index, product.quantity - 1)}
+                    >
+                      <Minus className="w-3 h-3" />
+                    </Button>
+                    <div className="w-12 text-center">
+                      <span className="font-medium text-gray-100">{product.quantity}</span>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-8 h-8 p-0"
+                      onClick={() => handleQuantityChange(index, product.quantity + 1)}
+                    >
+                      <Plus className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
+      </div>
+
+      {products.length > 0 && (
+        <div className="flex justify-center">
           <Button 
             onClick={handleComparePrices}
             disabled={isComparing || products.length === 0}
@@ -364,90 +421,27 @@ export default function SupermarketChat() {
               </>
             ) : (
               <>
-                <ShoppingCart className="w-4 h-4" />
-                <span>Ahorrar</span>
+                <Rocket className="w-4 h-4" />
+                <span>Descubrí el mejor precio</span>
               </>
             )}
           </Button>
         </div>
-      </div>
-
-      {/* Product List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {products.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            <p>Tu lista de compras está vacía</p>
-            <p className="text-sm">Escribe algo como "agregame leche y pan" para empezar</p>
-          </div>
-        ) : (
-          products.map((product: Product, index: number) => (
-            <Card key={index} className="shadow-sm">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3 flex-1">
-                    <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
-                      {getProductIcon(product.name)}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900">{product.name}</h3>
-                    </div>
-                  </div>
-                  
-                  {/* Quantity Selector and Delete */}
-                  <div className="flex items-center">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0"
-                      onClick={() => handleQuantityChange(index, product.quantity - 1)}
-                      disabled={product.quantity <= 1}
-                    >
-                      <Minus className="w-3 h-3" />
-                    </Button>
-                    
-                    <div className="w-12 text-center">
-                      <span className="font-medium text-gray-900">{product.quantity}</span>
-                    </div>
-                    
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0"
-                      onClick={() => handleQuantityChange(index, product.quantity + 1)}
-                    >
-                      <Plus className="w-3 h-3" />
-                    </Button>
-
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-8 h-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                      onClick={() => handleDeleteItem(index)}
-                    >
-                      <Trash2 className="w-3 h-3" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
-
+      )}
       {/* Chat Interface */}
-      <div className="bg-white p-4 border-t">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <input
+      <div className="bg-gray-800 p-4 m-4 rounded-lg">
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <textarea
             value={input}
-            onChange={handleInputChange}
+            onChange={(e) => setInput(e.target.value)}
             placeholder="Escribe tu lista de compras..."
-            className="w-full rounded-2xl bg-gray-100 px-4 py-3 text-base text-gray-900 placeholder-gray-400 shadow-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full text-base text-gray-100 placeholder-gray-400 border border-none focus:outline-none focus:ring-none focus:ring-transparent resize-none"
             disabled={isLoading}
           />
-          <div className="flex items-center justify-between px-2 pt-1">
-            <Popover>
+          <div className="flex items-center justify-between">
+            {/* <Popover>
               <PopoverTrigger asChild>
-                <Button variant="ghost" size="sm" className="p-2 text-gray-700 hover:text-black">
+                <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-white">
                   <Plus className="w-6 h-6" />
                 </Button>
               </PopoverTrigger>
@@ -476,20 +470,48 @@ export default function SupermarketChat() {
                   </Button>
                 </div>
               </PopoverContent>
-            </Popover>
+            </Popover> */}
 
-            {/* <button type="button" className="p-2 text-gray-700 hover:text-black focus:outline-none">
-              <Mic className="w-6 h-6" />
-            </button> */}
-            {input ? (
-              <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
-                <CircleArrowUp className="w-6 h-6" />
-              </button>
-            ) : (
-              <button type="submit" className="p-2 rounded-full text-black flex items-center justify-center ml-2" disabled={!input.trim() || isLoading}>
-                <Mic className="w-6 h-6" />
-              </button>
-            )}
+            <div className="flex items-center">
+              <Button
+                type="submit"
+                variant="ghost"
+                size="icon"
+                className="text-white w-4"
+              >
+                <Camera className="w-9 h-9" />
+              </Button>
+            </div>
+
+            <div className="flex items-center">
+              <Button
+                type="submit"
+                variant="ghost"
+                size="icon"
+                className="ml-2 text-white"
+              >
+                <Mic className="w-9 h-9" />
+              </Button>
+                <Button
+                  type="submit"
+                  variant="default"
+                  size="icon"
+                  className={`ml-2 rounded-sm ${
+                    !input.trim() || isLoading
+                      ? 'bg-gray-700'
+                      : 'bg-white'
+                  }`}
+                  disabled={!input.trim() || isLoading}
+                >
+                  <ArrowUp
+                    className={`w-9 h-9 ${
+                      !input.trim() || isLoading
+                        ? 'text-gray-400'
+                        : 'text-black'
+                    }`}
+                  />
+              </Button>
+            </div>
           </div>
         </form>
       </div>

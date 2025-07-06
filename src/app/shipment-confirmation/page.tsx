@@ -95,16 +95,16 @@ export default function ShipmentConfirmationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Loading Modal */}
       {isProcessing && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
+          <div className="bg-gray-800 rounded-lg p-8 max-w-md mx-4 text-center border border-gray-700">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-xl font-semibold text-gray-100 mb-2">
               Estamos procesando tu pedido
             </h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               Por favor espera mientras confirmamos tu solicitud...
             </p>
             <div className="mt-4 flex items-center justify-center space-x-2 text-green-600">
@@ -116,7 +116,7 @@ export default function ShipmentConfirmationPage() {
       )}
 
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-gray-800 shadow-sm border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -124,7 +124,7 @@ export default function ShipmentConfirmationPage() {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => router.back()}
-                className="p-2"
+                className="p-2 text-gray-300 hover:text-white"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
@@ -136,38 +136,38 @@ export default function ShipmentConfirmationPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-6">
                  {/* Order Summary - Receipt Style */}
-         <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+         <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
            <div className="flex items-center space-x-2 mb-4">
-             <Package className="w-5 h-5" />
-             <h2 className="text-lg font-semibold text-gray-900">Resumen del Pedido</h2>
+             <Package className="w-5 h-5 text-gray-300" />
+             <h2 className="text-lg font-semibold text-gray-100">Resumen del Pedido</h2>
            </div>
            
            <div className="space-y-3">
-             <div className="flex justify-between items-center py-1 border-b border-gray-100">
-               <span className="text-gray-600">Tienda</span>
-               <span className="font-medium text-gray-900">{shipmentData.store}</span>
+             <div className="flex justify-between items-center py-1 border-b border-gray-700">
+               <span className="text-gray-400">Tienda</span>
+               <span className="font-medium text-gray-100">{shipmentData.store}</span>
              </div>
            </div>
          </div>
 
                  {/* Products List - Receipt Style */}
-         <div className="bg-white border border-gray-200 rounded-lg p-6">
+         <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
            <div className="flex items-center space-x-2 mb-4">
-             <ShoppingCart className="w-5 h-5" />
-             <h2 className="text-lg font-semibold text-gray-900">Productos ({shipmentData.items.length})</h2>
+             <ShoppingCart className="w-5 h-5 text-gray-300" />
+             <h2 className="text-lg font-semibold text-gray-100">Productos ({shipmentData.items.length})</h2>
            </div>
            
            <div className="space-y-2">
              {shipmentData.items.map((item, index) => (
-               <div key={index} className="flex justify-between items-start py-1 border-b border-gray-100">
+               <div key={index} className="flex justify-between items-start py-1 border-b border-gray-700">
                  <div className="flex-1">
-                   <p className="font-medium text-gray-900">{item.product}</p>
-                   <p className="text-sm text-gray-600">
+                   <p className="font-medium text-gray-100">{item.product}</p>
+                   <p className="text-sm text-gray-400">
                      {item.quantity} x {formatPrice(item.price)}
                    </p>
                  </div>
                  <div className="text-right ml-4">
-                   <p className="font-semibold text-gray-900">
+                   <p className="font-semibold text-gray-100">
                      {formatPrice(item.total)}
                    </p>
                  </div>
@@ -176,10 +176,10 @@ export default function ShipmentConfirmationPage() {
            </div>
 
            {/* Total Summary */}
-           <div className="mt-4 pt-3 border-t-2 border-gray-300">
+           <div className="mt-4 pt-3 border-t-2 border-gray-600">
              <div className="flex justify-between items-center">
-               <span className="text-lg font-semibold text-gray-900">TOTAL</span>
-               <span className="text-xl font-bold text-gray-900">
+               <span className="text-lg font-semibold text-gray-100">TOTAL</span>
+               <span className="text-xl font-bold text-gray-100">
                  {formatPrice(shipmentData.total)}
                </span>
              </div>

@@ -48,83 +48,83 @@ export default function ShipmentCongratsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       <div className="max-w-2xl mx-auto px-4 py-12">
         {/* Success Card */}
-        <Card className="border-green-200 bg-green-50">
+        <Card className="border-green-700 bg-green-900/20">
           <CardContent className="pt-8">
             <div className="text-center">
-              <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-3xl font-bold text-green-800 mb-4">
+              <h1 className="text-3xl font-bold text-green-100 mb-4">
                 ¡Pedido Confirmado!
               </h1>
-              <p className="text-green-700 text-lg mb-8">
+              <p className="text-green-200 text-lg mb-8">
                 Tu pedido ha sido procesado exitosamente y está siendo preparado
               </p>
             </div>
 
             {/* Order Details */}
             {shipmentData && (
-              <div className="bg-white rounded-lg p-6 mb-6 border border-green-200">
+              <div className="bg-gray-800 rounded-lg p-6 mb-6 border border-green-700">
                 <div className="flex items-center space-x-2 mb-4">
-                  <Package className="w-5 h-5 text-green-600" />
-                  <h2 className="text-lg font-semibold text-gray-900">Detalles del Pedido</h2>
+                  <Package className="w-5 h-5 text-green-400" />
+                  <h2 className="text-lg font-semibold text-gray-100">Detalles del Pedido</h2>
                 </div>
                 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center py-1 border-b border-gray-100">
-                    <span className="text-gray-600">Tienda</span>
-                    <span className="font-medium text-gray-900">{shipmentData.store}</span>
+                  <div className="flex justify-between items-center py-1 border-b border-gray-700">
+                    <span className="text-gray-400">Tienda</span>
+                    <span className="font-medium text-gray-100">{shipmentData.store}</span>
                   </div>
-                  <div className="flex justify-between items-center py-1 border-b border-gray-100">
-                    <span className="text-gray-600">Total</span>
-                    <span className="font-semibold text-green-600 text-lg">
+                  <div className="flex justify-between items-center py-1 border-b border-gray-700">
+                    <span className="text-gray-400">Total</span>
+                    <span className="font-semibold text-green-400 text-lg">
                       {formatPrice(shipmentData.total)}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-gray-600">Fecha</span>
-                    <span className="font-medium text-gray-900">{formatDate(shipmentData.timestamp)}</span>
+                    <span className="text-gray-400">Fecha</span>
+                    <span className="font-medium text-gray-100">{formatDate(shipmentData.timestamp)}</span>
                   </div>
                 </div>
               </div>
             )}
 
             {/* Next Steps */}
-            <div className="bg-white rounded-lg p-6 mb-8 border border-green-200">
+            <div className="bg-gray-800 rounded-lg p-6 mb-8 border border-green-700">
               <div className="flex items-center space-x-2 mb-4">
-                <Truck className="w-5 h-5 text-green-600" />
-                <h2 className="text-lg font-semibold text-gray-900">Próximos Pasos</h2>
+                <Truck className="w-5 h-5 text-green-400" />
+                <h2 className="text-lg font-semibold text-gray-100">Próximos Pasos</h2>
               </div>
               
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-white text-sm font-bold">1</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Confirmación por email</p>
-                    <p className="text-sm text-gray-600">Recibirás una confirmación con los detalles de tu pedido</p>
+                    <p className="font-medium text-gray-100">Confirmación por email</p>
+                    <p className="text-sm text-gray-400">Recibirás una confirmación con los detalles de tu pedido</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-white text-sm font-bold">2</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Preparación del envío</p>
-                    <p className="text-sm text-gray-600">La tienda preparará tu pedido en las próximas 24-48 horas</p>
+                    <p className="font-medium text-gray-100">Preparación del envío</p>
+                    <p className="text-sm text-gray-400">La tienda preparará tu pedido en las próximas 24-48 horas</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-white text-sm font-bold">3</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Seguimiento del envío</p>
-                    <p className="text-sm text-gray-600">Recibirás actualizaciones sobre el estado de tu envío</p>
+                    <p className="font-medium text-gray-100">Seguimiento del envío</p>
+                    <p className="text-sm text-gray-400">Recibirás actualizaciones sobre el estado de tu envío</p>
                   </div>
                 </div>
               </div>

@@ -146,9 +146,9 @@ export default function ComparisonPage() {
   const discount = bestStoreData ? 25578 : null // Mocked discount
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-gray-800 shadow-sm border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -156,7 +156,7 @@ export default function ComparisonPage() {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => router.back()}
-                className="p-2"
+                className="p-2 text-gray-300 hover:text-white"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
@@ -170,30 +170,30 @@ export default function ComparisonPage() {
         {bestStore && bestStoreData && (
           <div className="mb-8">
             <div 
-              className="bg-gradient-to-br from-green-100 to-green-50 rounded-2xl shadow p-6 flex flex-col items-center border border-green-200 cursor-pointer hover:shadow-lg transition-all duration-200"
+              className="bg-gradient-to-br from-green-900/50 to-green-800/30 rounded-2xl shadow p-6 flex flex-col items-center border border-green-700 cursor-pointer hover:shadow-lg transition-all duration-200"
               onClick={() => handleStoreSelection(bestStore)}
             >
               <div className="flex items-center mb-2">
-                <span className="bg-green-200 rounded-full p-2 mr-2">
-                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-3.582 9-8 0-2.21-1.79-4-4-4-.34 0-.67.04-.99.12C14.36 6.5 13.27 5 12 5c-1.27 0-2.36 1.5-3.01 4.12-.32-.08-.65-.12-.99-.12-2.21 0-4 1.79-4 4 0 4.418 4.03 8 9 8Z" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <span className="bg-green-700 rounded-full p-2 mr-2">
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-3.582 9-8 0-2.21-1.79-4-4-4-.34 0-.67.04-.99.12C14.36 6.5 13.27 5 12 5c-1.27 0-2.36 1.5-3.01 4.12-.32-.08-.65-.12-.99-.12-2.21 0-4 1.79-4 4 0 4.418 4.03 8 9 8Z" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </span>
-                <span className="font-semibold text-green-900 text-base">Comprá este jueves en {bestStore} con tarjeta de crédito VISA</span>
+                <span className="font-semibold text-green-100 text-base">Comprá este jueves en {bestStore} con tarjeta de crédito VISA</span>
               </div>
-              <div className="w-full bg-white rounded-xl p-4 flex flex-col items-center border border-gray-100 mb-4">
+              <div className="w-full bg-gray-800 rounded-xl p-4 flex flex-col items-center border border-gray-700 mb-4">
                 <div className="flex w-full justify-between items-center mb-1">
-                  <span className="text-gray-500">Precio normal:</span>
-                  <span className="text-gray-400 line-through">{normalPrice ? formatPrice(normalPrice) : '--'}</span>
+                  <span className="text-gray-400">Precio normal:</span>
+                  <span className="text-gray-500 line-through">{normalPrice ? formatPrice(normalPrice) : '--'}</span>
                 </div>
                 <div className="flex w-full justify-between items-center">
-                  <span className="text-green-700 font-medium">Con descuentos:</span>
-                  <span className="text-green-700 font-bold text-lg">{formatPrice(bestStoreData.total)}</span>
+                  <span className="text-green-300 font-medium">Con descuentos:</span>
+                  <span className="text-green-300 font-bold text-lg">{formatPrice(bestStoreData.total)}</span>
                 </div>
               </div>
 
-              <span className="text-black text-lg mb-4">¡Ahorrás {discount ? formatPrice(discount) : '--'}!</span>
+              <span className="text-green-100 text-lg mb-4">¡Ahorrás {discount ? formatPrice(discount) : '--'}!</span>
 
               <div className="w-full">
-                <div className="bg-gradient-to-r font-bold text-white from-green-500 to-green-400 rounded-xl py-3 px-4 flex items-center justify-center">
+                <div className="bg-gradient-to-r font-bold text-white from-green-600 to-green-500 rounded-xl py-3 px-4 flex items-center justify-center">
                   Realizar pedido
                 </div>
               </div>
@@ -227,36 +227,36 @@ export default function ComparisonPage() {
                   return (
                     <div
                       key={store}
-                      className={`bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl shadow p-6 flex flex-col items-center border border-gray-200 cursor-pointer hover:shadow-lg transition-all duration-200 ${
+                      className={`bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl shadow p-6 flex flex-col items-center border border-gray-600 cursor-pointer hover:shadow-lg transition-all duration-200 ${
                         !hasItems ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
                       onClick={() => hasItems && handleStoreSelection(store)}
                     >
                       <div className="flex items-center mb-4">
-                        <span className="bg-gray-200 rounded-full p-2 mr-2">
-                          <Store className="w-5 h-5 text-gray-600" />
+                        <span className="bg-gray-600 rounded-full p-2 mr-2">
+                          <Store className="w-5 h-5 text-gray-300" />
                         </span>
-                        <span className="font-semibold text-gray-900 text-base">{store}</span>
+                        <span className="font-semibold text-gray-100 text-base">{store}</span>
                       </div>
                       
-                      <div className="w-full bg-white rounded-xl p-4 flex flex-col items-center border border-gray-100 mb-4">
+                      <div className="w-full bg-gray-800 rounded-xl p-4 flex flex-col items-center border border-gray-700 mb-4">
                         <div className="flex w-full justify-between items-center mb-1">
-                          <span className="text-gray-500">Total:</span>
-                          <span className="text-gray-900 font-bold text-lg">{formatPrice(storeData.total)}</span>
+                          <span className="text-gray-400">Total:</span>
+                          <span className="text-gray-100 font-bold text-lg">{formatPrice(storeData.total)}</span>
                         </div>
                         <div className="flex w-full justify-between items-center">
-                          <span className="text-gray-600">Productos encontrados:</span>
-                          <span className="text-gray-900">{storeData.itemsFound}/{comparisonData.products.length}</span>
+                          <span className="text-gray-400">Productos encontrados:</span>
+                          <span className="text-gray-100">{storeData.itemsFound}/{comparisonData.products.length}</span>
                         </div>
                       </div>
 
                       {!hasItems && (
-                        <p className="text-sm text-red-500 mt-2">No hay productos disponibles</p>
+                        <p className="text-sm text-red-400 mt-2">No hay productos disponibles</p>
                       )}
 
                       {hasItems && (
                         <div className="w-full">
-                          <div className="bg-gradient-to-r from-gray-500 to-gray-400 rounded-xl py-3 px-4 flex items-center justify-center">
+                          <div className="bg-gradient-to-r from-gray-600 to-gray-500 rounded-xl py-3 px-4 flex items-center justify-center">
                             <span className="text-white font-bold text-lg">Realizar pedido</span>
                           </div>
                         </div>
