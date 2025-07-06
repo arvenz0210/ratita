@@ -102,12 +102,8 @@ export default function OrderHistoryPage() {
 
   const handleReorderItems = (order: ConfirmedOrder) => {
     try {
+      console.log(order)
       // Create new shopping list from this order
-      const products = order.items.map(item => ({
-        name: item.product,
-        quantity: item.quantity
-      }))
-      
       // Clear any existing temporary data
       sessionStorage.removeItem('shipmentData')
       sessionStorage.removeItem('comparisonData')
