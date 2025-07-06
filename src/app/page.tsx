@@ -843,7 +843,7 @@ export default function SupermarketChat() {
           </div>
 
           {/* Chat Input Area */}
-          <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4">
+          <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4 absolute bottom-0 left-0 right-0">
             <form onSubmit={handleSubmit} className="flex items-center space-x-3">
               <div className="flex-1 relative">
                 <Input
