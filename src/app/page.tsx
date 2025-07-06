@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Edit3 } from "lucide-react"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp } from "lucide-react"
 
 interface Product {
   id: string
@@ -31,6 +32,8 @@ export default function SupermarketChat() {
   const [products, setProducts] = useState<Product[]>([])
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
+  const [imageMethod, setImageMethod] = useState<string>("")
+
   const [isLoading, setIsLoading] = useState(false)
 
   // Load initial products
@@ -128,14 +131,6 @@ export default function SupermarketChat() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm p-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-gray-800">Productos</h1>
-        <Button variant="ghost" size="sm" className="text-blue-600">
-          <Edit3 className="w-4 h-4 mr-1" />
-          Editar lista
-        </Button>
-      </div>
 
       {/* Product List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -181,18 +176,61 @@ export default function SupermarketChat() {
       )} */}
 
       {/* Chat Interface */}
-      <div className="bg-gray-800 p-4">
-        <form onSubmit={handleSubmit} className="flex space-x-2">
-          <Input
+      <div className="bg-white p-4 border-t">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <input
             value={input}
             onChange={handleInputChange}
-            placeholder="Escribe tu mensaje..."
-            className="flex-1 bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+            placeholder="Ask anything"
+            className="w-full rounded-2xl bg-gray-100 px-4 py-3 text-base text-gray-900 placeholder-gray-400 shadow-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             disabled={isLoading}
           />
-          <Button type="submit" className="bg-blue-600 hover:bg-blue-700" disabled={!input.trim() || isLoading}>
-            {isLoading ? "..." : "Enviar"}
-          </Button>
+          <div className="flex items-center justify-between px-2 pt-1">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="sm" className="p-2 text-gray-700 hover:text-black">
+                  <Plus className="w-6 h-6" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-48 p-2" sideOffset={10}>
+                <div className="space-y-1">
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start text-sm"
+                    onClick={() => setImageMethod("clip")}
+                  >
+                    Clip imagen
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start text-sm"
+                    onClick={() => setImageMethod("camera")}
+                  >
+                    Camera
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start text-sm"
+                    onClick={() => setImageMethod("file")}
+                  >
+                    File
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+            <button type="button" className="p-2 text-gray-700 hover:text-black focus:outline-none">
+              <Mic className="w-6 h-6" />
+            </button>
+            {input ? (
+              <div className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50">
+                <CircleArrowUp className="w-6 h-6" />
+              </div>
+            ) : (
+              <button type="submit" className="p-2 bg-black rounded-full text-white flex items-center justify-center ml-2 disabled:opacity-50" disabled={!input.trim() || isLoading}>
+                <AudioWaveform className="w-6 h-6" />
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
