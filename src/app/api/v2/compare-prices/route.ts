@@ -1660,7 +1660,7 @@ export async function POST(req: Request) {
     
     // Guardar cache si fue actualizado
     if (cacheUpdated) {
-      saveCache(cache)
+     // saveCache(cache)
     }
 
     // Calcular totales por supermercado
