@@ -218,7 +218,7 @@
     }
   },
   "coca cola": {
-    "timestamp": "2025-07-06T06:30:28.785Z",
+    "timestamp": "2025-07-06T09:28:35.302Z",
     "data": {
       "products": [
         {
@@ -1158,6 +1158,245 @@
         }
       ],
       "totalFound": 29
+    }
+  },
+  "pan": {
+    "timestamp": "2025-07-06T09:29:11.285Z",
+    "data": {
+      "products": [
+        {
+          "title": "Pan Kaiser",
+          "price": "$550.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-kaiser/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/650525/Pan-Kaiser-m-1-432431.jpg?v=637594962146300000"
+        },
+        {
+          "title": "Pan de Hamburguesa Bimbo Artesano 4 Ud.",
+          "price": "$3165.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/pan-de-hamburguesa-bimbo-artesano-4-ud-229492/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352069/Pan-de-Hamburguesa-Bimbo-Artesano-4-Ud-_1.jpg?v=638847146121330000"
+        },
+        {
+          "title": "Pan Lomitero (m)",
+          "price": "$1400.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-lomitero-m-2/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/500704/Pan-Lomitero--m--1-306143.jpg?v=636798486925930000"
+        },
+        {
+          "title": "Pan Pannini",
+          "price": "$1400.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-pannini/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/516420/Pan-Pannini-1-306150.jpg?v=636840694927000000"
+        },
+        {
+          "title": "Pan Para Chips",
+          "price": "$1900.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-para-chips/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/504560/Pan-Para-Chips-1-307017.jpg?v=636816631011700000"
+        },
+        {
+          "title": "Pan Rallado Preferido 1 Kg",
+          "price": "$1916.85",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/pan-rallado-preferido-1-kg-2-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/316947/Pan-Rallado-Preferido-1-Kg-1-55202.jpg?v=638451741928200000"
+        },
+        {
+          "title": "Pan Con Centeno Semillas",
+          "price": "$3500.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-con-centeno-semillas/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/871819/Pan-Con-Centeno-Semillas-1-1025751.jpg?v=638853610279870000"
+        },
+        {
+          "title": "Pan de mesa Carrefour classic con salvado 620 g.",
+          "price": "$3106.10",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/pan-de-mesa-carrefour-classic-con-salvado-620-g/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/420131/7798152224131_01.jpg?v=638859473524170000"
+        },
+        {
+          "title": "Pan Estrella Fresh",
+          "price": "$6950.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-estrella-fresh/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/503044/Pan-Estrella-1-431877.jpg?v=636814902943670000"
+        },
+        {
+          "title": "Pan Cereales Y Semillas Fargo 400 Gr.",
+          "price": "$3250.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/pan-cereales-y-semillas-fargo-400-gr-279835/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/346802/Pan-Cereales-Y-Semillas-Fargo-400-Gr-_1.jpg?v=638760741022230000"
+        },
+        {
+          "title": "Pan blanco Lactal 460 grs",
+          "price": "$3780.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/pan-blanco-lactal-460-grs-717550/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/670152/7793890258752_01.jpg?v=638851770372530000"
+        },
+        {
+          "title": "Pan Lactal Blanco 460 G",
+          "price": "$3829.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/pan-lactal-blanco-460g-2/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/287227/Pan-Lactal-Blanco-460g-1-43926.jpg?v=638229802062700000"
+        },
+        {
+          "title": "Pan De Salvado Fargo 390 Gr.",
+          "price": "$3250.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/pan-de-salvado-fargo-390-gr-55252/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352253/Pan-De-Salvado-Fargo-390-Gr-_1.jpg?v=638851462216100000"
+        },
+        {
+          "title": "Plato De Pan Krea",
+          "price": "$9350.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/plato-de-pan-krea/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/843771/Plato-De-Pan-Azul-1-U-Krea-Plato-De-Pan-Krea-1-986164.jpg?v=638658237688470000"
+        },
+        {
+          "title": "Pan Blanco 610 Grs Bimbo",
+          "price": "$6000.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/pan-blanco-610-grs-bimbo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870656/Pan-Blanco-610-Gr-Bimbo-1-1030699.jpg?v=638848210513170000"
+        },
+        {
+          "title": "Pan Blanco 610 Grs Bimbo",
+          "price": "$6200.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/pan-blanco-610-grs-bimbo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870656/Pan-Blanco-610-Gr-Bimbo-1-1030699.jpg?v=638848210513170000"
+        },
+        {
+          "title": "Pan integral fargo bolsa 400 grs",
+          "price": "$4145.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/pan-integral-fargo-bolsa-400-grs-758013/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/628795/7793890261486_01.jpg?v=638762040408200000"
+        },
+        {
+          "title": "Pan Con Cereales Y Semillas X 400 Gr Fargo",
+          "price": "$4600.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/pan-con-cereales-y-semillas-x-400-gr-fargo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/855207/Pan-Con-Cereales-Y-Semillas-X-400-Gr-Fargo-1-1034487.jpg?v=638749713751770000"
+        },
+        {
+          "title": "Pan Integral X 400 Gr Fargo",
+          "price": "$4700.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/pan-integral-x-400-gr-fargo/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/855206/Pan-Integral-X-400-Gr-Fargo-1-1034486.jpg?v=638749713748170000"
+        },
+        {
+          "title": "Pan Blanco Artesano con masa madre 500 grs",
+          "price": "$6245.00",
+          "store": "carrefour",
+          "link": "https://www.carrefour.com.ar/pan-blanco-artesano-con-masa-madre-500-grs-753237/p",
+          "image": "https://carrefourar.vtexassets.com/arquivos/ids/671049/7793890260885_01.jpg?v=638853456876900000"
+        },
+        {
+          "title": "Pan Blanco Con Masa Madre 500 Grs Artesano",
+          "price": "$6245.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/pan-blanco-con-masa-madre-500-grs-artesano/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870651/Pan-Blanco-Artesano-Masa-Madre-500-G-1-1029416.jpg?v=638848210493870000"
+        },
+        {
+          "title": "Pan Blanco Artesano con Masa Madre 500 Gr.",
+          "price": "$6245.00",
+          "store": "diaonline",
+          "link": "https://diaonline.supermercadosdia.com.ar/pan-blanco-artesano-con-masa-madre-500-gr-222898/p",
+          "image": "https://ardiaprod.vtexassets.com/arquivos/ids/352065/Pan-Blanco-Artesano-con-Masa-Madre-500-Gr-_1.jpg?v=638847146077800000"
+        },
+        {
+          "title": "Pan Blanco Con Masa Madre 500 Grs Artesano",
+          "price": "$6330.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/pan-blanco-con-masa-madre-500-grs-artesano/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870651/Pan-Blanco-Artesano-Masa-Madre-500-G-1-1029416.jpg?v=638848210493870000"
+        },
+        {
+          "title": "Pan Bimbo Artesano Blanco 500 G",
+          "price": "$6499.00",
+          "store": "masonline",
+          "link": "https://www.masonline.com.ar/pan-bimbo-artesano-blanco-500-g/p",
+          "image": "https://masonlineprod.vtexassets.com/arquivos/ids/340467/Pan-Bimbo-Artesano-Blanco-500-G-0779389026088-1.jpg?v=638683392656230000"
+        },
+        {
+          "title": "Plato De Pan Turquesa Krea",
+          "price": "$14299.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/plato-de-pan-turquesa-krea/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/842983/Plato-De-Pan-Turquesa-1-U-Krea-1-986165.jpg?v=638654782906730000"
+        },
+        {
+          "title": "Pan Integral Con Masa Madre 500 Grs Artesano",
+          "price": "$7200.00",
+          "store": "vea",
+          "link": "https://www.jumbo.com.ar/pan-integral-con-masa-madre-500-grs-artesano/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870650/Pan-Integral-Artesano-Masa-Madre-500-G-1-1029415.jpg?v=638848210490130000"
+        },
+        {
+          "title": "Pan Integral Con Masa Madre 500 Grs Artesano",
+          "price": "$7400.00",
+          "store": "disco",
+          "link": "https://www.disco.com.ar/pan-integral-con-masa-madre-500-grs-artesano/p",
+          "image": "https://jumboargentina.vtexassets.com/arquivos/ids/870650/Pan-Integral-Artesano-Masa-Madre-500-G-1-1029415.jpg?v=638848210490130000"
+        },
+        {
+          "title": "Pan Proteico 250g Mestemacher",
+          "price": "$7990.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-proteico-250g-mestemacher/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/863046/Pan-Proteico-250g-Mestemacher-1-1035822.jpg?v=638797451489000000"
+        },
+        {
+          "title": "Pan Natural 300g Mestemacher",
+          "price": "$9990.00",
+          "store": "jumbo",
+          "link": "https://www.jumbo.com.ar/pan-natural-300g-mestemacher/p",
+          "image": "https://jumboargentina.vteximg.com.br/arquivos/ids/863047/Pan-Natural-300g-Mestemacher-1-1035823.jpg?v=638797451492730000"
+        },
+        {
+          "title": "Jabón Pan Boti-k Caléndula y Manzanilla x 85 g",
+          "price": "$10145.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/jabon-pan-boti-k-calendula-y-manzanilla-x-85g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/201085/160105_jabon-pan-boti-k-calendula-y-manzanilla-x-85g_imagen-1.jpg?v=637302351960800000"
+        },
+        {
+          "title": "Jabón Pan Rosas Rosa Mosqueta x 85 g",
+          "price": "$10145.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/jabon-pan-rosas-rosa-mosqueta-x-85-g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/206642/160104_jabon-pan-rosas-rosa-mosqueta-x-85-g_imagen-1.jpg?v=637459687868330000"
+        },
+        {
+          "title": "Jabón Pan Boti-k Romero y Tea Tree x 85 g",
+          "price": "$10145.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/jabon-pan-boti-k-romero-y-tea-tree-x-85g/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/201084/160103_jabon-pan-boti-k-romero-y-tea-tree-x-85g_imagen-1.jpg?v=637302350106370000"
+        },
+        {
+          "title": "Barra de Limpieza La Roche-Posay Dermatológico Lipikar Pan Surgras x 150 gr",
+          "price": "$35635.00",
+          "store": "disco",
+          "link": "https://www.farmacity.com/pan-dermatologico-lipikar-surgras-x-150-gr/p",
+          "image": "https://farmacityar.vtexassets.com/arquivos/ids/246566/8473_Pan-dermatologico-Lipikar-Surgras-x-150-g_imagen-1.jpg?v=638294354777330000"
+        }
+      ],
+      "totalFound": 33
     }
   }
 }

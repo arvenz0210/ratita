@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ShoppingCart, TrendingUp, Store, Check, Truck } from "lucide-react"
+import { ArrowLeft, ShoppingCart, TrendingUp, Store, Check, Truck, ListChecks } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ComparisonRow {
@@ -196,6 +196,18 @@ export default function ComparisonPage() {
                 <div className="bg-gradient-to-r font-bold text-white from-green-600 to-green-500 rounded-xl py-3 px-4 flex items-center justify-center">
                   Realizar pedido
                 </div>
+                <Button
+                  variant="outline"
+                  className="w-full mt-3 flex items-center justify-center gap-2 border-green-700 text-green-200 hover:bg-green-900/30"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    router.push('/shopping-list');
+                  }}
+                >
+                  <ListChecks className="w-5 h-5 mr-1" />
+                  Ir a comprar físicamente
+                </Button>
               </div>
               {/* <div className="mt-4 flex items-center text-green-700 text-sm">
                 <Truck className="w-4 h-4 mr-1" />
