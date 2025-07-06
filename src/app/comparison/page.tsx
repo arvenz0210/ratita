@@ -205,7 +205,7 @@ export default function ComparisonPage() {
 
                 <span className="text-green-100 text-xl mb-6 flex items-center">
                   <Sparkles className="w-5 h-5 mr-2" />
-                  ¡Ahorrás {formatPrice(bestStoreData.total)}!
+                  ¡Ahorrás {formatPrice(bestStoreData.total - (discount || 0))}!
                 </span>
 
                 <div className="w-full space-y-3">
