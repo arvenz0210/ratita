@@ -755,7 +755,7 @@ export default function SupermarketChat() {
           {/* Product List */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {products.length === 0 ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8 pb-6">
                 <MouseLogo size="xl" className="mx-auto mb-6" animated />
                 <h3 className="text-2xl font-bold text-white mb-4">¿Qué vamos a comprar hoy?</h3>
                 <p className="text-white/70 mb-6">Elegí una opción rápida o háblame</p>
