@@ -187,8 +187,8 @@ export default function ComparisonPage() {
                     <Sparkles className="w-6 h-6 text-white" />
                   </span>
                   <div className="text-center">
-                    <h3 className="font-bold text-green-100 text-xl">¡Mejor Opción!</h3>
-                    <p className="text-green-200/80 text-sm">Comprá en {bestStore}</p>
+                    <h3 className="font-bold text-green-100 text-xl">{bestStore} </h3>
+                    <p className="text-green-200/80 text-sm">Mejor opción</p>
                   </div>
                 </div>
                 
@@ -199,13 +199,13 @@ export default function ComparisonPage() {
                   </div>
                   <div className="flex w-full justify-between items-center">
                     <span className="text-green-300 font-medium">Con descuentos:</span>
-                    <span className="text-green-300 font-bold text-2xl">{formatPrice(bestStoreData.total)}</span>
+                    <span className="text-green-300 font-bold text-2xl">{discount ? formatPrice(discount) : '--'}</span>
                   </div>
                 </div>
 
                 <span className="text-green-100 text-xl mb-6 flex items-center">
                   <Sparkles className="w-5 h-5 mr-2" />
-                  ¡Ahorrás {discount ? formatPrice(discount) : '--'}!
+                  ¡Ahorrás {formatPrice(bestStoreData.total)}!
                 </span>
 
                 <div className="w-full space-y-3">
