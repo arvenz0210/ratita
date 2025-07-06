@@ -136,7 +136,11 @@ export default function ShipmentCongratsPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 variant="outline"
-                onClick={() => router.push('/')}
+                onClick={() => {
+                  // Mark that temp data should be cleared when returning to main page
+                  sessionStorage.setItem('clearTempData', 'true')
+                  router.push('/')
+                }}
                 className="flex-1"
               >
                 <Home className="w-4 h-4 mr-2" />
@@ -144,7 +148,11 @@ export default function ShipmentCongratsPage() {
               </Button>
               <Button
                 className="flex-1 bg-green-600 hover:bg-green-700"
-                onClick={() => router.push('/comparison')}
+                onClick={() => {
+                  // Mark that temp data should be cleared when starting new order
+                  sessionStorage.setItem('clearTempData', 'true')
+                  router.push('/')
+                }}
               >
                 <Package className="w-4 h-4 mr-2" />
                 Nuevo Pedido

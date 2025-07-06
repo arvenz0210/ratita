@@ -37,6 +37,94 @@ export default function SupermarketChat() {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
+  // Clear any temporary data when component mounts to start fresh
+  useEffect(() => {
+    // Check if we should clear temporary data (when coming from completed order)
+    const shouldClearData = sessionStorage.getItem('clearTempData')
+    if (shouldClearData === 'true') {
+      sessionStorage.removeItem('shipmentData')
+      sessionStorage.removeItem('comparisonData')
+      sessionStorage.removeItem('selectedStore')
+      sessionStorage.removeItem('clearTempData')
+    }
+  }, [])
+
+  const handleSuggestionClick = async (suggestion: string) => {
+    if (isLoading) return
+
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: suggestion
+    }
+
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('/api/v2/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: updatedMessages })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      // Parse the JSON response
+      try {
+        let cleanResult = result.trim()
+        
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+        console.log('Raw response:', result)
+      }
+
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to send suggestion:', error)
+      const errorMessage: ChatMessage = {
+        role: "assistant",
+        content: "Lo siento, hubo un error al procesar tu sugerencia."
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -569,10 +657,67 @@ export default function SupermarketChat() {
       {/* Product List */}
       <div className="p-4 space-y-3 flex-1">
         {products.length === 0 ? (
-          <div className="flex flex-col items-center justify-center text-center py-16 text-gray-400">
-            <img src="/logo.png" alt="Ratita logo" className="w-40 h-40 mb-4" />
-            <h1 className="text-4xl font-bold text-white mb-2">¡Hola! Lucas</h1>
-            <p className="text-xl text-gray-400">Armemos juntos tu lista de compras</p>
+          <div className="flex flex-col items-center justify-center text-center py-8 text-gray-400">
+            <img src="/logo.png" alt="Ratita logo" className="w-32 h-32 mb-4" />
+            <h1 className="text-3xl font-bold text-white mb-2">¡Hola! Lucas</h1>
+            <p className="text-lg text-gray-400 mb-8">Dime qué necesitas comprar y te ayudo a armar tu lista con más de 40 productos disponibles</p>
+            
+            {/* Suggestion Boxes */}
+            <div className="w-full max-w-md mx-auto space-y-4 mb-8">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleSuggestionClick("Ingredientes para milanesas")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🥩</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Ingredientes para milanesas</h3>
+                      <p className="text-gray-400 text-xs">Carne, pan rallado, huevos...</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Desayuno completo")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">☕</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Desayuno completo</h3>
+                      <p className="text-gray-400 text-xs">Leche, pan, mermelada...</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Frutas y verduras")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🥬</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Frutas y verduras</h3>
+                      <p className="text-gray-400 text-xs">Productos frescos de temporada</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Compra mensual")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🛒</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Compra mensual</h3>
+                      <p className="text-gray-400 text-xs">Productos básicos del hogar</p>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           products.map((product: Product, index: number) => (
@@ -639,7 +784,17 @@ export default function SupermarketChat() {
         </div>
       )}
       {/* Chat Interface */}
-      <div className="bg-gray-800 p-4 m-4 rounded-lg">
+      <div className="bg-gray-800 p-4 m-4 rounded-lg relative">
+        {/* Loading Spinner */}
+        {isLoading && (
+          <div className="absolute inset-0 bg-gray-800 bg-opacity-90 flex items-center justify-center z-10 rounded-lg">
+            <div className="flex flex-col items-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-3"></div>
+              <p className="text-white text-sm">Procesando tu solicitud...</p>
+            </div>
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit} className="flex flex-col">
           <textarea
             value={input}

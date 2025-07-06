@@ -12,7 +12,8 @@ import {
   Menu,
   User,
   Settings,
-  HelpCircle
+  HelpCircle,
+  History
 } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 
@@ -40,6 +41,12 @@ const menuItems: MenuItem[] = [
     label: "Comparar Precios",
     path: "/comparison",
     description: "Compara precios entre supermercados"
+  },
+  {
+    icon: <History className="w-5 h-5" />,
+    label: "Historial de Pedidos",
+    path: "/order-history",
+    description: "Tus pedidos confirmados"
   },
   {
     icon: <ShoppingCart className="w-5 h-5" />,

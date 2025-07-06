@@ -51,13 +51,51 @@ export default function ShipmentConfirmationPage() {
   }
 
   const handleConfirmOrder = async () => {
+    if (!shipmentData) return
+    
     setIsProcessing(true)
     
-    // Simulate API call with a delay
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    
-    // Redirect to shipment congratulations page
-    router.push('/shipment-congrats')
+    try {
+      // Simulate API call with a delay
+      await new Promise(resolve => setTimeout(resolve, 3000))
+      
+      // Save confirmed order to order history
+      const confirmedOrder = {
+        ...shipmentData,
+        orderId: `ORDER-${Date.now()}`,
+        status: 'confirmed',
+        confirmedAt: new Date().toISOString()
+      }
+      
+      // Get existing confirmed orders or initialize empty array
+      const existingOrdersJson = sessionStorage.getItem('confirmedOrders')
+      const existingOrders = existingOrdersJson ? JSON.parse(existingOrdersJson) : []
+      
+      // Add new order to the beginning of the array
+      const updatedOrders = [confirmedOrder, ...existingOrders]
+      
+      // Save updated orders to sessionStorage
+      sessionStorage.setItem('confirmedOrders', JSON.stringify(updatedOrders))
+      
+      // Clear current cart/shopping data
+      sessionStorage.removeItem('shipmentData')
+      sessionStorage.removeItem('comparisonData')
+      sessionStorage.removeItem('selectedStore')
+      
+      // Clear any other temporary data that might exist
+      sessionStorage.removeItem('products')
+      sessionStorage.removeItem('messages')
+      
+      // Mark that temp data should be cleared when returning to main page
+      sessionStorage.setItem('clearTempData', 'true')
+      
+      // Redirect to shipment congratulations page
+      router.push('/shipment-congrats')
+      
+    } catch (error) {
+      console.error('Error confirming order:', error)
+      setIsProcessing(false)
+    }
   }
 
   if (error) {
