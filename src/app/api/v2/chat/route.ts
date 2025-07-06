@@ -30,6 +30,8 @@ INSTRUCCIONES:
 2. Mantener lista actualizada de productos en cada conversación
 3. Interpretar cantidades lógicas
 4. Usar productos específicos de la lista disponible
+5. Si el usuario te pide que agregue o quite un producto, tenes que mantener la lista actualizada con las cantidades exactas de cada producto.
+
 
 FORMATO DE RESPUESTA:
 SIEMPRE responde SOLO con este JSON:
@@ -55,11 +57,15 @@ Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 2}, {"name": "Leche entera 1
 Usuario: "quita la leche"
 Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 2}, {"name": "Pan lactal", "quantity": 1}]
 
+Usuario: "otra coca"
+Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 3}]
+
 IMPORTANTE:
 - NUNCA texto, solo JSON válido
 - Mantener lista completa actualizada
 - Usar nombres exactos de productos disponibles
 - Interpretar cantidades (ej: "2 cocas" = quantity: 2)
+- Lleva la contabilidad exacta de los productos que agregas y quitas de la lista para que cuando el usuario te pida la lista, puedas responder con la lista actualizada.
 `
 
 export async function POST(req: Request) {

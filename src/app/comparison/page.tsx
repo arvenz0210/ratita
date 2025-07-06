@@ -37,6 +37,11 @@ export default function ComparisonPage() {
       
       // Get data from sessionStorage
       const storedData = sessionStorage.getItem('comparisonData')
+
+      console.log('=== FETCHING COMPARISON DATA DEBUG ===')
+      console.log('Session storage:', sessionStorage)
+      console.log('storedData:', storedData)
+      console.log('=== END FETCHING COMPARISON DATA DEBUG ===')
       
       if (!storedData) {
         throw new Error('No comparison data found')

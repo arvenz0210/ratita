@@ -17,14 +17,14 @@ export function Layout({ children, showTopbar = true, topbarContent }: LayoutPro
   return (
     <>
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {showTopbar && (
-          <div className="shadow-sm border-b border-gray-700 px-4 py-3">
+          <div className="border-b border-white/10 bg-black/20 backdrop-blur-xl px-4 py-3">
             <div className="flex items-center space-x-3 justify-between">
               <Button 
                 variant="ghost" 
                 size="sm" 
-                className="p-2 text-gray-300 hover:text-white"
+                className="p-2 text-white/70 hover:text-white hover:bg-white/10"
                 onClick={openSidebar}
               >
                 <Menu className="w-5 h-5" />

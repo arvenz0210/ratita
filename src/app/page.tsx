@@ -3,15 +3,45 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Input } from "@/components/ui/input"
 import { Layout } from "@/components/ui/layout"
 import { ConfirmModal, InputModal, AlertModal } from "@/components/ui/modal"
 import { GradientDiffusionScanner } from "@/components/ui/gradient-diffusion-scanner"
-import { Plus, Mic,  Minus, ArrowUp, Camera, Rocket, X, Save } from "lucide-react"
+import { MouseLogo, VoiceButton, VoiceRecordingModal, ChatSuggestions } from "@/components/ui/ratita-components"
+import { 
+  Plus, 
+  Minus, 
+  ArrowUp, 
+  Camera, 
+  Rocket, 
+  X, 
+  Save, 
+  Send,
+  User,
+  Trash2,
+  CheckCircle,
+  Sparkles,
+  ShoppingBag,
+  Settings,
+  Mic
+} from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
   name: string
   quantity: number
+}
+
+interface CartItem {
+  id: string
+  name: string
+  quantity: number
+  category: string
+  price: number
+  brand: string
+  size: string
 }
 
 interface ChatMessage {
@@ -25,6 +55,10 @@ export default function SupermarketChat() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isComparing, setIsComparing] = useState(false)
+  const [lastAddedProduct, setLastAddedProduct] = useState<string | null>(null)
+  const [isRecording, setIsRecording] = useState(false)
+  const [showVoiceModal, setShowVoiceModal] = useState(false)
+  const [userName] = useState("Lucas")
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
@@ -34,7 +68,6 @@ export default function SupermarketChat() {
 
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
-  const [isRecording, setIsRecording] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
@@ -46,7 +79,11 @@ export default function SupermarketChat() {
 
   // Load persisted data when component mounts
   useEffect(() => {
-    // Check if we should clear temporary data (when coming from completed order)
+    const loadedFromList = sessionStorage.getItem('loadedFromList')
+    if (loadedFromList === 'true') {
+      sessionStorage.removeItem('loadedFromList')
+    }
+    
     const shouldClearData = sessionStorage.getItem('clearTempData')
     if (shouldClearData === 'true') {
       sessionStorage.removeItem('shipmentData')
@@ -55,31 +92,29 @@ export default function SupermarketChat() {
       sessionStorage.removeItem('clearTempData')
       sessionStorage.removeItem('currentProducts')
       sessionStorage.removeItem('currentMessages')
-    } else {
-      // Load existing products and messages if they exist
-      try {
-        const savedProducts = sessionStorage.getItem('currentProducts')
-        const savedMessages = sessionStorage.getItem('currentMessages')
-        
-        if (savedProducts) {
-          const parsedProducts = JSON.parse(savedProducts)
-          if (Array.isArray(parsedProducts)) {
-            setProducts(parsedProducts)
-          }
+    }
+    
+    try {
+      const savedProducts = sessionStorage.getItem('currentProducts')
+      const savedMessages = sessionStorage.getItem('currentMessages')
+      
+      if (savedProducts) {
+        const parsedProducts = JSON.parse(savedProducts)
+        if (Array.isArray(parsedProducts)) {
+          setProducts(parsedProducts)
         }
-        
-        if (savedMessages) {
-          const parsedMessages = JSON.parse(savedMessages)
-          if (Array.isArray(parsedMessages)) {
-            setMessages(parsedMessages)
-          }
-        }
-      } catch (error) {
-        console.error('Error loading persisted data:', error)
-        // Clear corrupted data
-        sessionStorage.removeItem('currentProducts')
-        sessionStorage.removeItem('currentMessages')
       }
+      
+      if (savedMessages) {
+        const parsedMessages = JSON.parse(savedMessages)
+        if (Array.isArray(parsedMessages)) {
+          setMessages(parsedMessages)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading persisted data:', error)
+      sessionStorage.removeItem('currentProducts')
+      sessionStorage.removeItem('currentMessages')
     }
   }, [])
 
@@ -101,6 +136,7 @@ export default function SupermarketChat() {
     }
   }, [messages])
 
+  // Funciones existentes mantenidas
   const handleClearList = () => {
     setShowClearConfirm(true)
   }
@@ -128,14 +164,9 @@ export default function SupermarketChat() {
         totalItems: products.reduce((sum, product) => sum + product.quantity, 0)
       }
 
-      // Get existing saved lists or initialize empty array
       const existingListsJson = sessionStorage.getItem('savedLists')
       const existingLists = existingListsJson ? JSON.parse(existingListsJson) : []
-
-      // Add new list to the beginning of the array
       const updatedLists = [savedList, ...existingLists]
-
-      // Save updated lists to sessionStorage
       sessionStorage.setItem('savedLists', JSON.stringify(updatedLists))
 
       setAlertConfig({
@@ -165,6 +196,7 @@ export default function SupermarketChat() {
 
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
+    setInput(suggestion)
     setIsLoading(true)
 
     try {
@@ -194,258 +226,200 @@ export default function SupermarketChat() {
         result += chunk
       }
 
-      // Parse the JSON response
       try {
         let cleanResult = result.trim()
-        
         if (cleanResult.startsWith('```json')) {
           cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
         } else if (cleanResult.startsWith('```')) {
           cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
         }
-        
+
         const productsList = JSON.parse(cleanResult)
         if (Array.isArray(productsList)) {
-          setProducts(productsList)
+          setProducts(prevProducts => mergeProducts(prevProducts, productsList, userMessage.content))
         }
       } catch (parseError) {
         console.error('Failed to parse JSON response:', parseError)
-        console.log('Raw response:', result)
       }
 
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content: result
       }
-
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
-      console.error('Failed to send suggestion:', error)
-      const errorMessage: ChatMessage = {
-        role: "assistant",
-        content: "Lo siento, hubo un error al procesar tu sugerencia."
-      }
-      setMessages(prev => [...prev, errorMessage])
+      console.error('Failed to send message:', error)
     } finally {
       setIsLoading(false)
     }
   }
 
-
+  const mergeProducts = (existingProducts: Product[], newProducts: Product[], userMessage: string): Product[] => {
+    console.log('=== MERGE PRODUCTS DEBUG ===')
+    console.log('User message:', userMessage)
+    console.log('Existing products:', existingProducts)
+    console.log('New products from backend:', newProducts)
+    
+    const merged = [...existingProducts]
+    
+    newProducts.forEach(newProduct => {
+      const existingIndex = merged.findIndex(p => 
+        p.name.toLowerCase() === newProduct.name.toLowerCase()
+      )
+      
+      if (existingIndex >= 0) {
+        const existingQuantity = merged[existingIndex].quantity
+        console.log(`Product "${newProduct.name}" already exists with quantity ${existingQuantity}`)
+        console.log(`Backend returns total quantity: ${newProduct.quantity}`)
+        
+        // El backend SIEMPRE devuelve la cantidad total deseada, no la cantidad a agregar
+        // Así que simplemente usamos la cantidad del backend como nueva cantidad total
+        merged[existingIndex] = {
+          ...merged[existingIndex],
+          quantity: newProduct.quantity
+        }
+        console.log(`Updated quantity from ${existingQuantity} to ${newProduct.quantity}`)
+      } else {
+        merged.push(newProduct)
+        console.log(`New product "${newProduct.name}" added with quantity ${newProduct.quantity}`)
+      }
+    })
+    
+    console.log('Final merged products:', merged)
+    console.log('=== END MERGE PRODUCTS DEBUG ===')
+    
+    return merged
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if ((!input.trim() && !selectedImage) || isLoading) return
 
-    let userMessage: ChatMessage
-    let updatedMessages: ChatMessage[]
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: selectedImage ? `[Imagen adjunta] ${input || 'Procesá esta imagen para crear una lista de compras'}` : input
+    }
 
-    if (selectedImage) {
-      // Handle image submission
-      userMessage = {
-        role: "user",
-        content: `[Imagen de lista de compras]${input.trim() ? ` - ${input}` : ''}`
-      }
-      updatedMessages = [...messages, userMessage]
-      setMessages(updatedMessages)
-      setInput("")
-      setIsLoading(true)
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+    setInput("")
+    setIsLoading(true)
 
-      try {
+    try {
+      let response
+      if (selectedImage) {
         const formData = new FormData()
         formData.append('image', selectedImage)
         formData.append('messages', JSON.stringify(updatedMessages))
-
-        const response = await fetch('/api/v2/chat', {
+        
+        response = await fetch('/api/v2/chat', {
           method: 'POST',
           body: formData
         })
-
-        if (!response.ok) {
-          throw new Error('Failed to get response')
-        }
-
-        const reader = response.body?.getReader()
-        if (!reader) {
-          throw new Error('No response body')
-        }
-
-        let result = ''
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          
-          const chunk = new TextDecoder().decode(value)
-          result += chunk
-        }
-
-        // Parse the JSON response
-        try {
-          let cleanResult = result.trim()
-          
-          if (cleanResult.startsWith('```json')) {
-            cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
-          } else if (cleanResult.startsWith('```')) {
-            cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
-          }
-
-          console.log("cleanResult", cleanResult)
-          
-          const productsList = JSON.parse(cleanResult)
-          if (Array.isArray(productsList)) {
-            setProducts(productsList)
-          }
-        } catch (parseError) {
-          console.error('Failed to parse JSON response:', parseError)
-          console.log('Raw response:', result)
-        }
-
-        const assistantMessage: ChatMessage = {
-          role: "assistant",
-          content: result
-        }
-
-        setMessages(prev => [...prev, assistantMessage])
-        clearImage()
-      } catch (error) {
-        console.error('Failed to send image:', error)
-        const errorMessage: ChatMessage = {
-          role: "assistant",
-          content: "Lo siento, hubo un error al procesar la imagen."
-        }
-        setMessages(prev => [...prev, errorMessage])
-      } finally {
-        setIsLoading(false)
-      }
-    } else {
-      // Handle text submission
-      userMessage = {
-        role: "user",
-        content: input
-      }
-
-      updatedMessages = [...messages, userMessage]
-      setMessages(updatedMessages)
-      setInput("")
-      setIsLoading(true)
-
-      try {
-        console.log("updatedMessages", updatedMessages)
-        const response = await fetch('/api/v2/chat', {
+      } else {
+        response = await fetch('/api/v2/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ messages: updatedMessages })
         })
-
-        if (!response.ok) {
-          throw new Error('Failed to get response')
-        }
-
-        const reader = response.body?.getReader()
-        if (!reader) {
-          throw new Error('No response body')
-        }
-
-        let result = ''
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          
-          const chunk = new TextDecoder().decode(value)
-          result += chunk
-        }
-
-        // Parse the JSON response
-        try {
-          let cleanResult = result.trim()
-          
-          if (cleanResult.startsWith('```json')) {
-            cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
-          } else if (cleanResult.startsWith('```')) {
-            cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
-          }
-          
-          const productsList = JSON.parse(cleanResult)
-          if (Array.isArray(productsList)) {
-            setProducts(productsList)
-          }
-        } catch (parseError) {
-          console.error('Failed to parse JSON response:', parseError)
-          console.log('Raw response:', result)
-        }
-
-        const assistantMessage: ChatMessage = {
-          role: "assistant",
-          content: result
-        }
-
-        setMessages(prev => [...prev, assistantMessage])
-      } catch (error) {
-        console.error('Failed to send message:', error)
-        const errorMessage: ChatMessage = {
-          role: "assistant",
-          content: "Lo siento, hubo un error al procesar tu mensaje."
-        }
-        setMessages(prev => [...prev, errorMessage])
-      } finally {
-        setIsLoading(false)
       }
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      try {
+        let cleanResult = result.trim()
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(prevProducts => mergeProducts(prevProducts, productsList, userMessage.content))
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+      }
+
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to send message:', error)
+    } finally {
+      setIsLoading(false)
+      clearImage()
     }
   }
 
   const handleImageUpload = (file: File) => {
     setSelectedImage(file)
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      setImagePreview(e.target?.result as string)
-    }
-    reader.readAsDataURL(file)
+    setImagePreview(URL.createObjectURL(file))
   }
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file && file.type.startsWith('image/')) {
-      handleImageUpload(file)
+    if (e.target.files && e.target.files[0]) {
+      handleImageUpload(e.target.files[0])
     }
   }
 
   const handleCameraCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file && file.type.startsWith('image/')) {
-      handleImageUpload(file)
+    if (e.target.files && e.target.files[0]) {
+      handleImageUpload(e.target.files[0])
     }
   }
 
   const clearImage = () => {
     setSelectedImage(null)
     setImagePreview(null)
-    if (fileInputRef.current) fileInputRef.current.value = ''
-    if (cameraInputRef.current) cameraInputRef.current.value = ''
+    if (fileInputRef.current) fileInputRef.current.value = ""
+    if (cameraInputRef.current) cameraInputRef.current.value = ""
   }
 
   const handleQuantityChange = async (index: number, newQuantity: number) => {
-    if (newQuantity < 0) return
-    if (newQuantity === 0) {
-      handleDeleteItem(index)
+    if (newQuantity < 1) {
+      await handleDeleteItem(index)
       return
     }
-    const updatedProducts = [...products]
-    updatedProducts[index].quantity = newQuantity
+
+    const updatedProducts = products.map((product, i) => 
+      i === index ? { ...product, quantity: newQuantity } : product
+    )
     setProducts(updatedProducts)
 
-    // Update with AI
+    const productName = products[index].name
+    const change = newQuantity - products[index].quantity
+    const action = change > 0 ? 'aumentar' : 'disminuir'
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: `${action} ${productName} a ${newQuantity} unidades`
+    }
+
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+
     try {
-      const updateMessage = `Actualiza la cantidad de ${products[index].name} a ${newQuantity}`
-      const userMessage: ChatMessage = {
-        role: "user",
-        content: updateMessage
-      }
-
-      const updatedMessages = [...messages, userMessage]
-      setMessages(updatedMessages)
-
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
@@ -472,32 +446,14 @@ export default function SupermarketChat() {
         result += chunk
       }
 
-      // Parse the JSON response
-      try {
-        let cleanResult = result.trim()
-        
-        if (cleanResult.startsWith('```json')) {
-          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
-        } else if (cleanResult.startsWith('```')) {
-          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
-        }
-        
-        const productsList = JSON.parse(cleanResult)
-        if (Array.isArray(productsList)) {
-          setProducts(productsList)
-        }
-      } catch (parseError) {
-        console.error('Failed to parse JSON response:', parseError)
-      }
-
+      // Solo agregar el mensaje del asistente, NO procesar productos
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content: result
       }
-
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
-      console.error('Failed to update quantity:', error)
+      console.error('Failed to send message:', error)
     }
   }
 
@@ -506,17 +462,15 @@ export default function SupermarketChat() {
     const updatedProducts = products.filter((_, i) => i !== index)
     setProducts(updatedProducts)
 
-    // Update with AI
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: `eliminar ${productToDelete.name} de la lista`
+    }
+
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+
     try {
-      const deleteMessage = `Elimina ${productToDelete.name} de la lista`
-      const userMessage: ChatMessage = {
-        role: "user",
-        content: deleteMessage
-      }
-
-      const updatedMessages = [...messages, userMessage]
-      setMessages(updatedMessages)
-
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
@@ -543,92 +497,57 @@ export default function SupermarketChat() {
         result += chunk
       }
 
-      // Parse the JSON response
-      try {
-        let cleanResult = result.trim()
-        
-        if (cleanResult.startsWith('```json')) {
-          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
-        } else if (cleanResult.startsWith('```')) {
-          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
-        }
-        
-        const productsList = JSON.parse(cleanResult)
-        if (Array.isArray(productsList)) {
-          setProducts(productsList)
-        }
-      } catch (parseError) {
-        console.error('Failed to parse JSON response:', parseError)
-      }
-
+      // Solo agregar el mensaje del asistente, NO procesar productos
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content: result
       }
-
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
-      console.error('Failed to delete item:', error)
+      console.error('Failed to send message:', error)
     }
   }
 
   const getProductIcon = (productName: string): string => {
     const name = productName.toLowerCase()
+    if (name.includes('carne') || name.includes('pollo') || name.includes('milanesa')) return '🥩'
     if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return '🥛'
-    if (name.includes('carne') || name.includes('pollo') || name.includes('bife')) return '🥩'
-    if (name.includes('pan') || name.includes('factura')) return '🍞'
-    if (name.includes('fruta') || name.includes('banana') || name.includes('manzana') || name.includes('naranja') || name.includes('limón')) return '🍎'
-    if (name.includes('verdura') || name.includes('tomate') || name.includes('cebolla') || name.includes('papa') || name.includes('zanahoria') || name.includes('lechuga')) return '🥬'
-    if (name.includes('coca') || name.includes('agua') || name.includes('jugo') || name.includes('cerveza') || name.includes('vino')) return '🥤'
-    if (name.includes('arroz') || name.includes('fideo') || name.includes('aceite') || name.includes('azúcar') || name.includes('sal') || name.includes('harina')) return '🍚'
-    if (name.includes('huevo')) return '🥚'
-    if (name.includes('café') || name.includes('té') || name.includes('yerba')) return '☕'
-    if (name.includes('atún') || name.includes('tomate en lata') || name.includes('arveja')) return '🥫'
-    if (name.includes('lenteja') || name.includes('poroto') || name.includes('garbanzo')) return '🫘'
-    if (name.includes('galletita') || name.includes('papas fritas') || name.includes('maní')) return '🍪'
-    if (name.includes('helado') || name.includes('pizza') || name.includes('hamburguesa')) return '🍦'
-    if (name.includes('lavandina') || name.includes('detergente') || name.includes('jabón') || name.includes('suavizante')) return '🧴'
-    if (name.includes('papel') || name.includes('servilleta') || name.includes('toalla')) return '🧻'
-    if (name.includes('champú') || name.includes('acondicionador') || name.includes('pasta') || name.includes('desodorante')) return '🧴'
-    if (name.includes('mayonesa') || name.includes('ketchup') || name.includes('mostaza') || name.includes('vinagre') || name.includes('salsa')) return '🍶'
-    if (name.includes('cereal') || name.includes('avena') || name.includes('tostada')) return '🥣'
-    if (name.includes('dulce') || name.includes('mermelada') || name.includes('miel')) return '🍯'
+    if (name.includes('pan') || name.includes('galletita') || name.includes('tostada')) return '🍞'
+    if (name.includes('fruta') || name.includes('manzana') || name.includes('banana')) return '🍎'
+    if (name.includes('verdura') || name.includes('tomate') || name.includes('lechuga')) return '🥬'
+    if (name.includes('arroz') || name.includes('fideo') || name.includes('pasta')) return '🍝'
+    if (name.includes('aceite') || name.includes('condimento') || name.includes('sal')) return '🧈'
+    if (name.includes('gaseosa') || name.includes('agua') || name.includes('jugo')) return '🥤'
+    if (name.includes('limpieza') || name.includes('detergente') || name.includes('lavandina')) return '🧽'
+    if (name.includes('cafe') || name.includes('te') || name.includes('desayuno')) return '☕'
     return '🛒'
   }
 
   const getProductColor = (productName: string): string => {
     const name = productName.toLowerCase()
-    if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return 'bg-blue-100'
-    if (name.includes('carne') || name.includes('pollo') || name.includes('bife')) return 'bg-red-100'
-    if (name.includes('pan') || name.includes('factura')) return 'bg-yellow-100'
-    if (name.includes('fruta') || name.includes('banana') || name.includes('manzana') || name.includes('naranja') || name.includes('limón')) return 'bg-orange-100'
-    if (name.includes('verdura') || name.includes('tomate') || name.includes('cebolla') || name.includes('papa') || name.includes('zanahoria') || name.includes('lechuga')) return 'bg-green-100'
-    if (name.includes('coca') || name.includes('agua') || name.includes('jugo') || name.includes('cerveza') || name.includes('vino')) return 'bg-cyan-100'
-    if (name.includes('arroz') || name.includes('fideo') || name.includes('aceite') || name.includes('azúcar') || name.includes('sal') || name.includes('harina')) return 'bg-amber-100'
-    if (name.includes('huevo')) return 'bg-yellow-100'
-    if (name.includes('café') || name.includes('té') || name.includes('yerba')) return 'bg-brown-100'
-    if (name.includes('atún') || name.includes('tomate en lata') || name.includes('arveja')) return 'bg-gray-100'
-    if (name.includes('lenteja') || name.includes('poroto') || name.includes('garbanzo')) return 'bg-orange-100'
-    if (name.includes('galletita') || name.includes('papas fritas') || name.includes('maní')) return 'bg-yellow-100'
-    if (name.includes('helado') || name.includes('pizza') || name.includes('hamburguesa')) return 'bg-pink-100'
-    if (name.includes('lavandina') || name.includes('detergente') || name.includes('jabón') || name.includes('suavizante')) return 'bg-blue-100'
-    if (name.includes('papel') || name.includes('servilleta') || name.includes('toalla')) return 'bg-white border border-gray-200'
-    if (name.includes('champú') || name.includes('acondicionador') || name.includes('pasta') || name.includes('desodorante')) return 'bg-purple-100'
-    if (name.includes('mayonesa') || name.includes('ketchup') || name.includes('mostaza') || name.includes('vinagre') || name.includes('salsa')) return 'bg-red-100'
-    if (name.includes('cereal') || name.includes('avena') || name.includes('tostada')) return 'bg-yellow-100'
-    if (name.includes('dulce') || name.includes('mermelada') || name.includes('miel')) return 'bg-amber-100'
-    return 'bg-gray-100'
+    if (name.includes('carne') || name.includes('pollo') || name.includes('milanesa')) return 'bg-red-500'
+    if (name.includes('leche') || name.includes('yogur') || name.includes('queso')) return 'bg-blue-500'
+    if (name.includes('pan') || name.includes('galletita') || name.includes('tostada')) return 'bg-yellow-500'
+    if (name.includes('fruta') || name.includes('manzana') || name.includes('banana')) return 'bg-green-500'
+    if (name.includes('verdura') || name.includes('tomate') || name.includes('lechuga')) return 'bg-green-600'
+    if (name.includes('arroz') || name.includes('fideo') || name.includes('pasta')) return 'bg-orange-500'
+    if (name.includes('aceite') || name.includes('condimento') || name.includes('sal')) return 'bg-purple-500'
+    if (name.includes('gaseosa') || name.includes('agua') || name.includes('jugo')) return 'bg-cyan-500'
+    if (name.includes('limpieza') || name.includes('detergente') || name.includes('lavandina')) return 'bg-indigo-500'
+    if (name.includes('cafe') || name.includes('te') || name.includes('desayuno')) return 'bg-amber-500'
+    return 'bg-gray-500'
   }
 
   const handleComparePrices = async () => {
-    if (products.length === 0) {
-      alert('Agrega productos a tu lista antes de comparar precios')
-      return
-    }
+    if (products.length === 0) return
 
     setIsComparing(true)
     
     try {
+      console.log('=== COMPARING PRICES DEBUG ===')
+      console.log('Products to compare:', products)
+      
+      // Llamar a la API de comparación de precios
       const response = await fetch('/api/v2/compare-prices', {
         method: 'POST',
         headers: {
@@ -638,64 +557,70 @@ export default function SupermarketChat() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to compare prices')
+        throw new Error(`API Error: ${response.status}`)
       }
 
-      // Store the comparison data in sessionStorage for the comparison page
-      const comparisonData = await response.json()
-      sessionStorage.setItem('comparisonData', JSON.stringify(comparisonData))
+      const comparisonResult = await response.json()
+      console.log('API Response:', comparisonResult)
       
-      // Navigate to comparison page
+      // Guardar los datos completos de comparación en sessionStorage
+      sessionStorage.setItem('comparisonData', JSON.stringify(comparisonResult))
+      
+      console.log('Comparison data saved to sessionStorage')
+      console.log('=== END COMPARING PRICES DEBUG ===')
+      
+      // Redireccionar a la página de comparación
       router.push('/comparison')
     } catch (error) {
       console.error('Error comparing prices:', error)
-      alert('Error al comparar precios. Intenta de nuevo.')
+      setAlertConfig({
+        title: "Error",
+        message: "Error al comparar precios. Intenta de nuevo.",
+        type: "error"
+      })
+      setShowAlert(true)
     } finally {
       setIsComparing(false)
     }
   }
 
-  // Audio recording logic
   const startRecording = async () => {
-    setAudioBlob(null)
-    setAudioUrl(null)
-    setIsRecording(true)
-    audioChunksRef.current = []
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-    const mediaRecorder = new MediaRecorder(stream)
-    mediaRecorderRef.current = mediaRecorder
-    mediaRecorder.ondataavailable = (e) => {
-      if (e.data.size > 0) {
-        audioChunksRef.current.push(e.data)
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const mediaRecorder = new MediaRecorder(stream)
+      mediaRecorderRef.current = mediaRecorder
+      audioChunksRef.current = []
+
+      mediaRecorder.ondataavailable = (event) => {
+        audioChunksRef.current.push(event.data)
       }
+
+      mediaRecorder.onstop = async () => {
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' })
+        setAudioBlob(audioBlob)
+        setAudioUrl(URL.createObjectURL(audioBlob))
+        
+        await handleAudioSubmit(audioBlob)
+      }
+
+      mediaRecorder.start()
+      setIsRecording(true)
+      setShowVoiceModal(true)
+    } catch (error) {
+      console.error('Error starting recording:', error)
     }
-    mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' })
-      setAudioBlob(audioBlob)
-      setAudioUrl(URL.createObjectURL(audioBlob))
-      setIsRecording(false)
-    }
-    mediaRecorder.start()
   }
 
   const stopRecording = () => {
-    mediaRecorderRef.current?.stop()
-    setIsRecording(false)
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop()
+      setIsRecording(false)
+      setShowVoiceModal(false)
+    }
   }
 
-  // Automatically send audio when available
-  useEffect(() => {
-    if (audioBlob) {
-      handleAudioSubmit(audioBlob)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioBlob])
-
   const handleAudioSubmit = async (audio: Blob) => {
-    if (isLoading) return
     setIsLoading(true)
-    setAudioUrl(null)
-    setAudioBlob(null)
     const userMessage: ChatMessage = {
       role: "user",
       content: `[Audio de lista de compras]`
@@ -703,21 +628,26 @@ export default function SupermarketChat() {
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
     setInput("")
+    
     try {
       const formData = new FormData()
       formData.append('audio', audio, 'audio.webm')
       formData.append('messages', JSON.stringify(updatedMessages))
+      
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         body: formData
       })
+      
       if (!response.ok) {
         throw new Error('Failed to get response')
       }
+      
       const reader = response.body?.getReader()
       if (!reader) {
         throw new Error('No response body')
       }
+      
       let result = ''
       while (true) {
         const { done, value } = await reader.read()
@@ -725,7 +655,7 @@ export default function SupermarketChat() {
         const chunk = new TextDecoder().decode(value)
         result += chunk
       }
-      // Parse the JSON response
+      
       try {
         let cleanResult = result.trim()
         if (cleanResult.startsWith('```json')) {
@@ -733,14 +663,15 @@ export default function SupermarketChat() {
         } else if (cleanResult.startsWith('```')) {
           cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
         }
+        
         const productsList = JSON.parse(cleanResult)
         if (Array.isArray(productsList)) {
-          setProducts(productsList)
+          setProducts(prevProducts => mergeProducts(prevProducts, productsList, userMessage.content))
         }
       } catch (parseError) {
         console.error('Failed to parse JSON response:', parseError)
-        console.log('Raw response:', result)
       }
+      
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content: result
@@ -748,199 +679,209 @@ export default function SupermarketChat() {
       setMessages(prev => [...prev, assistantMessage])
     } catch (error) {
       console.error('Failed to send audio:', error)
-      const errorMessage: ChatMessage = {
-        role: "assistant",
-        content: "Lo siento, hubo un error al procesar el audio."
-      }
-      setMessages(prev => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
     }
   }
 
+  const totalItems = products.reduce((sum, product) => sum + product.quantity, 0)
+
+  const exportList = () => {
+    const listText = products.map((product) => `${product.quantity}x ${product.name}`).join("\n")
+    const totalText = `\n\nTotal: ${totalItems} productos`
+
+    if (navigator.share) {
+      navigator.share({
+        title: "Mi Lista de Compras - Ratita",
+        text: listText + totalText,
+      })
+    } else {
+      navigator.clipboard.writeText(listText + totalText)
+      alert("Lista copiada al portapapeles")
+    }
+  }
+
+  // Topbar content con el nuevo diseño de Ratita
+  const topbarContent = (
+    <div className="flex items-center space-x-3">
+      <MouseLogo size="sm" />
+      <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+        Ratita
+      </span>
+      <div className="flex items-center space-x-3 ml-auto">
+        {totalItems > 0 && (
+          <>
+            <Badge variant="secondary" className="bg-white/10 text-white border-white/20">
+              <ShoppingBag className="h-3 w-3 mr-1" />
+              {totalItems}
+            </Badge>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={exportList}
+              className="text-white/70 hover:text-white hover:bg-white/10 p-2"
+            >
+              <Settings className="h-4 w-4" />
+            </Button>
+          </>
+        )}
+      </div>
+    </div>
+  )
+
   return (
-    <Layout>
-      {/* Product List */}
-      <div className="p-4 space-y-3 flex-1">
-        {products.length === 0 ? (
-          <div className="flex flex-col items-center justify-center text-center py-8 text-gray-400">
-            <img src="/logo.png" alt="Ratita logo" className="w-32 h-32 mb-4" />
-            <h1 className="text-3xl font-bold text-white mb-2">¡Hola! Lucas</h1>
-            <p className="text-lg text-gray-400 mb-8">Dime qué necesitas comprar y te ayudo a armar tu lista con más de 40 productos disponibles</p>
-            
-            {/* Suggestion Boxes */}
-            <div className="w-full max-w-md mx-auto space-y-4 mb-8">
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => handleSuggestionClick("Ingredientes para milanesas")}
-                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
-                >
-                  <div className="flex items-center mb-2">
-                    <span className="text-2xl mr-2">🥩</span>
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Ingredientes para milanesas</h3>
-                      <p className="text-gray-400 text-xs">Carne, pan rallado, huevos...</p>
-                    </div>
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => handleSuggestionClick("Desayuno completo")}
-                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
-                >
-                  <div className="flex items-center mb-2">
-                    <span className="text-2xl mr-2">☕</span>
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Desayuno completo</h3>
-                      <p className="text-gray-400 text-xs">Leche, pan, mermelada...</p>
-                    </div>
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => handleSuggestionClick("Frutas y verduras")}
-                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
-                >
-                  <div className="flex items-center mb-2">
-                    <span className="text-2xl mr-2">🥬</span>
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Frutas y verduras</h3>
-                      <p className="text-gray-400 text-xs">Productos frescos de temporada</p>
-                    </div>
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => handleSuggestionClick("Compra mensual")}
-                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
-                >
-                  <div className="flex items-center mb-2">
-                    <span className="text-2xl mr-2">🛒</span>
-                    <div>
-                      <h3 className="font-semibold text-white text-sm">Compra mensual</h3>
-                      <p className="text-gray-400 text-xs">Productos básicos del hogar</p>
-                    </div>
-                  </div>
-                </button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <Layout 
+        showTopbar={true} 
+        topbarContent={topbarContent}
+      >
+        {/* Voice Recording Modal */}
+        <VoiceRecordingModal
+          isOpen={showVoiceModal}
+          onClose={() => setShowVoiceModal(false)}
+          isRecording={isRecording}
+        />
+
+        {/* Success notification */}
+        {lastAddedProduct && (
+          <div className="fixed top-16 left-4 right-4 z-50 animate-in slide-in-from-top">
+            <Alert className="bg-gradient-to-r from-green-500/90 to-emerald-600/90 border-green-400/50 text-white backdrop-blur-sm">
+              <CheckCircle className="h-4 w-4" />
+              <AlertDescription>
+                ✨ <strong>{lastAddedProduct}</strong> agregado al carrito
+              </AlertDescription>
+            </Alert>
+          </div>
+        )}
+
+        {/* Main Content with new Ratita style */}
+        <div className="flex flex-col h-full">
+          {/* Chat Header */}
+          <div className="px-4 py-4 border-b border-white/10 bg-black/10">
+            <div className="flex items-center space-x-3">
+              <MouseLogo size="md" animated={isLoading} />
+              <div>
+                <h1 className="text-xl font-bold text-white flex items-center space-x-2">
+                  <span>¡Hola! {userName}</span>
+                  <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
+                </h1>
+                <p className="text-white/70 text-sm">Tu asistente de compras inteligente</p>
               </div>
             </div>
           </div>
-        ) : (
-          products.map((product: Product, index: number) => (
-            <Card key={index} className="shadow-sm bg-gray-800 border-gray-700">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3 flex-1">
-                    <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
-                      {getProductIcon(product.name)}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-100">{product.name}</h3>
-                    </div>
-                  </div>
+
+          {/* Product List */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {products.length === 0 ? (
+              <div className="text-center py-8">
+                <MouseLogo size="xl" className="mx-auto mb-6" animated />
+                <h3 className="text-2xl font-bold text-white mb-4">¿Qué vamos a comprar hoy?</h3>
+                <p className="text-white/70 mb-6">Elegí una opción rápida o háblame</p>
+                <ChatSuggestions onSuggestionClick={handleSuggestionClick} />
+              </div>
+            ) : (
+              <>
+                {products.map((product: Product, index: number) => (
+                  <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-sm">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3 flex-1">
+                          <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
+                            {getProductIcon(product.name)}
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-medium text-white">{product.name}</h3>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleQuantityChange(index, product.quantity - 1)}
+                            className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                          >
+                            <Minus className="h-3 w-3" />
+                          </Button>
+                          <span className="text-sm font-medium w-6 text-center text-white">{product.quantity}</span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleQuantityChange(index, product.quantity + 1)}
+                            className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteItem(index)}
+                            className="h-7 w-7 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/20"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                
+                {/* Action Buttons */}
+                <div className="flex flex-col space-y-3 pt-4">
+                  <Button 
+                    onClick={handleComparePrices}
+                    disabled={isComparing || products.length === 0}
+                    className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 shadow-lg"
+                  >
+                    <Rocket className="w-4 h-4 mr-2" />
+                    {isComparing ? "Comparando..." : "Descubrí el mejor precio"}
+                  </Button>
                   
-                  {/* Quantity Selector and Delete */}
-                  <div className="flex items-center">
-                    <Button
+                  <div className="flex justify-center space-x-3">
+                    <Button 
+                      onClick={handleSaveList}
                       variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0"
-                      onClick={() => handleQuantityChange(index, product.quantity - 1)}
+                      className="border-green-600 text-green-400 hover:bg-green-900/20"
                     >
-                      <Minus className="w-3 h-3" />
+                      <Save className="w-4 h-4 mr-2" />
+                      Guardar lista
                     </Button>
-                    <div className="w-12 text-center">
-                      <span className="font-medium text-gray-100">{product.quantity}</span>
-                    </div>
-                    <Button
+                    <Button 
+                      onClick={handleClearList}
                       variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0"
-                      onClick={() => handleQuantityChange(index, product.quantity + 1)}
+                      className="border-red-600 text-red-400 hover:bg-red-900/20"
                     >
-                      <Plus className="w-3 h-3" />
+                      <X className="w-4 h-4 mr-2" />
+                      Limpiar lista
                     </Button>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
-
-      {products.length > 0 && (
-        <div className="flex flex-col space-y-3">
-          <div className="flex justify-center">
-            <Button 
-              onClick={handleComparePrices}
-              disabled={isComparing || products.length === 0}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 flex items-center space-x-2 disabled:opacity-50"
-            >
-              <>
-                <Rocket className="w-4 h-4" />
-                <span>{isComparing ? "Comparando..." : "Descubrí el mejor precio"}</span>
               </>
-            </Button>
+            )}
           </div>
-          
-          <div className="flex justify-center space-x-3">
-            <Button 
-              onClick={handleSaveList}
-              variant="outline"
-              className="border-green-600 text-green-400 hover:bg-green-900/20 px-4 py-2 flex items-center space-x-2"
-            >
-              <Save className="w-4 h-4" />
-              <span>Guardar lista</span>
-            </Button>
-            <Button 
-              onClick={handleClearList}
-              variant="outline"
-              className="border-red-600 text-red-400 hover:bg-red-900/20 px-4 py-2 flex items-center space-x-2"
-            >
-              <X className="w-4 h-4" />
-              <span>Limpiar lista</span>
-            </Button>
-          </div>
-        </div>
-      )}
-      {/* Chat Interface */}
-      <div className="bg-gray-800 p-4 m-4 rounded-lg relative">
-        
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Escribe tu lista de compras..."
-            className="w-full text-base text-gray-100 placeholder-gray-400 border border-none focus:outline-none focus:ring-none focus:ring-transparent resize-none"
-            disabled={isLoading}
-          />
-          {/* Image Preview */}
-          {imagePreview && (
-            <div className="mb-4 relative">
-              <div className="relative inline-block">
-                <img 
-                  src={imagePreview} 
-                  alt="Preview" 
-                  className="max-w-full h-[58px] w-[58px] object-cover rounded-lg"
+
+          {/* Chat Input Area */}
+          <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4">
+            <form onSubmit={handleSubmit} className="flex items-center space-x-3">
+              <div className="flex-1 relative">
+                <Input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Dime qué necesitas comprar..."
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 pr-12 h-12 rounded-xl backdrop-blur-sm focus:bg-white/20 focus:border-violet-400"
+                  disabled={isLoading}
                 />
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-1 right-1 text-white bg-white p-0 h-5 w-5 rounded-full"
-                  onClick={clearImage}
+                  type="submit"
+                  disabled={isLoading || (!input.trim() && !selectedImage)}
+                  size="sm"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 h-8 w-8 p-0 rounded-lg"
                 >
-                  <X className="w-4 h-4 text-black" />
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
-              {/* <p className="text-sm text-gray-400 mt-2">
-                Imagen lista para procesar. Toca enviar para procesar la lista de compras.
-              </p> */}
-            </div>
-          )}
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              {/* File Upload */}
+              {/* Camera Button */}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -948,126 +889,97 @@ export default function SupermarketChat() {
                 onChange={handleFileSelect}
                 className="hidden"
               />
-                              <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-white"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <Camera className="w-9 h-9 text-white" />
-                </Button>
-
-              {/* Camera Capture */}
-              <input
-                ref={cameraInputRef}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                onChange={handleCameraCapture}
-                className="hidden"
-              />
-            </div>
-
-            <div className="flex items-center">
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="ml-2 text-white"
-                onClick={isRecording ? stopRecording : startRecording}
-                disabled={isLoading}
+                onClick={() => fileInputRef.current?.click()}
+                className="text-white/70 hover:text-white hover:bg-white/10 h-12 w-12"
               >
-                <Mic className={`w-9 h-9 ${isRecording ? 'text-red-500 animate-pulse' : ''}`} />
+                <Camera className="h-5 w-5" />
               </Button>
-                <Button
-                  type="submit"
-                  variant="default"
-                  size="icon"
-                  className={`ml-2 rounded-sm ${
-                    (!input.trim() && !selectedImage) || isLoading
-                      ? 'bg-gray-700'
-                      : 'bg-white'
-                  }`}
-                  disabled={(!input.trim() && !selectedImage) || isLoading}
-                >
-                  <ArrowUp
-                    className={`w-9 h-9 ${
-                      (!input.trim() && !selectedImage) || isLoading
-                        ? 'text-gray-400'
-                        : 'text-black'
-                    }`}
-                  />
-              </Button>
-            </div>
-          </div>
 
-          {/* Audio Chip */}
-          {audioUrl && (
-            <div className="mb-4 flex items-center space-x-2">
-              <div className="flex items-center bg-gray-700 rounded-full px-3 py-1">
-                <Mic className="w-4 h-4 mr-1 text-gray-300" />
-                <audio src={audioUrl} controls className="h-6 mr-2" />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="ml-1 text-gray-400 hover:text-white"
-                  onClick={() => { setAudioUrl(null); setAudioBlob(null); }}
-                >
-                  <X className="w-4 h-4" />
-                </Button>
+              {/* Voice Button */}
+              <VoiceButton
+                onStartRecording={startRecording}
+                onStopRecording={stopRecording}
+                isRecording={isRecording}
+                disabled={isLoading}
+                size="md"
+              />
+            </form>
+
+            {/* Image Preview */}
+            {imagePreview && (
+              <div className="mt-4 relative">
+                <div className="relative inline-block">
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="max-w-full h-[100px] w-[100px] object-cover rounded-lg"
+                  />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute -top-2 -right-2 text-white bg-red-500 hover:bg-red-600 p-0 h-6 w-6 rounded-full"
+                    onClick={clearImage}
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
-            </div>
-          )}
-        </form>
-      </div>
-      
-      {/* Modals */}
-      <ConfirmModal
-        isOpen={showClearConfirm}
-        onClose={() => setShowClearConfirm(false)}
-        onConfirm={confirmClearList}
-        title="Limpiar Lista"
-        message="¿Estás seguro de que quieres limpiar toda la lista? Esta acción no se puede deshacer."
-        confirmText="Limpiar"
-        confirmVariant="destructive"
-      />
-      
-      <InputModal
-        isOpen={showSaveInput}
-        onClose={() => setShowSaveInput(false)}
-        onConfirm={confirmSaveList}
-        title="Guardar Lista"
-        message="¿Cómo quieres llamar a esta lista?"
-        placeholder="Mi lista de compras"
-        defaultValue="Mi lista de compras"
-        confirmText="Guardar"
-      />
-      
-      <AlertModal
-        isOpen={showAlert}
-        onClose={() => setShowAlert(false)}
-        title={alertConfig.title}
-        message={alertConfig.message}
-        type={alertConfig.type}
-      />
-      
-      {/* Full Screen Loading Overlay */}
-      {(isLoading || isComparing) && (
-        <div className="fixed inset-0 bg-gray-900 opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="flex flex-col items-center opacity-100">
-            <GradientDiffusionScanner 
-              width={160} 
-              height={100} 
-              duration={2}
-              primaryColor="#4CAF50"
-              scanColor="#2196F3"
-            />
-            <p className="text-white text-lg mt-4 font-medium">
-              {isComparing ? "Comparando precios..." : "Procesando tu solicitud..."}
-            </p>
+            )}
           </div>
         </div>
-      )}
-    </Layout>
+        
+        {/* Loading Overlay */}
+        {(isLoading || isComparing) && (
+          <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="flex flex-col items-center">
+              <GradientDiffusionScanner 
+                width={160} 
+                height={100} 
+                duration={2}
+                primaryColor="#4CAF50"
+                scanColor="#2196F3"
+              />
+              <p className="text-white text-lg mt-4 font-medium">
+                {isComparing ? "Comparando precios..." : "Procesando tu solicitud..."}
+              </p>
+            </div>
+          </div>
+        )}
+        
+        {/* Modals */}
+        <ConfirmModal
+          isOpen={showClearConfirm}
+          onClose={() => setShowClearConfirm(false)}
+          onConfirm={confirmClearList}
+          title="Limpiar Lista"
+          message="¿Estás seguro de que quieres limpiar toda la lista? Esta acción no se puede deshacer."
+          confirmText="Limpiar"
+          confirmVariant="destructive"
+        />
+        
+        <InputModal
+          isOpen={showSaveInput}
+          onClose={() => setShowSaveInput(false)}
+          onConfirm={confirmSaveList}
+          title="Guardar Lista"
+          message="¿Cómo quieres llamar a esta lista?"
+          placeholder="Mi lista de compras"
+          defaultValue="Mi lista de compras"
+          confirmText="Guardar"
+        />
+        
+        <AlertModal
+          isOpen={showAlert}
+          onClose={() => setShowAlert(false)}
+          title={alertConfig.title}
+          message={alertConfig.message}
+          type={alertConfig.type}
+        />
+      </Layout>
+    </div>
   )
 }

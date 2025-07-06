@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { MouseLogo } from "@/components/ui/ratita-components"
 import { 
   Home, 
   ShoppingCart, 
@@ -101,40 +102,42 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Improved Overlay with backdrop blur */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-all duration-300"
         onClick={onClose}
       />
       
-      {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-80 bg-gray-900 border-r border-gray-700 z-50 transform transition-transform duration-300 ease-in-out">
+      {/* Sidebar with Ratita styling */}
+      <div className="fixed left-0 top-0 h-full w-80 bg-black/30 backdrop-blur-xl border-r border-white/20 z-50 transform transition-transform duration-300 ease-in-out">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-700">
+          <div className="flex items-center justify-between p-4 border-b border-white/20">
             <div className="flex items-center space-x-3">
-              <img src="/logo.png" alt="Ratita" className="w-8 h-8" />
-              <h2 className="text-xl font-bold text-white">Ratita</h2>
+              <MouseLogo size="sm" />
+              <h2 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Ratita
+              </h2>
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="text-gray-400 hover:text-white"
+              className="text-white/70 hover:text-white hover:bg-white/10"
             >
               <X className="w-5 h-5" />
             </Button>
           </div>
 
           {/* User Info */}
-          <div className="p-4 border-b border-gray-700">
+          <div className="p-4 border-b border-white/20">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-violet-600 to-purple-700 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-white" />
               </div>
               <div>
                 <p className="text-white font-medium">Lucas</p>
-                <p className="text-gray-400 text-sm">Ahorrado $62,520</p>
+                <p className="text-white/60 text-sm">Ahorrado $62,520</p>
               </div>
             </div>
           </div>
@@ -143,17 +146,17 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="flex-1 overflow-y-auto">
             <nav className="p-4">
               <div className="space-y-2">
-                <h3 className="text-xs uppercase text-gray-400 font-semibold tracking-wider mb-3">
+                <h3 className="text-xs uppercase text-white/60 font-semibold tracking-wider mb-3">
                   Navegación
                 </h3>
                 {menuItems.map((item) => (
                   <button
                     key={item.path}
                     onClick={() => handleItemClick(item.path)}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                       pathname === item.path
-                        ? 'bg-blue-600 text-white'
-                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                        ? 'bg-gradient-to-r from-violet-600 to-purple-700 text-white shadow-lg shadow-violet-500/30'
+                        : 'text-white/80 hover:bg-white/10 hover:text-white'
                     }`}
                   >
                     <div className="flex-shrink-0">
@@ -162,7 +165,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                     <div className="flex-1 text-left">
                       <p className="font-medium">{item.label}</p>
                       {item.description && (
-                        <p className="text-xs text-gray-400">{item.description}</p>
+                        <p className={`text-xs ${pathname === item.path ? 'text-white/80' : 'text-white/50'}`}>
+                          {item.description}
+                        </p>
                       )}
                     </div>
                   </button>
@@ -170,17 +175,17 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               </div>
 
               <div className="mt-8 space-y-2">
-                <h3 className="text-xs uppercase text-gray-400 font-semibold tracking-wider mb-3">
+                <h3 className="text-xs uppercase text-white/60 font-semibold tracking-wider mb-3">
                   Cuenta
                 </h3>
                 {userItems.map((item) => (
                   <button
                     key={item.path}
                     onClick={() => handleItemClick(item.path)}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                       pathname === item.path
-                        ? 'bg-blue-600 text-white'
-                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                        ? 'bg-gradient-to-r from-violet-600 to-purple-700 text-white shadow-lg shadow-violet-500/30'
+                        : 'text-white/80 hover:bg-white/10 hover:text-white'
                     }`}
                   >
                     <div className="flex-shrink-0">
@@ -189,7 +194,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                     <div className="flex-1 text-left">
                       <p className="font-medium">{item.label}</p>
                       {item.description && (
-                        <p className="text-xs text-gray-400">{item.description}</p>
+                        <p className={`text-xs ${pathname === item.path ? 'text-white/80' : 'text-white/50'}`}>
+                          {item.description}
+                        </p>
                       )}
                     </div>
                   </button>
@@ -199,8 +206,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
 
           {/* Footer */}
-          <div className="p-4 border-t border-gray-700">
-            <p className="text-xs text-gray-400 text-center">
+          <div className="p-4 border-t border-white/20">
+            <p className="text-xs text-white/50 text-center">
               © 2024 Ratita. Todos los derechos reservados.
             </p>
           </div>
