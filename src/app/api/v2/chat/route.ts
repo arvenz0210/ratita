@@ -94,8 +94,6 @@ export async function POST(req: Request) {
           messages: updatedMessages,
         })
 
-        console.log(result)
-
         return result.toTextStreamResponse()
       } else if (imageFile) {
         // Convert file to base64
@@ -129,11 +127,22 @@ export async function POST(req: Request) {
     } else {
       // Handle regular text messages
       const { messages } = await req.json()
+
       const result = streamText({
         model: openai("gpt-4o"),
         system: SYSTEM_PROMPT,
         messages,
       })
+
+      const fullStream = result.fullStream
+      const reader = fullStream.getReader()
+      
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        console.log('Stream data:', value) // Incluye metadatos
+      }
+
       return result.toTextStreamResponse()
     }
   } catch (err) {

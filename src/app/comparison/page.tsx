@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Layout } from "@/components/ui/layout"
 import { ArrowLeft, Store, ListChecks } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -141,26 +142,20 @@ export default function ComparisonPage() {
   const discount = bestStoreData ? 25578 : null // Mocked discount
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      {/* Header */}
-      <div className="bg-gray-800 shadow-sm border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => router.back()}
-                className="p-2 text-gray-300 hover:text-white"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-6">
+    <Layout
+      topbarContent={
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={() => router.back()}
+          className="p-2 text-gray-300 hover:text-white"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </Button>
+      }
+    >
+      <div className="bg-gray-900 min-h-full">
+        <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Best Option Card */}
         {bestStore && bestStoreData && (
           <div className="mb-8">
@@ -340,7 +335,8 @@ export default function ComparisonPage() {
             </div>
           </CardContent>
         </Card> */}
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 } 

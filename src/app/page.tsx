@@ -3,8 +3,12 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X } from "lucide-react"
+import { Layout } from "@/components/ui/layout"
+import { ConfirmModal, InputModal, AlertModal } from "@/components/ui/modal"
+import { GradientDiffusionScanner } from "@/components/ui/gradient-diffusion-scanner"
+import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X, Save } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { log } from "console"
 
 interface Product {
   name: string
@@ -34,6 +38,201 @@ export default function SupermarketChat() {
   const [isRecording, setIsRecording] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
+
+  // Modal states
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
+  const [showSaveInput, setShowSaveInput] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertConfig, setAlertConfig] = useState<{ title: string, message: string, type: "success" | "error" | "info" }>({ title: "", message: "", type: "info" })
+
+  // Load persisted data when component mounts
+  useEffect(() => {
+    // Check if we should clear temporary data (when coming from completed order)
+    const shouldClearData = sessionStorage.getItem('clearTempData')
+    if (shouldClearData === 'true') {
+      sessionStorage.removeItem('shipmentData')
+      sessionStorage.removeItem('comparisonData')
+      sessionStorage.removeItem('selectedStore')
+      sessionStorage.removeItem('clearTempData')
+      sessionStorage.removeItem('currentProducts')
+      sessionStorage.removeItem('currentMessages')
+    } else {
+      // Load existing products and messages if they exist
+      try {
+        const savedProducts = sessionStorage.getItem('currentProducts')
+        const savedMessages = sessionStorage.getItem('currentMessages')
+        
+        if (savedProducts) {
+          const parsedProducts = JSON.parse(savedProducts)
+          if (Array.isArray(parsedProducts)) {
+            setProducts(parsedProducts)
+          }
+        }
+        
+        if (savedMessages) {
+          const parsedMessages = JSON.parse(savedMessages)
+          if (Array.isArray(parsedMessages)) {
+            setMessages(parsedMessages)
+          }
+        }
+      } catch (error) {
+        console.error('Error loading persisted data:', error)
+        // Clear corrupted data
+        sessionStorage.removeItem('currentProducts')
+        sessionStorage.removeItem('currentMessages')
+      }
+    }
+  }, [])
+
+  // Save products to sessionStorage whenever they change
+  useEffect(() => {
+    if (products.length > 0) {
+      sessionStorage.setItem('currentProducts', JSON.stringify(products))
+    } else {
+      sessionStorage.removeItem('currentProducts')
+    }
+  }, [products])
+
+  // Save messages to sessionStorage whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      sessionStorage.setItem('currentMessages', JSON.stringify(messages))
+    } else {
+      sessionStorage.removeItem('currentMessages')
+    }
+  }, [messages])
+
+  const handleClearList = () => {
+    setShowClearConfirm(true)
+  }
+
+  const confirmClearList = () => {
+    setProducts([])
+    setMessages([])
+    sessionStorage.removeItem('currentProducts')
+    sessionStorage.removeItem('currentMessages')
+  }
+
+  const handleSaveList = () => {
+    if (products.length === 0) return
+    setShowSaveInput(true)
+  }
+
+  const confirmSaveList = (listName: string) => {
+    try {
+      const savedList = {
+        id: `LIST-${Date.now()}`,
+        name: listName,
+        products: products,
+        createdAt: new Date().toISOString(),
+        itemCount: products.length,
+        totalItems: products.reduce((sum, product) => sum + product.quantity, 0)
+      }
+
+      // Get existing saved lists or initialize empty array
+      const existingListsJson = sessionStorage.getItem('savedLists')
+      const existingLists = existingListsJson ? JSON.parse(existingListsJson) : []
+
+      // Add new list to the beginning of the array
+      const updatedLists = [savedList, ...existingLists]
+
+      // Save updated lists to sessionStorage
+      sessionStorage.setItem('savedLists', JSON.stringify(updatedLists))
+
+      setAlertConfig({
+        title: "Lista Guardada",
+        message: "¡Lista guardada exitosamente!",
+        type: "success"
+      })
+      setShowAlert(true)
+    } catch (error) {
+      console.error('Error saving list:', error)
+      setAlertConfig({
+        title: "Error",
+        message: "Error al guardar la lista. Intenta de nuevo.",
+        type: "error"
+      })
+      setShowAlert(true)
+    }
+  }
+
+  const handleSuggestionClick = async (suggestion: string) => {
+    if (isLoading) return
+
+    const userMessage: ChatMessage = {
+      role: "user",
+      content: suggestion
+    }
+
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('/api/v2/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ messages: updatedMessages })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get response')
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No response body')
+      }
+
+      let result = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        
+        const chunk = new TextDecoder().decode(value)
+        result += chunk
+      }
+
+      // Parse the JSON response
+      try {
+        let cleanResult = result.trim()
+        
+        if (cleanResult.startsWith('```json')) {
+          cleanResult = cleanResult.replace(/^```json\s*/, '').replace(/\s*```$/, '')
+        } else if (cleanResult.startsWith('```')) {
+          cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
+        }
+        
+        const productsList = JSON.parse(cleanResult)
+        if (Array.isArray(productsList)) {
+          setProducts(productsList)
+        }
+      } catch (parseError) {
+        console.error('Failed to parse JSON response:', parseError)
+        console.log('Raw response:', result)
+      }
+
+      const assistantMessage: ChatMessage = {
+        role: "assistant",
+        content: result
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Failed to send suggestion:', error)
+      const errorMessage: ChatMessage = {
+        role: "assistant",
+        content: "Lo siento, hubo un error al procesar tu sugerencia."
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -90,6 +289,8 @@ export default function SupermarketChat() {
           } else if (cleanResult.startsWith('```')) {
             cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
           }
+
+          console.log("cleanResult", cleanResult)
           
           const productsList = JSON.parse(cleanResult)
           if (Array.isArray(productsList)) {
@@ -130,6 +331,7 @@ export default function SupermarketChat() {
       setIsLoading(true)
 
       try {
+        console.log("updatedMessages", updatedMessages)
         const response = await fetch('/api/v2/chat', {
           method: 'POST',
           headers: {
@@ -558,27 +760,71 @@ export default function SupermarketChat() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      {/* Topbar Navigation */}
-      <div className="shadow-sm border-b border-gray-700 px-4 py-3">
-          <div className="flex items-center space-x-3 justify-between">
-            <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-white">
-              <Menu className="w-5 h-5" />
-            </Button>
-              {/* <p className="text-md text-green-400 ml-auto">Ahorrado $62.520</p> */}
-            {/* <div className="flex items-center space-x-2">   
-              <TrendingUp className="w-5 h-5 text-green-400" />
-            </div> */}
-          </div>
-      </div>
-
+    <Layout>
       {/* Product List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className="p-4 space-y-3 flex-1">
         {products.length === 0 ? (
-          <div className="flex flex-col items-center justify-center text-center py-16 text-gray-400">
-            <img src="/logo.png" alt="Ratita logo" className="w-40 h-40 mb-4" />
-            <h1 className="text-4xl font-bold text-white mb-2">¡Hola! Lucas</h1>
-            <p className="text-xl text-gray-400">Armemos juntos tu lista de compras</p>
+          <div className="flex flex-col items-center justify-center text-center py-8 text-gray-400">
+            <img src="/logo.png" alt="Ratita logo" className="w-32 h-32 mb-4" />
+            <h1 className="text-3xl font-bold text-white mb-2">¡Hola! Lucas</h1>
+            <p className="text-lg text-gray-400 mb-8">Dime qué necesitas comprar y te ayudo a armar tu lista con más de 40 productos disponibles</p>
+            
+            {/* Suggestion Boxes */}
+            <div className="w-full max-w-md mx-auto space-y-4 mb-8">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleSuggestionClick("Ingredientes para milanesas")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🥩</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Ingredientes para milanesas</h3>
+                      <p className="text-gray-400 text-xs">Carne, pan rallado, huevos...</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Desayuno completo")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">☕</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Desayuno completo</h3>
+                      <p className="text-gray-400 text-xs">Leche, pan, mermelada...</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Frutas y verduras")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🥬</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Frutas y verduras</h3>
+                      <p className="text-gray-400 text-xs">Productos frescos de temporada</p>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => handleSuggestionClick("Compra mensual")}
+                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-left hover:bg-gray-700 transition-colors"
+                >
+                  <div className="flex items-center mb-2">
+                    <span className="text-2xl mr-2">🛒</span>
+                    <div>
+                      <h3 className="font-semibold text-white text-sm">Compra mensual</h3>
+                      <p className="text-gray-400 text-xs">Productos básicos del hogar</p>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           products.map((product: Product, index: number) => (
@@ -624,28 +870,43 @@ export default function SupermarketChat() {
       </div>
 
       {products.length > 0 && (
-        <div className="flex justify-center">
-          <Button 
-            onClick={handleComparePrices}
-            disabled={isComparing || products.length === 0}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 flex items-center space-x-2 disabled:opacity-50"
-          >
-            {isComparing ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Comparando...</span>
-              </>
-            ) : (
+        <div className="flex flex-col space-y-3">
+          <div className="flex justify-center">
+            <Button 
+              onClick={handleComparePrices}
+              disabled={isComparing || products.length === 0}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 flex items-center space-x-2 disabled:opacity-50"
+            >
               <>
                 <Rocket className="w-4 h-4" />
-                <span>Descubrí el mejor precio</span>
+                <span>{isComparing ? "Comparando..." : "Descubrí el mejor precio"}</span>
               </>
-            )}
-          </Button>
+            </Button>
+          </div>
+          
+          <div className="flex justify-center space-x-3">
+            <Button 
+              onClick={handleSaveList}
+              variant="outline"
+              className="border-green-600 text-green-400 hover:bg-green-900/20 px-4 py-2 flex items-center space-x-2"
+            >
+              <Save className="w-4 h-4" />
+              <span>Guardar lista</span>
+            </Button>
+            <Button 
+              onClick={handleClearList}
+              variant="outline"
+              className="border-red-600 text-red-400 hover:bg-red-900/20 px-4 py-2 flex items-center space-x-2"
+            >
+              <X className="w-4 h-4" />
+              <span>Limpiar lista</span>
+            </Button>
+          </div>
         </div>
       )}
       {/* Chat Interface */}
-      <div className="bg-gray-800 p-4 m-4 rounded-lg">
+      <div className="bg-gray-800 p-4 m-4 rounded-lg relative">
+        
         <form onSubmit={handleSubmit} className="flex flex-col">
           <textarea
             value={input}
@@ -760,6 +1021,54 @@ export default function SupermarketChat() {
           )}
         </form>
       </div>
-    </div>
+      
+      {/* Modals */}
+      <ConfirmModal
+        isOpen={showClearConfirm}
+        onClose={() => setShowClearConfirm(false)}
+        onConfirm={confirmClearList}
+        title="Limpiar Lista"
+        message="¿Estás seguro de que quieres limpiar toda la lista? Esta acción no se puede deshacer."
+        confirmText="Limpiar"
+        confirmVariant="destructive"
+      />
+      
+      <InputModal
+        isOpen={showSaveInput}
+        onClose={() => setShowSaveInput(false)}
+        onConfirm={confirmSaveList}
+        title="Guardar Lista"
+        message="¿Cómo quieres llamar a esta lista?"
+        placeholder="Mi lista de compras"
+        defaultValue="Mi lista de compras"
+        confirmText="Guardar"
+      />
+      
+      <AlertModal
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title={alertConfig.title}
+        message={alertConfig.message}
+        type={alertConfig.type}
+      />
+      
+      {/* Full Screen Loading Overlay */}
+      {(isLoading || isComparing) && (
+        <div className="fixed inset-0 bg-gray-900 opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="flex flex-col items-center opacity-100">
+            <GradientDiffusionScanner 
+              width={160} 
+              height={100} 
+              duration={2}
+              primaryColor="#4CAF50"
+              scanColor="#2196F3"
+            />
+            <p className="text-white text-lg mt-4 font-medium">
+              {isComparing ? "Comparando precios..." : "Procesando tu solicitud..."}
+            </p>
+          </div>
+        </div>
+      )}
+    </Layout>
   )
 }
