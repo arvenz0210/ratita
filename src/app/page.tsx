@@ -6,9 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Layout } from "@/components/ui/layout"
 import { ConfirmModal, InputModal, AlertModal } from "@/components/ui/modal"
 import { GradientDiffusionScanner } from "@/components/ui/gradient-diffusion-scanner"
-import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X, Save } from "lucide-react"
+import { Plus, Mic,  Minus, ArrowUp, Camera, Rocket, X, Save } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { log } from "console"
 
 interface Product {
   name: string

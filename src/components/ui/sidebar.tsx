@@ -6,7 +6,6 @@ import {
   Home, 
   ShoppingCart, 
   X, 
-  Menu,
   User,
   Settings,
   HelpCircle,
