@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Layout } from "@/components/ui/layout"
 import { ArrowLeft, ShoppingCart, Check, Package } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -84,46 +85,39 @@ export default function ShipmentConfirmationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      {/* Loading Modal */}
-      {isProcessing && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-lg p-8 max-w-md mx-4 text-center border border-gray-700">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
-            <h3 className="text-xl font-semibold text-gray-100 mb-2">
-              Estamos procesando tu pedido
-            </h3>
-            <p className="text-gray-400">
-              Por favor espera mientras confirmamos tu solicitud...
-            </p>
-            <div className="mt-4 flex items-center justify-center space-x-2 text-green-600">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600"></div>
-              <span className="text-sm">Procesando...</span>
+    <Layout
+      topbarContent={
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={() => router.back()}
+          className="p-2 text-gray-300 hover:text-white"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </Button>
+      }
+    >
+      <div className="bg-gray-900 min-h-full">
+        {/* Loading Modal */}
+        {isProcessing && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-gray-800 rounded-lg p-8 max-w-md mx-4 text-center border border-gray-700">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
+              <h3 className="text-xl font-semibold text-gray-100 mb-2">
+                Estamos procesando tu pedido
+              </h3>
+              <p className="text-gray-400">
+                Por favor espera mientras confirmamos tu solicitud...
+              </p>
+              <div className="mt-4 flex items-center justify-center space-x-2 text-green-600">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600"></div>
+                <span className="text-sm">Procesando...</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Header */}
-      <div className="bg-gray-800 shadow-sm border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => router.back()}
-                className="p-2 text-gray-300 hover:text-white"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-              {/* <h1 className="text-xl font-semibold text-gray-900">Confirmación de Pedido</h1> */}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto px-4 py-6">
                  {/* Order Summary - Receipt Style */}
          <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
            <div className="flex items-center space-x-2 mb-4">
@@ -186,7 +180,8 @@ export default function ShipmentConfirmationPage() {
             {isProcessing ? 'Procesando...' : 'Confirmar Pedido'}
           </Button>
         </div>
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 } 

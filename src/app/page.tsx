@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Layout } from "@/components/ui/layout"
 import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { log } from "console"
 
 interface Product {
   name: string
@@ -34,6 +36,8 @@ export default function SupermarketChat() {
   const [isRecording, setIsRecording] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -90,6 +94,8 @@ export default function SupermarketChat() {
           } else if (cleanResult.startsWith('```')) {
             cleanResult = cleanResult.replace(/^```\s*/, '').replace(/\s*```$/, '')
           }
+
+          console.log("cleanResult", cleanResult)
           
           const productsList = JSON.parse(cleanResult)
           if (Array.isArray(productsList)) {
@@ -130,6 +136,7 @@ export default function SupermarketChat() {
       setIsLoading(true)
 
       try {
+        console.log("updatedMessages", updatedMessages)
         const response = await fetch('/api/v2/chat', {
           method: 'POST',
           headers: {
@@ -558,22 +565,9 @@ export default function SupermarketChat() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      {/* Topbar Navigation */}
-      <div className="shadow-sm border-b border-gray-700 px-4 py-3">
-          <div className="flex items-center space-x-3 justify-between">
-            <Button variant="ghost" size="sm" className="p-2 text-gray-300 hover:text-white">
-              <Menu className="w-5 h-5" />
-            </Button>
-              {/* <p className="text-md text-green-400 ml-auto">Ahorrado $62.520</p> */}
-            {/* <div className="flex items-center space-x-2">   
-              <TrendingUp className="w-5 h-5 text-green-400" />
-            </div> */}
-          </div>
-      </div>
-
+    <Layout>
       {/* Product List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className="p-4 space-y-3 flex-1">
         {products.length === 0 ? (
           <div className="flex flex-col items-center justify-center text-center py-16 text-gray-400">
             <img src="/logo.png" alt="Ratita logo" className="w-40 h-40 mb-4" />
@@ -760,6 +754,6 @@ export default function SupermarketChat() {
           )}
         </form>
       </div>
-    </div>
+    </Layout>
   )
 }

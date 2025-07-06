@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Layout } from "@/components/ui/layout"
 import { CheckCircle, Truck, Home, Package } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -48,8 +49,9 @@ export default function ShipmentCongratsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <div className="max-w-2xl mx-auto px-4 py-12">
+    <Layout>
+      <div className="bg-gray-900 min-h-full">
+        <div className="max-w-2xl mx-auto px-4 py-12">
         {/* Success Card */}
         <Card className="border-green-700 bg-green-900/20">
           <CardContent className="pt-8">
@@ -150,7 +152,8 @@ export default function ShipmentCongratsPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 } 

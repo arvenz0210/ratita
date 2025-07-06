@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Layout } from "@/components/ui/layout"
 import { CheckSquare, Square } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -55,8 +56,9 @@ export default function ShoppingListPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 px-4 py-8">
-      <div className="max-w-xl mx-auto">
+    <Layout>
+      <div className="bg-gray-900 min-h-full px-4 py-8">
+        <div className="max-w-xl mx-auto">
         <div className="mb-6 text-center">
           <h1 className="text-3xl font-bold text-green-200 mb-2">Lista de compras</h1>
           <p className="text-lg text-gray-300">Supermercado: <span className="font-semibold text-green-400">{shipment.store}</span></p>
@@ -88,7 +90,8 @@ export default function ShoppingListPage() {
             </ul>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 } 
