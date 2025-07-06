@@ -73,16 +73,29 @@ export default function ShoppingListPage() {
     if (!selectedList) return
     
     try {
-      // Save the products to current session
+      // Save the products to current session - these will be loaded by the main page
       sessionStorage.setItem('currentProducts', JSON.stringify(selectedList.products))
       
-      // Clear current messages to start fresh
-      sessionStorage.removeItem('currentMessages')
+      // Create initial chat messages to provide context to the AI
+      const initialMessages = [
+        {
+          role: "user",
+          content: `Cargué mi lista guardada "${selectedList.name}" con estos productos: ${selectedList.products.map(p => `${p.quantity}x ${p.name}`).join(', ')}`
+        },
+        {
+          role: "assistant", 
+          content: `¡Perfecto! He cargado tu lista "${selectedList.name}" con ${selectedList.totalItems} productos. Ahora puedes agregar más productos, modificar cantidades o pedirme que compare precios. ¿Qué necesitas hacer?`
+        }
+      ]
       
-      // Mark that temp data should be cleared when returning to main page
+      // Save the initial messages to provide context to the AI
+      sessionStorage.setItem('currentMessages', JSON.stringify(initialMessages))
+      
+      // Mark that other temporary data should be cleared when returning to main page
+      // Note: currentProducts and currentMessages are preserved by the main page logic
       sessionStorage.setItem('clearTempData', 'true')
       
-      // Navigate to main page
+      // Navigate to main page which will load the products and messages
       router.push('/')
     } catch (error) {
       console.error('Error loading list:', error)

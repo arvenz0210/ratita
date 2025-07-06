@@ -73,16 +73,7 @@ export default function SupermarketChat() {
       sessionStorage.removeItem('loadedFromList')
     }
     
-    const shouldClearData = sessionStorage.getItem('clearTempData')
-    if (shouldClearData === 'true') {
-      sessionStorage.removeItem('shipmentData')
-      sessionStorage.removeItem('comparisonData')
-      sessionStorage.removeItem('selectedStore')
-      sessionStorage.removeItem('clearTempData')
-      sessionStorage.removeItem('currentProducts')
-      sessionStorage.removeItem('currentMessages')
-    }
-    
+    // First, try to load current products and messages
     try {
       const savedProducts = sessionStorage.getItem('currentProducts')
       const savedMessages = sessionStorage.getItem('currentMessages')
@@ -105,6 +96,16 @@ export default function SupermarketChat() {
       sessionStorage.removeItem('currentProducts')
       sessionStorage.removeItem('currentMessages')
     }
+    
+    // Then, clear temporary data if needed (but preserve currentProducts and currentMessages)
+    const shouldClearData = sessionStorage.getItem('clearTempData')
+    if (shouldClearData === 'true') {
+      sessionStorage.removeItem('shipmentData')
+      sessionStorage.removeItem('comparisonData')
+      sessionStorage.removeItem('selectedStore')
+      sessionStorage.removeItem('clearTempData')
+      // Don't remove currentProducts or currentMessages as they might have been loaded from a saved list
+    }
   }, [])
 
   // Save products to sessionStorage whenever they change
@@ -124,6 +125,18 @@ export default function SupermarketChat() {
       sessionStorage.removeItem('currentMessages')
     }
   }, [messages])
+
+  // Helper function to add product context to messages
+  const addProductContext = (userMessage: ChatMessage): ChatMessage => {
+    if (products.length > 0 && !userMessage.content.includes('[Imagen adjunta]') && !userMessage.content.includes('[Audio de lista de compras]')) {
+      const currentProductsContext = `Estado actual de mi lista: ${products.map(p => `${p.quantity}x ${p.name}`).join(', ')}. ${userMessage.content}`
+      return {
+        ...userMessage,
+        content: currentProductsContext
+      }
+    }
+    return userMessage
+  }
 
   // Funciones existentes mantenidas
   const handleClearList = () => {
@@ -183,18 +196,23 @@ export default function SupermarketChat() {
       content: suggestion
     }
 
+    // Add context about current products for API call
+    const contextualUserMessage = addProductContext(userMessage)
+
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
     setInput(suggestion)
     setIsLoading(true)
 
     try {
+      // Send contextual message to API
+      const apiMessages = [...messages, contextualUserMessage]
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: updatedMessages })
+        body: JSON.stringify({ messages: apiMessages })
       })
 
       if (!response.ok) {
@@ -284,12 +302,16 @@ export default function SupermarketChat() {
     e.preventDefault()
     if ((!input.trim() && !selectedImage) || isLoading) return
 
+    // Create the user message
     const userMessage: ChatMessage = {
       role: "user",
       content: selectedImage ? `[Imagen adjunta] ${input || 'Procesá esta imagen para crear una lista de compras'}` : input
     }
 
-    const updatedMessages = [...messages, userMessage]
+    // Add context about current products for API call
+    const contextualUserMessage = addProductContext(userMessage)
+
+    const updatedMessages = [...messages, userMessage] // Store the original user message for display
     setMessages(updatedMessages)
     setInput("")
     setIsLoading(true)
@@ -299,19 +321,23 @@ export default function SupermarketChat() {
       if (selectedImage) {
         const formData = new FormData()
         formData.append('image', selectedImage)
-        formData.append('messages', JSON.stringify(updatedMessages))
+        // Send contextual message to API but store original for display
+        const apiMessages = [...messages, contextualUserMessage]
+        formData.append('messages', JSON.stringify(apiMessages))
         
         response = await fetch('/api/v2/chat', {
           method: 'POST',
           body: formData
         })
       } else {
+        // Send contextual message to API but store original for display
+        const apiMessages = [...messages, contextualUserMessage]
         response = await fetch('/api/v2/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ messages: updatedMessages })
+          body: JSON.stringify({ messages: apiMessages })
         })
       }
 
@@ -373,8 +399,6 @@ export default function SupermarketChat() {
     }
   }
 
-
-
   const clearImage = () => {
     setSelectedImage(null)
     setImagePreview(null)
@@ -401,16 +425,21 @@ export default function SupermarketChat() {
       content: `${action} ${productName} a ${newQuantity} unidades`
     }
 
+    // Add context about current products for API call
+    const contextualUserMessage = addProductContext(userMessage)
+
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
 
     try {
+      // Send contextual message to API
+      const apiMessages = [...messages, contextualUserMessage]
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: updatedMessages })
+        body: JSON.stringify({ messages: apiMessages })
       })
 
       if (!response.ok) {
@@ -452,16 +481,21 @@ export default function SupermarketChat() {
       content: `eliminar ${productToDelete.name} de la lista`
     }
 
+    // Add context about current products for API call
+    const contextualUserMessage = addProductContext(userMessage)
+
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
 
     try {
+      // Send contextual message to API
+      const apiMessages = [...messages, contextualUserMessage]
       const response = await fetch('/api/v2/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: updatedMessages })
+        body: JSON.stringify({ messages: apiMessages })
       })
 
       if (!response.ok) {
@@ -608,6 +642,10 @@ export default function SupermarketChat() {
       role: "user",
       content: `[Audio de lista de compras]`
     }
+
+    // Add context about current products for API call
+    const contextualUserMessage = addProductContext(userMessage)
+
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
     setInput("")
@@ -615,7 +653,9 @@ export default function SupermarketChat() {
     try {
       const formData = new FormData()
       formData.append('audio', audio, 'audio.webm')
-      formData.append('messages', JSON.stringify(updatedMessages))
+      // Send contextual message to API
+      const apiMessages = [...messages, contextualUserMessage]
+      formData.append('messages', JSON.stringify(apiMessages))
       
       const response = await fetch('/api/v2/chat', {
         method: 'POST',

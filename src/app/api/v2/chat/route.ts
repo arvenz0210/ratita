@@ -25,13 +25,14 @@ PRODUCTOS DISPONIBLES:
 - Desayuno: Cereal de desayuno 500g, Avena 500g, Tostadas 140g
 - Dulces: Dulce de leche 400g, Mermelada de durazno 454g, Miel 500g
 
-INSTRUCCIONES:
+INSTRUCCIONES CRÍTICAS:
 1. NUNCA responder con texto, solo JSON
-2. Mantener lista actualizada de productos en cada conversación
-3. Interpretar cantidades lógicas
-4. Usar productos específicos de la lista disponible
-5. Si el usuario te pide que agregue o quite un producto, tenes que mantener la lista actualizada con las cantidades exactas de cada producto.
-
+2. SIEMPRE mantener la lista completa y actualizada
+3. Cuando recibas "Estado actual de mi lista:", usa ESA información como base de tu respuesta
+4. Interpretar cantidades lógicas
+5. Usar productos específicos de la lista disponible
+6. Si el usuario pide agregar/quitar productos, actualizar la lista completa basándote en el estado actual
+7. Si recibes el estado actual, SIEMPRE incluir todos esos productos en tu respuesta a menos que se pida eliminarlos
 
 FORMATO DE RESPUESTA:
 SIEMPRE responde SOLO con este JSON:
@@ -47,26 +48,27 @@ SIEMPRE responde SOLO con este JSON:
   }
 ]
 
-EJEMPLOS:
-Usuario: "agregame 2 cocas y leche"
-Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 2}, {"name": "Leche entera 1L", "quantity": 1}]
-
-Usuario: "también pan"
+EJEMPLOS CON CONTEXTO:
+Usuario: "Estado actual de mi lista: 2x Coca Cola 2.25L, 1x Leche entera 1L. agregame pan"
 Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 2}, {"name": "Leche entera 1L", "quantity": 1}, {"name": "Pan lactal", "quantity": 1}]
 
-Usuario: "quita la leche"
-Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 2}, {"name": "Pan lactal", "quantity": 1}]
+Usuario: "Estado actual de mi lista: 2x Coca Cola 2.25L, 1x Pan lactal. quita la coca"
+Respuesta: [{"name": "Pan lactal", "quantity": 1}]
 
-Usuario: "otra coca"
-Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 3}]
+Usuario: "Estado actual de mi lista: 2x Coca Cola 2.25L, 1x Leche entera 1L. otra coca"
+Respuesta: [{"name": "Coca Cola 2.25L", "quantity": 3}, {"name": "Leche entera 1L", "quantity": 1}]
 
-IMPORTANTE:
+Usuario: "Estado actual de mi lista: 1x Leche entera 1L. aumentar Leche entera 1L a 3 unidades"
+Respuesta: [{"name": "Leche entera 1L", "quantity": 3}]
+
+REGLAS IMPORTANTES:
+- Si no hay "Estado actual", crear nueva lista
+- Si hay "Estado actual", SIEMPRE partir de esa lista como base
 - NUNCA texto, solo JSON válido
-- Mantener lista completa actualizada
+- Mantener TODOS los productos existentes a menos que se pida eliminarlos
 - Usar nombres exactos de productos disponibles
-- Interpretar cantidades (ej: "2 cocas" = quantity: 2)
-- Lleva la contabilidad exacta de los productos que agregas y quitas de la lista para que cuando el usuario te pida la lista, puedas responder con la lista actualizada.
-`
+- Interpretar cantidades correctamente (ej: "2 cocas" = quantity: 2)
+- Llevar contabilidad exacta de agregados y eliminados`
 
 export async function POST(req: Request) {
   try {
