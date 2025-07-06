@@ -713,7 +713,7 @@ export default function SupermarketChat() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pb-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Layout 
         showTopbar={true} 
         topbarContent={topbarContent}
@@ -737,7 +737,7 @@ export default function SupermarketChat() {
         )}
 
         {/* Main Content with new Ratita style */}
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full  pb-20">
           {/* Chat Header */}
           <div className="px-4 py-4 border-b border-white/10 bg-black/10">
             <div className="flex items-center space-x-3">
