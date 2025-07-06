@@ -737,7 +737,7 @@ export default function SupermarketChat() {
         )}
 
         {/* Main Content with new Ratita style */}
-        <div className="flex flex-col h-full  pb-20">
+        <div className="flex flex-col h-full">
           {/* Chat Header */}
           <div className="px-4 py-4 border-b border-white/10 bg-black/10">
             <div className="flex items-center space-x-3">
