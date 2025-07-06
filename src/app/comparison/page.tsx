@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Layout } from "@/components/ui/layout"
-import { ArrowLeft, Store, ListChecks } from "lucide-react"
+import { MouseLogo } from "@/components/ui/ratita-components"
+import { ArrowLeft, Store, ListChecks, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ComparisonRow {
@@ -108,10 +109,11 @@ export default function ComparisonPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Comparando precios...</p>
+          <MouseLogo size="lg" className="mx-auto mb-6" animated />
+          <p className="text-white/70 text-lg">Comparando precios...</p>
+          <p className="text-white/50 text-sm mt-2">Ratita está buscando las mejores ofertas</p>
         </div>
       </div>
     )
@@ -119,10 +121,15 @@ export default function ComparisonPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
-          <Button onClick={fetchComparisonData}>Reintentar</Button>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <p className="text-red-400 mb-4 text-lg">❌ {error}</p>
+          <Button 
+            onClick={fetchComparisonData}
+            className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white"
+          >
+            Reintentar
+          </Button>
         </div>
       </div>
     )
@@ -130,9 +137,10 @@ export default function ComparisonPage() {
 
   if (!comparisonData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-600">No hay datos de comparación disponibles</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <MouseLogo size="lg" className="mx-auto mb-6" />
+          <p className="text-white/70 text-lg">No hay datos de comparación disponibles</p>
         </div>
       </div>
     )
@@ -147,201 +155,144 @@ export default function ComparisonPage() {
   const discount = bestStoreData ? 25578 : null // Mocked discount
 
   return (
-    <Layout
-      topbarContent={
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={() => router.back()}
-          className="p-2 text-gray-300 hover:text-white"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
-      }
-    >
-      <div className="bg-gray-900 min-h-full">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-        {/* Best Option Card */}
-        {bestStore && bestStoreData && (
-          <div className="mb-8">
-            <div 
-              className="bg-gradient-to-br from-green-900/50 to-green-800/30 rounded-2xl shadow p-6 flex flex-col items-center border border-green-700 cursor-pointer hover:shadow-lg transition-all duration-200"
-              onClick={() => handleStoreSelection(bestStore)}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <Layout
+        topbarContent={
+          <div className="flex items-center space-x-3">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => router.back()}
+              className="p-2 text-white/70 hover:text-white hover:bg-white/10"
             >
-              <div className="flex items-center mb-2">
-                <span className="bg-green-700 rounded-full p-2 mr-2">
-                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-3.582 9-8 0-2.21-1.79-4-4-4-.34 0-.67.04-.99.12C14.36 6.5 13.27 5 12 5c-1.27 0-2.36 1.5-3.01 4.12-.32-.08-.65-.12-.99-.12-2.21 0-4 1.79-4 4 0 4.418 4.03 8 9 8Z" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            <MouseLogo size="sm" />
+            <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Comparación de Precios
+            </span>
+          </div>
+        }
+      >
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          {/* Best Option Card */}
+          {bestStore && bestStoreData && (
+            <div className="mb-8">
+              <div 
+                className="bg-gradient-to-br from-green-900/30 to-emerald-800/20 rounded-2xl shadow-xl p-6 flex flex-col items-center border border-green-500/30 cursor-pointer hover:shadow-2xl transition-all duration-300 backdrop-blur-sm"
+                onClick={() => handleStoreSelection(bestStore)}
+              >
+                <div className="flex items-center mb-4">
+                  <span className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-3 mr-3">
+                    <Sparkles className="w-6 h-6 text-white" />
+                  </span>
+                  <div className="text-center">
+                    <h3 className="font-bold text-green-100 text-xl">¡Mejor Opción!</h3>
+                    <p className="text-green-200/80 text-sm">Comprá en {bestStore}</p>
+                  </div>
+                </div>
+                
+                <div className="w-full bg-black/20 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center border border-white/10 mb-4">
+                  <div className="flex w-full justify-between items-center mb-2">
+                    <span className="text-white/60">Precio normal:</span>
+                    <span className="text-white/50 line-through">{normalPrice ? formatPrice(normalPrice) : '--'}</span>
+                  </div>
+                  <div className="flex w-full justify-between items-center">
+                    <span className="text-green-300 font-medium">Con descuentos:</span>
+                    <span className="text-green-300 font-bold text-2xl">{formatPrice(bestStoreData.total)}</span>
+                  </div>
+                </div>
+
+                <span className="text-green-100 text-xl mb-6 flex items-center">
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  ¡Ahorrás {discount ? formatPrice(discount) : '--'}!
                 </span>
-                <span className="font-semibold text-green-100 text-base">Comprá este jueves en {bestStore} con tarjeta de crédito VISA</span>
-              </div>
-              <div className="w-full bg-gray-800 rounded-xl p-4 flex flex-col items-center border border-gray-700 mb-4">
-                <div className="flex w-full justify-between items-center mb-1">
-                  <span className="text-gray-400">Precio normal:</span>
-                  <span className="text-gray-500 line-through">{normalPrice ? formatPrice(normalPrice) : '--'}</span>
-                </div>
-                <div className="flex w-full justify-between items-center">
-                  <span className="text-green-300 font-medium">Con descuentos:</span>
-                  <span className="text-green-300 font-bold text-lg">{formatPrice(bestStoreData.total)}</span>
-                </div>
-              </div>
 
-              <span className="text-green-100 text-lg mb-4">¡Ahorrás {discount ? formatPrice(discount) : '--'}!</span>
-
-              <div className="w-full">
-                <div className="bg-gradient-to-r font-bold text-white from-green-600 to-green-500 rounded-xl py-3 px-4 flex items-center justify-center">
-                  Realizar pedido
+                <div className="w-full space-y-3">
+                  <div className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 rounded-xl py-4 px-6 flex items-center justify-center transition-all duration-200 shadow-lg">
+                    <span className="text-white font-bold text-lg">Realizar pedido</span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full flex items-center justify-center gap-2 border-green-400/50 text-green-200 hover:bg-green-900/30 backdrop-blur-sm"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      router.push('/shopping-list');
+                    }}
+                  >
+                    <ListChecks className="w-5 h-5" />
+                    Ir a comprar físicamente
+                  </Button>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Store Selection Cards (excluding best) */}
+          {orderedStores.length > 1 && (
+            <div className="mb-8">
+              {!showMoreOptions ? (
                 <Button
                   variant="outline"
-                  className="w-full mt-3 flex items-center justify-center gap-2 border-green-700 text-green-200 hover:bg-green-900/30"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    router.push('/shopping-list');
-                  }}
+                  className="w-full border-white/20 text-white/70 hover:bg-white/10 backdrop-blur-sm"
+                  onClick={() => setShowMoreOptions(true)}
                 >
-                  <ListChecks className="w-5 h-5 mr-1" />
-                  Ir a comprar físicamente
+                  Ver más opciones
                 </Button>
-              </div>
-              {/* <div className="mt-4 flex items-center text-green-700 text-sm">
-                <Truck className="w-4 h-4 mr-1" />
-                <span>Hacer pedido en {bestStore}</span>
-              </div> */}
-            </div>
-          </div>
-        )}
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {orderedStores.map((store, idx) => {
+                    if (idx === 0 && bestStore) return null // skip best, already rendered
+                    const storeData = comparisonData.storeTotals[store]
+                    const hasItems = storeData.itemsFound > 0
 
-        {/* Store Selection Cards (excluding best) */}
-        {orderedStores.length > 1 && (
-          <div className="mb-8">
-            {!showMoreOptions ? (
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => setShowMoreOptions(true)}
-              >
-                Ver más opciones
-              </Button>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {orderedStores.map((store, idx) => {
-                  if (idx === 0 && bestStore) return null // skip best, already rendered
-                  const storeData = comparisonData.storeTotals[store]
-                  const hasItems = storeData.itemsFound > 0
-
-                  return (
-                    <div
-                      key={store}
-                      className={`bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl shadow p-6 flex flex-col items-center border border-gray-600 cursor-pointer hover:shadow-lg transition-all duration-200 ${
-                        !hasItems ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                      onClick={() => hasItems && handleStoreSelection(store)}
-                    >
-                      <div className="flex items-center mb-4">
-                        <span className="bg-gray-600 rounded-full p-2 mr-2">
-                          <Store className="w-5 h-5 text-gray-300" />
-                        </span>
-                        <span className="font-semibold text-gray-100 text-base">{store}</span>
-                      </div>
-                      
-                      <div className="w-full bg-gray-800 rounded-xl p-4 flex flex-col items-center border border-gray-700 mb-4">
-                        <div className="flex w-full justify-between items-center mb-1">
-                          <span className="text-gray-400">Total:</span>
-                          <span className="text-gray-100 font-bold text-lg">{formatPrice(storeData.total)}</span>
+                    return (
+                      <div
+                        key={store}
+                        className={`bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl p-6 flex flex-col items-center border border-white/10 cursor-pointer hover:shadow-2xl hover:bg-white/10 transition-all duration-300 ${
+                          !hasItems ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        onClick={() => hasItems && handleStoreSelection(store)}
+                      >
+                        <div className="flex items-center mb-4">
+                          <span className="bg-gradient-to-r from-violet-600 to-purple-700 rounded-full p-3 mr-3">
+                            <Store className="w-6 h-6 text-white" />
+                          </span>
+                          <span className="font-bold text-white text-lg">{store}</span>
                         </div>
-                        <div className="flex w-full justify-between items-center">
-                          <span className="text-gray-400">Productos encontrados:</span>
-                          <span className="text-gray-100">{storeData.itemsFound}/{comparisonData.products.length}</span>
-                        </div>
-                      </div>
-
-                      {!hasItems && (
-                        <p className="text-sm text-red-400 mt-2">No hay productos disponibles</p>
-                      )}
-
-                      {hasItems && (
-                        <div className="w-full">
-                          <div className="bg-gradient-to-r from-gray-600 to-gray-500 rounded-xl py-3 px-4 flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">Realizar pedido</span>
+                        
+                        <div className="w-full bg-black/20 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center border border-white/10 mb-4">
+                          <div className="flex w-full justify-between items-center mb-2">
+                            <span className="text-white/60">Total:</span>
+                            <span className="text-white font-bold text-xl">{formatPrice(storeData.total)}</span>
+                          </div>
+                          <div className="flex w-full justify-between items-center">
+                            <span className="text-white/60">Productos encontrados:</span>
+                            <span className="text-white">{storeData.itemsFound}/{comparisonData.products.length}</span>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        )}
 
-        {/* Product Comparison Table */}
-        {/* <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <ShoppingCart className="w-5 h-5" />
-              <span>Comparación por Producto</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-3 px-4 font-medium text-gray-900">Producto</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-900">Cantidad</th>
-                    {comparisonData.stores.map((store) => (
-                      <th key={store} className="text-left py-3 px-4 font-medium text-gray-900">
-                        {store}
-                      </th>
-                    ))}
-                    <th className="text-left py-3 px-4 font-medium text-gray-900">Mejor Precio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonData.products.map((product, index) => (
-                    <tr key={index} className="border-b hover:bg-gray-50">
-                      <td className="py-3 px-4 font-medium text-gray-900">
-                        {product.product}
-                      </td>
-                      <td className="py-3 px-4 text-gray-600">
-                        {product.quantity}
-                      </td>
-                      {comparisonData.stores.map((store) => {
-                        const price = product.prices[store]
-                        const isBestPrice = store === product.bestStore
-                        
-                        return (
-                          <td key={store} className="py-3 px-4">
-                            <span className={`${
-                              isBestPrice ? 'font-semibold text-green-600' : 'text-gray-900'
-                            }`}>
-                              {formatPrice(price)}
-                            </span>
-                          </td>
-                        )
-                      })}
-                      <td className="py-3 px-4">
-                        <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-green-600">
-                            {formatPrice(product.bestPrice)}
-                          </span>
-                          {product.bestStore && (
-                            <span className="text-xs text-gray-500">
-                              ({product.bestStore})
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        {!hasItems && (
+                          <p className="text-sm text-red-400 mt-2">No hay productos disponibles</p>
+                        )}
+
+                        {hasItems && (
+                          <div className="w-full">
+                            <div className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 rounded-xl py-3 px-4 flex items-center justify-center transition-all duration-200">
+                              <span className="text-white font-bold">Realizar pedido</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
             </div>
-          </CardContent>
-        </Card> */}
+          )}
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   )
 } 

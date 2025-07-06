@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Layout } from "@/components/ui/layout"
-import { ArrowLeft, ShoppingCart, Check, Package } from "lucide-react"
+import { MouseLogo } from "@/components/ui/ratita-components"
+import { ArrowLeft, ShoppingCart, Check, Package, Sparkles, CreditCard } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ShipmentItem {
@@ -102,10 +103,15 @@ export default function ShipmentConfirmationPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
-          <Button onClick={() => router.push('/comparison')}>Volver a comparación</Button>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <p className="text-red-400 mb-4 text-lg">❌ {error}</p>
+          <Button 
+            onClick={() => router.push('/comparison')}
+            className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white"
+          >
+            Volver a comparación
+          </Button>
         </div>
       </div>
     )
@@ -113,10 +119,14 @@ export default function ShipmentConfirmationPage() {
 
   if (!shipmentData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-600">No hay datos de envío disponibles</p>
-          <Button onClick={() => router.push('/comparison')} className="mt-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <MouseLogo size="lg" className="mx-auto mb-6" />
+          <p className="text-white/70 text-lg mb-4">No hay datos de envío disponibles</p>
+          <Button 
+            onClick={() => router.push('/comparison')} 
+            className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white"
+          >
             Volver a comparación
           </Button>
         </div>
@@ -125,103 +135,131 @@ export default function ShipmentConfirmationPage() {
   }
 
   return (
-    <Layout
-      topbarContent={
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          onClick={() => router.back()}
-          className="p-2 text-gray-300 hover:text-white"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
-      }
-    >
-      <div className="bg-gray-900 min-h-full">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <Layout
+        topbarContent={
+          <div className="flex items-center space-x-3">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => router.back()}
+              className="p-2 text-white/70 hover:text-white hover:bg-white/10"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            <MouseLogo size="sm" />
+            <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Confirmación de Pedido
+            </span>
+          </div>
+        }
+      >
         {/* Loading Modal */}
         {isProcessing && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-gray-800 rounded-lg p-8 max-w-md mx-4 text-center border border-gray-700">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
-              <h3 className="text-xl font-semibold text-gray-100 mb-2">
-                Estamos procesando tu pedido
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 max-w-md mx-4 text-center border border-white/20">
+              <MouseLogo size="lg" className="mx-auto mb-6" animated />
+              <h3 className="text-2xl font-bold text-white mb-3 flex items-center justify-center">
+                <Sparkles className="w-6 h-6 mr-2 text-cyan-400" />
+                Procesando tu pedido
               </h3>
-              <p className="text-gray-400">
-                Por favor espera mientras confirmamos tu solicitud...
+              <p className="text-white/70 mb-6">
+                Ratita está confirmando tu solicitud...
               </p>
-              <div className="mt-4 flex items-center justify-center space-x-2 text-green-600">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600"></div>
-                <span className="text-sm">Procesando...</span>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="animate-spin rounded-full h-5 w-5 border-2 border-cyan-400 border-t-transparent"></div>
+                <span className="text-cyan-400 font-medium">Procesando...</span>
               </div>
             </div>
           </div>
         )}
 
         <div className="max-w-4xl mx-auto px-4 py-6">
-                 {/* Order Summary - Receipt Style */}
-         <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 mb-6">
-           <div className="flex items-center space-x-2 mb-4">
-             <Package className="w-5 h-5 text-gray-300" />
-             <h2 className="text-lg font-semibold text-gray-100">Resumen del Pedido</h2>
-           </div>
-           
-           <div className="space-y-3">
-             <div className="flex justify-between items-center py-1 border-b border-gray-700">
-               <span className="text-gray-400">Tienda</span>
-               <span className="font-medium text-gray-100">{shipmentData.store}</span>
-             </div>
-           </div>
-         </div>
+          {/* Order Summary - Receipt Style */}
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-6 hover:bg-white/10 transition-all duration-300">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full p-3">
+                <Package className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white flex items-center">
+                Resumen del Pedido
+                <Sparkles className="w-5 h-5 ml-2 text-cyan-400" />
+              </h2>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-3 border-b border-white/20">
+                <span className="text-white/60 text-lg">Tienda seleccionada</span>
+                <span className="font-bold text-white text-xl bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  {shipmentData.store}
+                </span>
+              </div>
+              <div className="flex justify-between items-center py-3">
+                <span className="text-white/60 text-lg flex items-center">
+                  <CreditCard className="w-5 h-5 mr-2 text-violet-400" />
+                  Método de pago
+                </span>
+                <span className="font-medium text-white">Tarjeta de crédito VISA</span>
+              </div>
+            </div>
+          </div>
 
-                 {/* Products List - Receipt Style */}
-         <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
-           <div className="flex items-center space-x-2 mb-4">
-             <ShoppingCart className="w-5 h-5 text-gray-300" />
-             <h2 className="text-lg font-semibold text-gray-100">Productos ({shipmentData.items.length})</h2>
-           </div>
-           
-           <div className="space-y-2">
-             {shipmentData.items.map((item, index) => (
-               <div key={index} className="flex justify-between items-start py-1 border-b border-gray-700">
-                 <div className="flex-1">
-                   <p className="font-medium text-gray-100">{item.product}</p>
-                   <p className="text-sm text-gray-400">
-                     {item.quantity} x {formatPrice(item.price)}
-                   </p>
-                 </div>
-                 <div className="text-right ml-4">
-                   <p className="font-semibold text-gray-100">
-                     {formatPrice(item.total)}
-                   </p>
-                 </div>
-               </div>
-             ))}
-           </div>
+          {/* Products List - Receipt Style */}
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="bg-gradient-to-r from-violet-500 to-purple-600 rounded-full p-3">
+                <ShoppingCart className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">
+                Productos ({shipmentData.items.length})
+              </h2>
+            </div>
+            
+            <div className="space-y-4">
+              {shipmentData.items.map((item, index) => (
+                <div key={index} className="flex justify-between items-start py-4 border-b border-white/10">
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-lg">{item.product}</p>
+                    <p className="text-white/60 mt-1">
+                      {item.quantity} x {formatPrice(item.price)}
+                    </p>
+                  </div>
+                  <div className="text-right ml-4">
+                    <p className="font-bold text-white text-xl">
+                      {formatPrice(item.total)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-           {/* Total Summary */}
-           <div className="mt-4 pt-3 border-t-2 border-gray-600">
-             <div className="flex justify-between items-center">
-               <span className="text-lg font-semibold text-gray-100">TOTAL</span>
-               <span className="text-xl font-bold text-gray-100">
-                 {formatPrice(shipmentData.total)}
-               </span>
-             </div>
-           </div>
-         </div>
+            {/* Total Summary */}
+            <div className="mt-6 pt-6 border-t-2 border-gradient-to-r from-cyan-400 to-purple-400">
+              <div className="flex justify-between items-center bg-gradient-to-r from-green-900/30 to-emerald-800/20 rounded-xl p-4 border border-green-500/30">
+                <span className="text-2xl font-bold text-white flex items-center">
+                  <Sparkles className="w-6 h-6 mr-2 text-green-400" />
+                  TOTAL
+                </span>
+                <span className="text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                  {formatPrice(shipmentData.total)}
+                </span>
+              </div>
+            </div>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <Button
-            className="flex-1 bg-green-600 hover:bg-green-700"
-            onClick={handleConfirmOrder}
-            disabled={isProcessing}
-          >
-            <Check className="w-4 h-4 mr-2" />
-            {isProcessing ? 'Procesando...' : 'Confirmar Pedido'}
-          </Button>
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <Button
+              className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-lg py-4 shadow-lg"
+              onClick={handleConfirmOrder}
+              disabled={isProcessing}
+            >
+              <Check className="w-5 h-5 mr-2" />
+              {isProcessing ? 'Procesando...' : 'Confirmar Pedido'}
+            </Button>
+          </div>
         </div>
-        </div>
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   )
 } 

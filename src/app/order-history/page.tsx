@@ -5,7 +5,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Layout } from "@/components/ui/layout"
 import { ConfirmModal, AlertModal } from "@/components/ui/modal"
-import { Package, Store, Calendar, ShoppingCart, Trash2 } from "lucide-react"
+import { MouseLogo } from "@/components/ui/ratita-components"
+import { Package, Store, Calendar, ShoppingCart, Trash2, Sparkles, CheckCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ConfirmedOrder {
@@ -103,14 +104,9 @@ export default function OrderHistoryPage() {
   const handleReorderItems = (order: ConfirmedOrder) => {
     try {
       console.log(order)
-      // Create new shopping list from this order
-      // Clear any existing temporary data
       sessionStorage.removeItem('shipmentData')
       sessionStorage.removeItem('comparisonData')
       sessionStorage.removeItem('selectedStore')
-      
-      // Set up new shopping session (this would typically be handled by the AI chat)
-      // For now, we'll redirect to the main page and let the user add items manually
       sessionStorage.setItem('clearTempData', 'true')
       router.push('/')
     } catch (error) {
@@ -135,29 +131,45 @@ export default function OrderHistoryPage() {
 
   if (isLoading) {
     return (
-      <Layout>
-        <div className="bg-gray-900 min-h-full flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-400">Cargando historial de pedidos...</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <Layout>
+          <div className="min-h-full flex items-center justify-center">
+            <div className="text-center">
+              <MouseLogo size="lg" className="mx-auto mb-6" animated />
+              <p className="text-white/70 text-lg">Cargando historial de pedidos...</p>
+              <p className="text-white/50 text-sm mt-2">Ratita está organizando tu historial</p>
+            </div>
           </div>
-        </div>
-      </Layout>
+        </Layout>
+      </div>
     )
   }
 
   return (
-    <Layout>
-      <div className="bg-gray-900 min-h-full">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <Layout
+        topbarContent={
+          <div className="flex items-center space-x-3">
+            <MouseLogo size="sm" />
+            <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Historial de Pedidos
+            </span>
+          </div>
+        }
+      >
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-white">Historial de Pedidos</h1>
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-3xl font-bold text-white flex items-center">
+              <Package className="w-8 h-8 mr-3 text-cyan-400" />
+              Historial de Pedidos
+              <Sparkles className="w-6 h-6 ml-2 text-purple-400" />
+            </h1>
             {confirmedOrders.length > 0 && (
               <Button
                 variant="outline"
                 size="sm"
                 onClick={clearAllOrders}
-                className="text-red-400 border-red-400 hover:bg-red-900/20"
+                className="text-red-400 border-red-400/50 hover:bg-red-900/20 backdrop-blur-sm"
               >
                 <Trash2 className="w-4 h-4 mr-2" />
                 Limpiar Historial
@@ -167,85 +179,94 @@ export default function OrderHistoryPage() {
 
           {confirmedOrders.length === 0 ? (
             <div className="text-center py-16">
-              <Package className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-gray-300 mb-2">
-                No hay pedidos confirmados
-              </h2>
-              <p className="text-gray-500 mb-6">
-                Cuando confirmes un pedido, aparecerá aquí en tu historial.
-              </p>
-              <Button
-                onClick={() => {
-                  sessionStorage.setItem('clearTempData', 'true')
-                  router.push('/')
-                }}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Hacer un Pedido
-              </Button>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
+                <MouseLogo size="xl" className="mx-auto mb-6" />
+                <h2 className="text-2xl font-bold text-white mb-3 flex items-center justify-center">
+                  <Package className="w-6 h-6 mr-2 text-cyan-400" />
+                  No hay pedidos confirmados
+                </h2>
+                <p className="text-white/70 mb-8 text-lg">
+                  Cuando confirmes un pedido, aparecerá aquí en tu historial.
+                </p>
+                <Button
+                  onClick={() => {
+                    sessionStorage.setItem('clearTempData', 'true')
+                    router.push('/')
+                  }}
+                  className="bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white shadow-lg"
+                >
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Hacer un Pedido
+                </Button>
+              </div>
             </div>
           ) : (
             <div className="space-y-6">
               {confirmedOrders.map((order) => (
-                <Card key={order.orderId} className="bg-gray-800 border-gray-700">
+                <Card key={order.orderId} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center space-x-2">
-                        <Package className="w-5 h-5 text-green-400" />
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-3">
+                          <CheckCircle className="w-6 h-6 text-white" />
+                        </div>
                         <div>
-                          <h3 className="font-semibold text-white">
+                          <h3 className="font-bold text-white text-xl flex items-center">
                             Pedido #{order.orderId.split('-')[1]}
+                            <Sparkles className="w-5 h-5 ml-2 text-green-400" />
                           </h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <Store className="w-4 h-4" />
+                          <div className="flex items-center space-x-6 text-sm text-white/60 mt-2">
+                            <div className="flex items-center space-x-2">
+                              <Store className="w-4 h-4 text-violet-400" />
                               <span>{order.store}</span>
                             </div>
-                            <div className="flex items-center space-x-1">
-                              <Calendar className="w-4 h-4" />
+                            <div className="flex items-center space-x-2">
+                              <Calendar className="w-4 h-4 text-cyan-400" />
                               <span>{formatDate(order.confirmedAt)}</span>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-3">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleReorderItems(order)}
-                          className="text-blue-400 border-blue-400 hover:bg-blue-900/20"
+                          className="text-cyan-400 border-cyan-400/50 hover:bg-cyan-900/20 backdrop-blur-sm"
                         >
-                          <ShoppingCart className="w-4 h-4 mr-1" />
+                          <ShoppingCart className="w-4 h-4 mr-2" />
                           Reordenar
                         </Button>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleDeleteOrder(order.orderId)}
-                          className="text-red-400 border-red-400 hover:bg-red-900/20"
+                          className="text-red-400 border-red-400/50 hover:bg-red-900/20 backdrop-blur-sm"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
                     </div>
 
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-3 mb-6">
                       {order.items.map((item, index) => (
-                        <div key={index} className="flex justify-between items-center py-1 text-sm">
+                        <div key={index} className="flex justify-between items-center py-3 bg-white/5 rounded-lg px-4 border border-white/10">
                           <div className="flex-1">
-                            <span className="text-gray-300">{item.product}</span>
-                            <span className="text-gray-500 ml-2">x{item.quantity}</span>
+                            <span className="text-white font-medium">{item.product}</span>
+                            <span className="text-cyan-400 ml-3 font-bold">x{item.quantity}</span>
                           </div>
-                          <span className="text-gray-300">{formatPrice(item.total)}</span>
+                          <span className="text-white font-bold">{formatPrice(item.total)}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="pt-3 border-t border-gray-700">
-                      <div className="flex justify-between items-center">
-                        <span className="font-semibold text-gray-300">Total</span>
-                        <span className="font-bold text-green-400 text-lg">
+                    <div className="pt-4 border-t border-white/20">
+                      <div className="flex justify-between items-center bg-gradient-to-r from-green-900/30 to-emerald-800/20 rounded-xl p-4 border border-green-500/30">
+                        <span className="font-bold text-white text-xl flex items-center">
+                          <Sparkles className="w-5 h-5 mr-2 text-green-400" />
+                          Total
+                        </span>
+                        <span className="font-bold text-2xl bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                           {formatPrice(order.total)}
                         </span>
                       </div>
@@ -256,9 +277,8 @@ export default function OrderHistoryPage() {
             </div>
           )}
         </div>
-      </div>
+      </Layout>
       
-      {/* Modals */}
       <ConfirmModal
         isOpen={showDeleteConfirm}
         onClose={() => setShowDeleteConfirm(false)}
@@ -286,6 +306,6 @@ export default function OrderHistoryPage() {
         message={alertConfig.message}
         type={alertConfig.type}
       />
-    </Layout>
+    </div>
   )
 } 
