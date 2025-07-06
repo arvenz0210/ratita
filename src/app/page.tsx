@@ -792,98 +792,105 @@ export default function SupermarketChat() {
             </div>
           </div>
 
-          {/* Product List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-[200px]">
+          {/* Content Area */}
+          <div className="flex-1 flex flex-col pb-40"> {/* Increased padding bottom for fixed elements */}
             {products.length === 0 ? (
-              <div className="text-center py-8 pb-6">
-                <MouseLogo size="xl" className="mx-auto mb-6" animated />
-                <h3 className="text-2xl font-bold text-white mb-4">¿Qué vamos a comprar hoy?</h3>
-                <p className="text-white/70 mb-6">Elegí una opción rápida o háblame</p>
-                <ChatSuggestions onSuggestionClick={handleSuggestionClick} />
+              <div className="flex-1 flex items-center justify-center p-4">
+                <div className="text-center">
+                  <MouseLogo size="xl" className="mx-auto mb-6" animated />
+                  <h3 className="text-2xl font-bold text-white mb-4">¿Qué vamos a comprar hoy?</h3>
+                  <p className="text-white/70 mb-6">Elegí una opción rápida o háblame</p>
+                  <ChatSuggestions onSuggestionClick={handleSuggestionClick} />
+                </div>
               </div>
             ) : (
               <>
-                {products.map((product: Product, index: number) => (
-                  <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-sm">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3 flex-1">
-                          <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
-                            {getProductIcon(product.name)}
+                {/* Scrollable Product List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-36"> {/* Added padding bottom to product list */}
+                  {products.map((product: Product, index: number) => (
+                    <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-sm">
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3 flex-1">
+                            <div className={`w-10 h-10 rounded-full ${getProductColor(product.name)} flex items-center justify-center text-lg`}>
+                              {getProductIcon(product.name)}
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="font-medium text-white">{product.name}</h3>
+                            </div>
                           </div>
-                          <div className="flex-1">
-                            <h3 className="font-medium text-white">{product.name}</h3>
+                          
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleQuantityChange(index, product.quantity - 1)}
+                              className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+                            <span className="text-sm font-medium w-6 text-center text-white">{product.quantity}</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleQuantityChange(index, product.quantity + 1)}
+                              className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteItem(index)}
+                              className="h-7 w-7 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/20"
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
                           </div>
                         </div>
-                        
-                        <div className="flex items-center space-x-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleQuantityChange(index, product.quantity - 1)}
-                            className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
-                          >
-                            <Minus className="h-3 w-3" />
-                          </Button>
-                          <span className="text-sm font-medium w-6 text-center text-white">{product.quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleQuantityChange(index, product.quantity + 1)}
-                            className="h-7 w-7 p-0 bg-white/10 border-white/20 text-white hover:bg-white/20"
-                          >
-                            <Plus className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDeleteItem(index)}
-                            className="h-7 w-7 p-0 text-red-400 hover:text-red-300 hover:bg-red-500/20"
-                          >
-                            <Trash2 className="h-3 w-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
                 
-                {/* Action Buttons */}
-                <div className="flex flex-col space-y-3 pt-4">
-                  <Button 
-                    onClick={handleComparePrices}
-                    disabled={isComparing || products.length === 0}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 shadow-lg"
-                  >
-                    <Rocket className="w-4 h-4 mr-2" />
-                    {isComparing ? "Comparando..." : "Descubrí el mejor precio"}
-                  </Button>
-                  
-                  <div className="flex justify-center space-x-3">
+                {/* Fixed Action Buttons */}
+                <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4 fixed bottom-24 left-0 right-0 z-10"> {/* Moved higher from bottom */}
+                  <div className="flex flex-col space-y-3">
                     <Button 
-                      onClick={handleSaveList}
-                      variant="outline"
-                      className="border-green-600 text-green-400 hover:bg-green-900/20"
+                      onClick={handleComparePrices}
+                      disabled={isComparing || products.length === 0}
+                      className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0 shadow-lg"
                     >
-                      <Save className="w-4 h-4 mr-2" />
-                      Guardar lista
+                      <Rocket className="w-4 h-4 mr-2" />
+                      {isComparing ? "Comparando..." : "Descubrí el mejor precio"}
                     </Button>
-                    <Button 
-                      onClick={handleClearList}
-                      variant="outline"
-                      className="border-red-600 text-red-400 hover:bg-red-900/20"
-                    >
-                      <X className="w-4 h-4 mr-2" />
-                      Limpiar lista
-                    </Button>
+                    
+                    <div className="flex justify-center space-x-3">
+                      <Button 
+                        onClick={handleSaveList}
+                        variant="outline"
+                        className="border-green-600 text-green-400 hover:bg-green-900/20"
+                      >
+                        <Save className="w-4 h-4 mr-2" />
+                        Guardar lista
+                      </Button>
+                      <Button 
+                        onClick={handleClearList}
+                        variant="outline"
+                        className="border-red-600 text-red-400 hover:bg-red-900/20"
+                      >
+                        <X className="w-4 h-4 mr-2" />
+                        Limpiar lista
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </>
             )}
           </div>
 
-          {/* Chat Input Area */}
-          <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4 fixed bottom-0 left-0 right-0">
+          {/* Fixed Chat Input Area */}
+          <div className="border-t border-white/10 bg-black/20 backdrop-blur-xl p-4 fixed bottom-0 left-0 right-0 z-20">
             <form onSubmit={handleSubmit} className="flex items-center space-x-3">
               <div className="flex-1 relative">
                 <Input
