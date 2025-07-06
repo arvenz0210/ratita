@@ -362,7 +362,7 @@ export default function SupermarketChat() {
           <div className="flex flex-col items-center justify-center text-center py-16 text-gray-400">
             <img src="/logo.png" alt="Ratita logo" className="w-40 h-40 mb-4" />
             <h1 className="text-4xl font-bold text-white mb-2">¡Hola! Lucas</h1>
-            <p className="text-xl text-gray-400">¿Qué querés comprar hoy?</p>
+            <p className="text-xl text-gray-400">Armemos juntos tu lista de compras</p>
           </div>
         ) : (
           products.map((product: Product, index: number) => (
