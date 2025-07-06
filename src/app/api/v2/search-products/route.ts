@@ -23,7 +23,7 @@ class RatoneandoAPIScraper {
       const url = `${this.apiUrl}?q=${encodeURIComponent(query.toLowerCase())}`;
       console.log(`🌐 API URL: ${url}`);
       
-      const response = await axios.get(url, {
+      const response = await axios.get<unknown>(url, {
         headers: {
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
           'Accept': 'application/json, text/plain, */*',
@@ -45,13 +45,13 @@ class RatoneandoAPIScraper {
         throw new Error(`API returned status ${response.status}`);
       }
       
-      const data = response.data;
+      const data: { products: { name: string, price: number, source: string, link: string, image: string }[], failedScrapers: string[] } = response.data as { products: { name: string, price: number, source: string, link: string, image: string }[], failedScrapers: string[] };
       
       if (!data || typeof data !== 'object') {
         throw new Error('Invalid response format');
       }
       
-      const products = this.parseProducts(data.products || []);
+      const products = this.parseProducts(data.products as { name: string, price: number, source: string, link: string, image: string }[] || []);
       
       console.log(`🎯 Found ${products.length} products`);
       
@@ -86,7 +86,7 @@ class RatoneandoAPIScraper {
     this.lastRequestTime = Date.now();
   }
 
-  private parseProducts(apiProducts: any[]): Product[] {
+  private parseProducts(apiProducts: { name: string, price: number, source: string, link: string, image: string }[]): Product[] {
     const products: Product[] = [];
     
     for (const apiProduct of apiProducts) {
@@ -113,7 +113,7 @@ class RatoneandoAPIScraper {
     return products;
   }
 
-  private parsePrice(price: any): number {
+  private parsePrice(price: number | string): number {
     if (typeof price === 'number') {
       return price;
     }

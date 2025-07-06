@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ShoppingCart, TrendingUp, Store, Check, Truck, ListChecks } from "lucide-react"
+import { ArrowLeft, Store, ListChecks } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ComparisonRow {
@@ -134,13 +133,9 @@ export default function ComparisonPage() {
   }
 
   const bestStore = getBestStore()
-
-  // Order stores: best first, then the rest
   const orderedStores = bestStore
     ? [bestStore, ...comparisonData.stores.filter((s) => s !== bestStore)]
     : comparisonData.stores
-
-  // Mocked data for the best offer (replace with real data as needed)
   const bestStoreData = bestStore ? comparisonData.storeTotals[bestStore] : null
   const normalPrice = bestStoreData ? bestStoreData.total + 25578 : null // Mocked normal price
   const discount = bestStoreData ? 25578 : null // Mocked discount
@@ -233,7 +228,6 @@ export default function ComparisonPage() {
                 {orderedStores.map((store, idx) => {
                   if (idx === 0 && bestStore) return null // skip best, already rendered
                   const storeData = comparisonData.storeTotals[store]
-                  const isBestStore = store === bestStore
                   const hasItems = storeData.itemsFound > 0
 
                   return (

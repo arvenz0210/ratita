@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ShoppingCart, Store, Check, Truck, Package } from "lucide-react"
+import { ArrowLeft, ShoppingCart, Check, Package } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ShipmentItem {
@@ -48,16 +47,6 @@ export default function ShipmentConfirmationPage() {
 
   const formatPrice = (price: number): string => {
     return `$${price.toLocaleString('es-AR')}`
-  }
-
-  const formatDate = (timestamp: string): string => {
-    return new Date(timestamp).toLocaleDateString('es-AR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
   }
 
   const handleConfirmOrder = async () => {

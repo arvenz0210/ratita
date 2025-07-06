@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 interface ShipmentData {
   store: string
   total: number
-  items: any[]
+  items: unknown[]
   timestamp: string
 }
 

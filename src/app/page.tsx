@@ -2,10 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Edit3, Plus, SlidersHorizontal, Mic, AudioWaveform, Send, CircleArrowUp, ShoppingCart, Menu, Minus, Trash2, ArrowUp, Camera, Rocket, TrendingUp, Upload, X } from "lucide-react"
+import { Plus, Mic, Menu, Minus, ArrowUp, Camera, Rocket, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -22,7 +20,6 @@ export default function SupermarketChat() {
   const [products, setProducts] = useState<Product[]>([])
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
-  const [imageMethod, setImageMethod] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
   const [isComparing, setIsComparing] = useState(false)
 
@@ -37,10 +34,6 @@ export default function SupermarketChat() {
   const [isRecording, setIsRecording] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value)
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -502,7 +495,7 @@ export default function SupermarketChat() {
     setIsLoading(true)
     setAudioUrl(null)
     setAudioBlob(null)
-    let userMessage: ChatMessage = {
+    const userMessage: ChatMessage = {
       role: "user",
       content: `[Audio de lista de compras]`
     }
